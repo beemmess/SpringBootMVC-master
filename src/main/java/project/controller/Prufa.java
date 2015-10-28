@@ -10,4 +10,6 @@ public class Prufa {
     public int llllll;
     public int lalalaok;
     public int kalakala;
+
+    public int blsldfldflsldf;
 }
