@@ -2,6 +2,7 @@ package project.persistence.entities.Events;
 
 import java.util.Date;
 
+
 /**
  * Created by hlingunnlaugsdottir on 28/10/15.
  */
