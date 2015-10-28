@@ -3,7 +3,10 @@ package project.persistence.entities.Data;
 import project.persistence.entities.Events.Football;
 import project.persistence.entities.Events.Sports;
 
+<<<<<<< Updated upstream
 import java.text.ParseException;
+=======
+>>>>>>> Stashed changes
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -23,6 +26,7 @@ public class EventData {
         int teljari = 3;
         String stadsetning = "Álftanes";
         String keppni = "Innimót - Úrslitakeppni mfl. karla";
+<<<<<<< Updated upstream
         String dagurStr = "2015-01-15";
         SimpleDateFormat date = new SimpleDateFormat("yyyy-mm-dd");
         Date dagur = date.parse(dagurStr);
