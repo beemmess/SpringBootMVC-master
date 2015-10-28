@@ -12,4 +12,5 @@ public class Prufa {
     public int kalakala;
 
     public int blsldfldflsldf;
+    public int sdfasdferdsferera;
 }
