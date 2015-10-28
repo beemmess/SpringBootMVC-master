@@ -3,6 +3,8 @@ package project.persistence.entities.Data;
 import project.persistence.entities.Events.Football;
 import project.persistence.entities.Events.Sports;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -15,17 +17,24 @@ public class EventData {
         eventType = atburdur;
     }
 
-    public static void main(String args[]) {
+    public static void main(String args[]) throws ParseException {
         String heimalid = "Víkingur Ó";
         String utilid = "KFG";
         int teljari = 3;
         String stadsetning = "Álftanes";
         String keppni = "Innimót - Úrslitakeppni mfl. karla";
-        Date dagur = 2015-01-15;
-        Date timi = 19:30;
-
+        String dagurStr = "2015-01-15";
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-mm-dd");
+        Date dagur = date.parse(dagurStr);
+        String timiStr = "19:15";
+        SimpleDateFormat time = new SimpleDateFormat("HH:mm");
+        Date timi = time.parse(timiStr);
 
         Football fotboltaleikur = new Football(heimalid, utilid, teljari, stadsetning, keppni, dagur, timi);
+
+        String awayTeam = fotboltaleikur.getAwayTeam();
+
+        System.out.println(awayTeam);
 
     }
 }
