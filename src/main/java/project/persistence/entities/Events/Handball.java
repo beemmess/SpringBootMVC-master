@@ -1,4 +1,4 @@
-package project.persistence.entities;
+package project.persistence.entities.Events;
 
 import java.util.Date;
 
