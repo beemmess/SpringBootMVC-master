@@ -1,7 +1,7 @@
-package project.persistence.entities;
+package project.persistence.entities.Events;
 
 /**
- * Created by audurgudjons on 28/10/15.
+ * Created by bjarkimar23 on 28.10.2015.
  */
 public class Cinema {
     public String title;
