@@ -22,7 +22,7 @@ public class EventData {
         String stadsetning = "Álftanes";
         String keppni = "Innimót - Úrslitakeppni mfl. karla";
         Date dagur = 2015-01-15;
-        //Date timi = 19:30;
+        Date timi = 19:30;
 
 
         Football fotboltaleikur = new Football(heimalid, utilid, teljari, stadsetning, keppni, dagur, timi);
