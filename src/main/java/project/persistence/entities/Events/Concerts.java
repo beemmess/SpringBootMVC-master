@@ -21,4 +21,30 @@ public class Concerts {
         eventHallName = salur;
         imageSource = mynd;
     }
+
+    public String getEventDateName(){
+        return eventDateName;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public Date getDateOfShow(){
+        return dateOfShow;
+    }
+
+    public String getUserGroupName(){
+        return userGroupName;
+    }
+
+    public String getEventHallName(){
+        return eventHallName;
+    }
+
+    public String getImageSource(){
+        return imageSource;
+    }
+
+    public void setEventDateName(String nafn)
 }

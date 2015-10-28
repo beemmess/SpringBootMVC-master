@@ -23,4 +23,68 @@ public class Cinema {
         theater = kvikmyndahus;
         schedule = dagskra;
     }
+
+    public String getTitle(){
+        return title;
+    }
+
+    public String getRestricted(){
+        return restricted;
+    }
+
+    public double getImdbRate(){
+        return imdbRate;
+    }
+
+    public String getImdbLink(){
+        return imdbLink;
+    }
+
+    public String getImage(){
+        return image;
+    }
+
+    public String getShowtimes(){
+        return showtimes;
+    }
+
+    public String getTheater(){
+        return theater;
+    }
+
+    public String getSchedule(){
+        return schedule;
+    }
+
+    public void setTitle(String titill){
+        title = titill;
+    }
+
+    public void setRestricted(String aldurstakmark){
+        restricted = aldurstakmark;
+    }
+
+    public void setImdbRate(String imdbEinkunn){
+        imdbRate = imdbEinkunn;
+    }
+
+    public void setImdbLink(String imdbLinkur){
+        imdbLink = imdbLinkur;
+    }
+
+    public void setImage(String mynd){
+        image = mynd;
+    }
+
+    public void setShowtimes(String syningartimar){
+        showtimes = syningartimar;
+    }
+
+    public void setTheater(String kvikmyndahus){
+        theater = kvikmyndahus;
+    }
+
+    public void setSchedule(String dagskra){
+        schedule = dagskra;
+    }
 }
