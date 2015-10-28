@@ -64,7 +64,7 @@ public class Cinema {
         restricted = aldurstakmark;
     }
 
-    public void setImdbRate(String imdbEinkunn){
+    public void setImdbRate(Double imdbEinkunn){
         imdbRate = imdbEinkunn;
     }
 
