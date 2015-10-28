@@ -43,4 +43,8 @@ public class Sports {
     public void setTime(Date timi) {
         time = timi;
     }
+
+    public static void main(String args[]) {
+
+    }
 }
