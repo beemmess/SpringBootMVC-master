@@ -7,4 +7,5 @@ public class Prufa {
     public int blalbalba;
     public int alkrij;
     public int blabkar;
+    public int llllll;
 }
