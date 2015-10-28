@@ -1,4 +1,4 @@
-package project.controller;
+package project.persistence.entities;
 
 /**
  * Created by audurgudjons on 28/10/15.
