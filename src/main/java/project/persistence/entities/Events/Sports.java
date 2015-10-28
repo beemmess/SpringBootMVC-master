@@ -3,6 +3,10 @@ package project.persistence.entities.Events;
 /**
  * Created by hlingunnlaugsdottir on 28/10/15.
  */
+import org.json.JSONException;
+import project.persistence.entities.Data.EventData;
+
+import java.text.ParseException;
 import java.util.Date;
 
 /**
@@ -13,6 +17,9 @@ public class Sports {
     public String tournament;
     public Date date;
     public Date time;
+
+    public Sports(){
+    }
 
     public Sports(String keppni, Date dagur, Date timi) {
         tournament = keppni;
@@ -44,7 +51,17 @@ public class Sports {
         time = timi;
     }
 
-    public static void main(String args[]) {
+    public Sports[] getSports() throws JSONException, ParseException {
+        String a = "football";
+        EventData data = new EventData(a);
+        Sports[] ithrottir = new Sports[1];
+        ithrottir = data.createEvent();
+        return ithrottir;
+    }
+
+    public static void main(String args[]) throws JSONException, ParseException {
+        Sports[] ithrottir = new Sports[1];
+        ithrottir = getSports();
 
     }
 }

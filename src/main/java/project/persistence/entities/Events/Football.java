@@ -21,6 +21,7 @@ public class Football extends Sports {
         location = stadsetnding;
     }
 
+
     public String getHomeTeam() {
         return homeTeam;
     }

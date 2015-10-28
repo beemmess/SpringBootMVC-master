@@ -1,5 +1,9 @@
 package project.persistence.entities.Data;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONArray;
 import project.persistence.entities.Events.Football;
 import project.persistence.entities.Events.Sports;
 
@@ -17,24 +21,36 @@ public class EventData {
         eventType = atburdur;
     }
 
+
+    public JSONArray fetchData() {
+        JSONArray result = {"results" :[{"date": "2015-01-15", "time": "19:15", "tournament": "Innimót - Úrslitakeppni mfl. karla"}]};
+        return  result;
+    }
+
+    public Sports[] createEvent() throws JSONException, ParseException {
+        JSONArray result = fetchData();
+        Sports[] sportevent = new Sports[result.length()];
+        for(int i=0; i < result.length(); i++) {
+            JSONObject sportEvent = result.getJSONObject(i);
+
+            String dateStr = sportEvent.getString("date");
+            SimpleDateFormat dt = new SimpleDateFormat("yyyy-mm-dd");
+            Date date = dt.parse(dateStr);
+            String timeStr = sportEvent.getString("time");
+            SimpleDateFormat tm = new SimpleDateFormat("HH:mm");
+            Date time = tm.parse(timeStr);
+            String tournament = sportEvent.getString("tournament");
+
+            sportevent[i] = new Sports();
+            sportevent[i].setDate(date);
+            sportevent[i].setTime(time);
+            sportevent[i].setTournament(tournament);
+        }
+        return sportevent;
+    }
+
+
     public static void main(String args[]) throws ParseException {
-        String heimalid = "Víkingur Ó";
-        String utilid = "KFG";
-        int teljari = 3;
-        String stadsetning = "Álftanes";
-        String keppni = "Innimót - Úrslitakeppni mfl. karla";
-        String dagurStr = "2015-01-15";
-        SimpleDateFormat date = new SimpleDateFormat("yyyy-mm-dd");
-        Date dagur = date.parse(dagurStr);
-        String timiStr = "19:15";
-        SimpleDateFormat time = new SimpleDateFormat("HH:mm");
-        Date timi = time.parse(timiStr);
-
-        Football fotboltaleikur = new Football(heimalid, utilid, teljari, stadsetning, keppni, dagur, timi);
-
-        String awayTeam = fotboltaleikur.getAwayTeam();
-
-        System.out.println(awayTeam);
 
     }
 }
