@@ -1,4 +1,4 @@
-package project.controller;
+package project.persistence.entities;
 
 import java.util.Date;
 
