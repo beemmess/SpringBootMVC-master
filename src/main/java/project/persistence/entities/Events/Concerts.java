@@ -1,5 +1,6 @@
 package project.persistence.entities.Events;
 
+import java.rmi.Naming;
 import java.util.Date;
 
 /**
@@ -46,5 +47,29 @@ public class Concerts {
         return imageSource;
     }
 
-    public void setEventDateName(String nafn)
+    public void setEventDateName(String nafn){
+        eventDateName = nafn;
+    }
+
+    public void setName(String tonleikarod){
+        name = tonleikarod;
+    }
+
+    public void setDateOfShow(Date dagsetning){
+        dateOfShow = dagsetning;
+    }
+
+    public void setUserGroupName(String tonleikahus){
+        userGroupName = tonleikahus;
+    }
+
+    public void setEventHallName(String salur){
+        eventHallName = salur;
+    }
+
+    public void setImageSource(String mynd){
+        imageSource = mynd;
+    }
+
+
 }
