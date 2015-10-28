@@ -1,4 +1,4 @@
-package project.persistence.entities;
+package project.persistence.entities.Data;
 
 /**
  * Created by audurgudjons on 28/10/15.
