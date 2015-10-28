@@ -13,4 +13,6 @@ public class Prufa {
 
     public int blsldfldflsldf;
     public int sdfasdferdsferera;
+
+    public int ballakljflak;
 }
