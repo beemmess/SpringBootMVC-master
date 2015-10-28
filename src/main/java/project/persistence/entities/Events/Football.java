@@ -20,4 +20,37 @@ public class Football extends Sports {
         counter = teljari;
         location = stadsetnding;
     }
+
+    public String getHomeTeam() {
+        return homeTeam;
+    }
+
+    public String getAwayTeam(){
+        return awayTeam;
+    }
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setHomeTeam(String heimalid) {
+        homeTeam = heimalid;
+    }
+
+    public void setAwayTeam(String utilid) {
+        awayTeam = utilid;
+    }
+
+    public void setCounter(int teljari) {
+        counter = teljari;
+    }
+
+    public void setLocation(String stadsetning) {
+        location = stadsetning;
+    }
 }
+

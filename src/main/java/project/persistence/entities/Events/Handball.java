@@ -15,4 +15,20 @@ public class Handball extends Sports {
         teams = lid;
         venue = vollur;
     }
+
+    public String getTeams() {
+        return teams;
+    }
+
+    public String getVenue() {
+        return venue;
+    }
+
+    public void setTeams(String lid) {
+        teams = lid;
+    }
+
+    public void setVenue(String vollur) {
+        venue = vollur;
+    }
 }

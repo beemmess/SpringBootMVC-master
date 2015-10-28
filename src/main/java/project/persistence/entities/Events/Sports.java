@@ -8,8 +8,8 @@ import java.util.Date;
 /**
  * Created by hlingunnlaugsdottir on 28/10/15.
  */
+
 public class Sports {
-<<<<<<< Updated upstream
     public String tournament;
     public Date date;
     public Date time;
@@ -19,7 +19,28 @@ public class Sports {
         date = dagur;
         time = timi;
     }
-=======
-    public 
->>>>>>> Stashed changes
+
+    public String getTournament(){
+        return tournament;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTournament(String keppni){
+        tournament = keppni;
+    }
+
+    public void setDate(Date dagur) {
+        date = dagur;
+    }
+
+    public void setTime(Date timi) {
+        time = timi;
+    }
 }
