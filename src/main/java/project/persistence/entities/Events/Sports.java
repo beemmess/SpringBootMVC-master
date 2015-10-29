@@ -6,6 +6,7 @@ package project.persistence.entities.Events;
 import org.json.JSONException;
 import project.persistence.entities.Data.EventData;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
 
@@ -51,17 +52,16 @@ public class Sports {
         time = timi;
     }
 
-    public Sports[] getSports() throws JSONException, ParseException {
+    /*
+    public static Sports[] getSports() throws JSONException, ParseException {
         String a = "football";
         EventData data = new EventData(a);
         Sports[] ithrottir = new Sports[1];
         ithrottir = data.createEvent();
         return ithrottir;
     }
+    */
 
-    public static void main(String args[]) throws JSONException, ParseException {
-        Sports[] ithrottir = new Sports[1];
-        ithrottir = getSports();
-
+    public static void main(String args[]) throws JSONException, ParseException, IOException {
     }
 }

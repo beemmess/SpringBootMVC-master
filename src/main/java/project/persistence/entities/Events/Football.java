@@ -1,5 +1,10 @@
 package project.persistence.entities.Events;
 
+import org.json.JSONException;
+import project.persistence.entities.Data.EventData;
+
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.Date;
 
 
@@ -21,6 +26,8 @@ public class Football extends Sports {
         location = stadsetnding;
     }
 
+    public Football() {
+    }
 
     public String getHomeTeam() {
         return homeTeam;
@@ -52,6 +59,16 @@ public class Football extends Sports {
 
     public void setLocation(String stadsetning) {
         location = stadsetning;
+    }
+
+    public static void getFootballEvents() throws ParseException, IOException, JSONException {
+        String a = "football";
+        EventData data = new EventData(a);
+        data.createFootballEvent();
+    }
+
+    public static void main (String args[]) throws ParseException, JSONException, IOException {
+        getFootballEvents();
     }
 }
 
