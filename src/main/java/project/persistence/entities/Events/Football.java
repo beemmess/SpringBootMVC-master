@@ -5,6 +5,8 @@ import project.persistence.entities.Data.EventData;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 
@@ -61,14 +63,26 @@ public class Football extends Sports {
         location = stadsetning;
     }
 
-    public static void getFootballEvents() throws ParseException, IOException, JSONException {
+    public static ArrayList<Football> getFootballEvents() throws ParseException, IOException, JSONException {
         String a = "football";
         EventData data = new EventData(a);
-        data.createFootballEvent();
+        Football [] fotbolti = data.createFootballEvent();
+
+        ArrayList<Football> fotboltiList = new ArrayList<Football>(Arrays.asList(fotbolti));
+        return fotboltiList;
     }
 
     public static void main (String args[]) throws ParseException, JSONException, IOException {
-        getFootballEvents();
+        ArrayList<Football> fotbolti = getFootballEvents();
+        for(int i=0; i<fotbolti.size(); i++) {
+            System.out.println(fotbolti.get(i).getCounter());
+            System.out.println(fotbolti.get(i).getDate());
+            System.out.println(fotbolti.get(i).getTime());
+            System.out.println(fotbolti.get(i).getTournament());
+            System.out.println(fotbolti.get(i).getLocation());
+            System.out.println(fotbolti.get(i).getHomeTeam());
+            System.out.println(fotbolti.get(i).getAwayTeam());
+        }
     }
 }
 

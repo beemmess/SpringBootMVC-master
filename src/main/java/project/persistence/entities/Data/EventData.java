@@ -12,6 +12,7 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -36,8 +37,8 @@ public class EventData {
     }
 
     //reads from url
-    public static JSONObject readData(String url) throws IOException, JSONException {
-        InputStream is = new URL(url).openStream();
+    public static JSONObject readData(String typeOfData) throws IOException, JSONException {
+        InputStream is = new URL("http://apis.is/"+typeOfData).openStream();
         try {
             BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
             String jsonText = readAll(rd);
@@ -48,15 +49,10 @@ public class EventData {
         }
     }
 
-    public JSONArray fetchFootballData() throws IOException, JSONException {
-        JSONObject sports = readData("http://apis.is/sports/football");
+    public Football[] createFootballEvent() throws JSONException, ParseException, IOException {
+        JSONObject sports = readData("sports/football");
         JSONArray result = sports.getJSONArray("results");
-        return  result;
-    }
-
-    public void createFootballEvent() throws JSONException, ParseException, IOException {
-        JSONArray result = fetchFootballData();
-        Football[] ithrottir = new Football[result.length()];
+        Football[] fotbolti = new Football[result.length()];
         for(int i=0; i < result.length(); i++) {
             JSONObject sportEvent = result.getJSONObject(i);
 
@@ -72,23 +68,16 @@ public class EventData {
             String homeTeam = sportEvent.getString("homeTeam");
             String awayTeam = sportEvent.getString("awayTeam");
 
-            ithrottir[i] = new Football();
-            ithrottir[i].setCounter(counter);
-            ithrottir[i].setDate(date);
-            ithrottir[i].setTime(time);
-            ithrottir[i].setTournament(tournament);
-            ithrottir[i].setLocation(location);
-            ithrottir[i].setHomeTeam(homeTeam);
-            ithrottir[i].setAwayTeam(awayTeam);
-
-            System.out.println(ithrottir[i].getCounter());
-            System.out.println(ithrottir[i].getDate());
-            System.out.println(ithrottir[i].getTime());
-            System.out.println(ithrottir[i].getTournament());
-            System.out.println(ithrottir[i].getLocation());
-            System.out.println(ithrottir[i].getHomeTeam());
-            System.out.println(ithrottir[i].getAwayTeam());
+            fotbolti[i] = new Football();
+            fotbolti[i].setCounter(counter);
+            fotbolti[i].setDate(date);
+            fotbolti[i].setTime(time);
+            fotbolti[i].setTournament(tournament);
+            fotbolti[i].setLocation(location);
+            fotbolti[i].setHomeTeam(homeTeam);
+            fotbolti[i].setAwayTeam(awayTeam);
         }
+        return fotbolti;
     }
 
     public static void main(String args[]) throws ParseException {
