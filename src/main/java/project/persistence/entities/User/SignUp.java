@@ -38,10 +38,10 @@ public class SignUp {
 
     public void setPassword(String password) {this.password = password;}
 
-    @Override
-    public String toString() {
-        return String.format(
-                "Sign up [User Name=%s, email=%s, password=%s]",
-                userName,email,password);
-    }
+    //@Override
+    //public String toString() {
+     //   return String.format(
+    //            "Sign up [User Name=%s, email=%s, password=%s]",
+   //             userName,email,password);
+ //   }
 }
