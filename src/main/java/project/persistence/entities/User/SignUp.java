@@ -25,8 +25,15 @@ public class SignUp {
         this.password = password;
     }
 
-    
-
+    public Integer getId() {
+        return this.id;
+    }
+    public String getUserName() {
+        return this.userName;
+    }
+    public String getEmail() {
+        return this.email;
+    }
 
 
 }
