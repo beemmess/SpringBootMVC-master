@@ -30,9 +30,17 @@ public interface SignUpService {
     List<SignUp> findAll();
 
     /**
-     * Find all {@link SignUp} with {@link String userName}
-     * @param userName {@link String}
-     * @return All {@link SignUp}s with a {@link String userName} passed
+     * Get all {@link SignUp}s in reverse order
+     * @return A reversed list {@link SignUp}s
      */
-    List<SignUp> findByUserName(String userName);
+    List<SignUp> findAllReverseOrder();
+
+    /**
+     * Find a {@link SignUp} based in {@link Long id}
+     * @param id {@link long}
+     * @return A {@link SignUp} with {@link Long id}
+     */
+    SignUp findOne(Long id);
+
+
 }
