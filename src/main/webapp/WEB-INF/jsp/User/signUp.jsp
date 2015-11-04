@@ -10,7 +10,27 @@
     </head>
     <body>
         <h1>Sign Up</h1>
-    
+
+
+
+        <sf:form method="POST" commandName="signUp" action="/signup">
+
+            <table>
+                <tr>
+                    <td> Name:</td>
+                        <%--the `path` attribute matches the `name` attribute of the Entity that was passed in the model--%>
+                    <td><sf:input path="userName" type="text" placeholder="Enter username"/></td>
+                </tr>
+                <tr>
+                    <td>email:</td>
+                        <%--the `path` attribute matches the `note` attribute of the Entity that was passed in the model--%>
+                    <td><sf:input path="email" type="text" placeholder="Enter email"/></td>
+                </tr>
+            </table>
+
+            <input type="submit" VALUE="Post It!"/>
+
+        </sf:form>
 
 
     </body>
