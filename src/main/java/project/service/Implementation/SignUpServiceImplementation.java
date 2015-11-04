@@ -6,7 +6,6 @@ import project.persistence.entities.User.SignUp;
 import project.persistence.repositories.SignUpRepository;
 import project.service.SignUpService;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -37,20 +36,8 @@ public class SignUpServiceImplementation  implements SignUpService {
         return repository.findAll();
     }
 
-    //@Override
-    //public List<SignUp> findByUserName(String username) {
-      //  return repository.findAll();
-   // }
-
     @Override
-    public SignUp findOne(Long id) { return repository.findOne(id);}
-
-    @Override
-    public List<SignUp> findAllReverseOrder() {
-        List<SignUp> signUps = repository.findAll();
-
-        Collections.reverse(signUps);
-
-        return signUps;
+    public List<SignUp> findByUserName(String userName) {
+        return repository.findAll();
     }
 }

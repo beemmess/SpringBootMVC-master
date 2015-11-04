@@ -10,33 +10,33 @@ import javax.persistence.*;
 public class SignUp {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
-    private String username;
+    private String userName;
     private String email;
     //private String password;
 
     public SignUp() {
     }
 
-    public SignUp(String username, String email) {
-        this.username = username;
+    public SignUp(String userName, String email) {
+        this.userName = userName;
         this.email = email;
         //this.password = password;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return this.id;
     }
-    public String getUsername() {
-        return this.username;
+    public String getUserName() {
+        return this.userName;
     }
     public String getEmail() {
         return this.email;
     }
 
-    public void setUsername() {
-        this.username = username;
+    public void setUserName() {
+        this.userName = userName;
     }
 
     public void setEmail() {
@@ -47,7 +47,7 @@ public class SignUp {
     public String toString() {
         return String.format(
                 "SignUp[username=%s, email=%s]",
-                username,email);
+                userName,email);
     }
 
 }
