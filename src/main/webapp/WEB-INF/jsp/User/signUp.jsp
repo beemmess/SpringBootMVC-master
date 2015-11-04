@@ -6,7 +6,7 @@
 
 <html lang="en">
     <head>
-
+        <title>SignUp</title>
     </head>
     <body>
         <h1>Sign Up</h1>
@@ -19,7 +19,7 @@
                 <tr>
                     <td> Name:</td>
                         <%--the `path` attribute matches the `name` attribute of the Entity that was passed in the model--%>
-                    <td><sf:input path="userName" type="text" placeholder="Enter username"/></td>
+                    <td><sf:input path="username" type="text" placeholder="Enter username"/></td>
                 </tr>
                 <tr>
                     <td>email:</td>
