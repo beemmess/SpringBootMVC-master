@@ -20,16 +20,16 @@ public class SignUpController {
     SignUpService signUpService;
 
     // Dependency Injection
-    //@Autowired
-    //public SignUpController(SignUpService signUpService) {
-    //    this.signUpService = signUpService;
-   // }
+    @Autowired
+    public SignUpController(SignUpService signUpService) {
+        this.signUpService = signUpService;
+    }
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signUpViewGet(Model model) {
         model.addAttribute("signUp", new SignUp());
 
-        model.addAttribute("signUp", signUpService.findAll());
+       // model.addAttribute("signUp", signUpService.findAll());
 
         return "User/signUp";
 

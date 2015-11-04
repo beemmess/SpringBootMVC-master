@@ -26,6 +26,7 @@
                         <%--the `path` attribute matches the `note` attribute of the Entity that was passed in the model--%>
                     <td><sf:input path="email" type="text" placeholder="Enter email"/></td>
                 </tr>
+
             </table>
 
             <input type="submit" VALUE="Post It!"/>
