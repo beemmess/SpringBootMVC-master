@@ -3,6 +3,7 @@ package project.persistence.entities.Data;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import project.persistence.entities.Info.CurrencyConverter;
 
 import java.io.*;
@@ -47,6 +48,8 @@ public class GetData {
     public CurrencyConverter[] createCurrencyConverter()throws JSONException, ParseException, IOException {
         JSONObject currency = readData("currency");
         JSONArray result = currency.getJSONArray("results");
+
+
         CurrencyConverter[] currencyConverters = new CurrencyConverter[result.length()];
         for(int i = 0; i < result.length(); i++){
             JSONObject converter = result.getJSONObject(i);
@@ -59,7 +62,7 @@ public class GetData {
 
 
             currencyConverters[i] = new CurrencyConverter();
-            currencyConverters[i].setCurrencyShortName(shortName);
+            currencyConverters[i].setCurrencyShortName(CurrencyConverter.Currency.valueOf(shortName));
             currencyConverters[i].setValue(value);
             currencyConverters[i].setForeignValue(foreignValue);
         }

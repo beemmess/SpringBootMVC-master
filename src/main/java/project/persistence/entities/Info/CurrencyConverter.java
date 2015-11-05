@@ -3,6 +3,7 @@ package project.persistence.entities.Info;
 import org.json.JSONException;
 import project.persistence.entities.Data.GetData;
 
+import javax.persistence.Entity;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.text.ParseException;
@@ -12,10 +13,11 @@ import java.util.Arrays;
 /**
  * Created by hrabby on 4.11.2015.
  */
+@Entity
 public class CurrencyConverter {
 
 
-    private String currencyShortName;
+    private Currency currencyShortName;
     private double value;
 
     private int iskValue;
@@ -23,10 +25,16 @@ public class CurrencyConverter {
 
     private double foreignValue;
 
+    public enum Currency {
+        ISK, USD, GBP, EUR, CAD, DKK, NOK, SEK, CHF, JPY, XDR
+    }
+
+
+
     public CurrencyConverter() {
     }
 
-    public CurrencyConverter(String currencyShortName, double value, double foreignValue){
+    public CurrencyConverter(Currency currencyShortName, double value, double foreignValue){
         this.currencyShortName = currencyShortName;
         this.value = value;
 
@@ -38,8 +46,8 @@ public class CurrencyConverter {
 
     }
 
-    public String getCurrencyShortName() {return currencyShortName;}
-    public void setCurrencyShortName(String currencyShortName) {this.currencyShortName = currencyShortName;}
+    public Currency getCurrencyShortName() {return currencyShortName;}
+    public void setCurrencyShortName(Currency currencyShortName) {this.currencyShortName = currencyShortName;}
 
     public int getIskValue() {return iskValue;}
     public void setIskValue(int iskValue) {this.iskValue = iskValue;}
@@ -49,6 +57,7 @@ public class CurrencyConverter {
 
     public double getForeignValue() {return foreignValue;}
     public void  setForeignValue(double foreignValue) { this.foreignValue = foreignValue;}
+
 
 
 
@@ -66,8 +75,8 @@ public class CurrencyConverter {
         ArrayList<CurrencyConverter> currencyConverters = getCurrencyConverters();
         for(int i = 0; i < currencyConverters.size(); i++){
             System.out.println(currencyConverters.get(i).getCurrencyShortName());
-            System.out.println(currencyConverters.get(i).getValue());
-            System.out.println(currencyConverters.get(i).getForeignValue());
+            //System.out.println(currencyConverters.get(i).getValue());
+            //System.out.println(currencyConverters.get(i).getForeignValue());
         }
     }
 
