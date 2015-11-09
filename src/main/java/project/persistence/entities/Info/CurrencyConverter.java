@@ -13,14 +13,14 @@ import java.util.Arrays;
 /**
  * Created by hrabby on 4.11.2015.
  */
-@Entity
+//@Entity
 public class CurrencyConverter {
 
 
     private Currency currencyShortName;
     private double value;
 
-    private int iskValue;
+    private double iskValue;
 
 
     private double foreignValue;
@@ -49,8 +49,8 @@ public class CurrencyConverter {
     public Currency getCurrencyShortName() {return currencyShortName;}
     public void setCurrencyShortName(Currency currencyShortName) {this.currencyShortName = currencyShortName;}
 
-    public int getIskValue() {return iskValue;}
-    public void setIskValue(int iskValue) {this.iskValue = iskValue;}
+    public double getIskValue() {return iskValue;}
+    public void setIskValue(double iskValue) {this.iskValue = iskValue;}
 
     public double getValue() {return value;}
     public void setValue(double value) {this.value = value;}
