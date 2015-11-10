@@ -62,14 +62,14 @@
         <table>
         <c:forEach var="currency" items="${shortNames}">
 
-            <c:if test="${currency[0] == 'USD'}">
+
 
                 <tr>
                     <td><h2>Currency:</h2><a href="/currency/${currency[0]}"> ${currency[0]}</a></td>
                     <td><h2>Value:</h2> ${currency[1]}</td>
                     <td><h2>Result:</h2> ${currency[2]}</td>
                 </tr>
-            </c:if>
+            
 
             </c:forEach>
         </table>
