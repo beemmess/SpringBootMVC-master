@@ -1,5 +1,12 @@
 package project.persistence.entities.Events;
 
+import org.json.JSONException;
+import project.persistence.entities.Data.EventData;
+
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -16,6 +23,9 @@ public class Handball extends Sports {
         venue = vollur;
     }
 
+    public Handball() {
+    }
+
     public String getTeams() {
         return teams;
     }
@@ -30,5 +40,24 @@ public class Handball extends Sports {
 
     public void setVenue(String vollur) {
         venue = vollur;
+    }
+    public static ArrayList<Handball> getHandballEvents() throws ParseException, IOException, JSONException {
+        String a = "handball";
+        EventData data = new EventData(a);
+        Handball [] handball = data.createHandballEvents();
+
+        ArrayList<Handball> handboltiList = new ArrayList<Handball>(Arrays.asList(handball));
+        return handboltiList;
+    }
+
+    public static void main(String args[]) throws ParseException, JSONException, IOException {
+        ArrayList<Handball> handbolti = getHandballEvents();
+        for (int i = 0; i < handbolti.size(); i++) {
+            System.out.println(handbolti.get(i).getTeams());
+            System.out.println(handbolti.get(i).getVenue());
+            System.out.println(handbolti.get(i).getTournament());
+            System.out.println(handbolti.get(i).getDate());
+            System.out.println(handbolti.get(i).getTime());
+        }
     }
 }

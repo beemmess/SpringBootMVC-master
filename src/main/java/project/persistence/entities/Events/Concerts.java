@@ -1,6 +1,13 @@
 package project.persistence.entities.Events;
 
+import org.json.JSONException;
+import project.persistence.entities.Data.EventData;
+
+import java.io.IOException;
 import java.rmi.Naming;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -21,6 +28,9 @@ public class Concerts {
         userGroupName = tonleikahus;
         eventHallName = salur;
         imageSource = mynd;
+    }
+
+    public Concerts() {
     }
 
     public String getEventDateName(){
@@ -71,5 +81,23 @@ public class Concerts {
         imageSource = mynd;
     }
 
+    public static ArrayList<Concerts> getConcertsEvents() throws ParseException, IOException, JSONException {
+        String a = "concerts";
+        EventData data = new EventData(a);
+        Concerts [] concerts = data.createConcertsEvents();
 
+        ArrayList<Concerts> concertsList = new ArrayList<Concerts>(Arrays.asList(concerts));
+        return concertsList;
+    }
+
+    public static void main(String args[]) throws ParseException, JSONException, IOException {
+        ArrayList<Concerts> concerts = getConcertsEvents();
+        for (int i = 0; i < concerts.size(); i++) {
+            System.out.println(concerts.get(i).getEventDateName());
+            System.out.println(concerts.get(i).getName());
+            System.out.println(concerts.get(i).getDateOfShow());
+            System.out.println(concerts.get(i).getUserGroupName());
+            System.out.println(concerts.get(i).getEventHallName());
+        }
+    }
 }
