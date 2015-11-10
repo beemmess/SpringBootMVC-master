@@ -2,6 +2,7 @@ package project.controller;
 
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import project.service.CurrencyConverterService;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -77,10 +79,14 @@ public class CurrencyConverterController {
        }
 
 
-    @RequestMapping(value = "/currency/{currencyShortName}", method = RequestMethod.GET)
-    public String currencyGetvalue(@PathVariable Currency currencyShortName, Model model){
+    @RequestMapping(value = "/currency/{shortName}", method = RequestMethod.GET)
+    public String currencyGetvalue(@PathVariable Currency shortName, Model model){
 
-       model.addAttribute("currencyConverter", currencyConverterService.findByShortName(currencyShortName));
+       //model.addAttribute("currencyConverter", currencyConverterService.findByShortName(currencyShortName));
+       // model.addAttribute("currencyConverters", currencyConverterService.findOne(shortName));
+
+        model.addAttribute("currencyConverters", new CurrencyConverter().getCurrencyShortName());
+
 
 
         model.addAttribute("currencyConverter", new CurrencyConverter());
