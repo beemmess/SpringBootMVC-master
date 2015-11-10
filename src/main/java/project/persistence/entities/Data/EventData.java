@@ -151,7 +151,11 @@ public class EventData {
             String imdbLink = cinemaEvent.getString("imdbLink");
             String image = cinemaEvent.getString("image");
             String showTimes = cinemaEvent.getString("showtimes");
-            //String theater = cinemaEvent.getString("theater");
+            //JSONArray showTimes = cinemaEvent.getJSONArray("showtimes");
+            //JSONObject theaterObj = showTimes.getJSONObject(0);
+            //String theater = theaterObj.getString("theater");
+            //JSONObject scheduleObj = showTimes.getJSONObject(1);
+            //String schedule = scheduleObj.getString("schedule");
             //String schedule = cinemaEvent.getString("schedule");
 
             bio[i] = new Cinema();
