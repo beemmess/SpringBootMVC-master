@@ -18,4 +18,11 @@ public interface CurrencyConverterService {
      */
     List<CurrencyConverter> findByShortName(Currency currencyShortName);
 
+
+    /**
+     * Find a {@link CurrencyConverter} based in {@link Currency currencyShortName}
+     * @param currencyShortName {@link Currency}
+     * @return A {@link CurrencyConverter} with {@link Currency currencyShortName}
+     */
+    CurrencyConverter findOne(Currency currencyShortName);
 }

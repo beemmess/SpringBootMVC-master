@@ -38,42 +38,46 @@
 
 
                         </form:form>
-        --%>
 
 
-    <form:form method="GET" modelAttribute="currencyConverter">
+--%>
+    <form:form method="GET" modelAttribute="currencyConverter" action="/currency/${currencyShortName}">
 
-        <form:select path="currencyShortName" >
-            <form:option value=" ">Select currency: </form:option>
-            <c:forEach var="currency" items="${shortNames}" >
-                <form:option value="${currency[0]}">${currency[0]}</form:option>
+        <form:select path="currencyShortName" name="name1">
+            <form:option value="">Select currency: </form:option>
+            <c:forEach var="currencyInput" items="${shortNames}" >
+                <form:option value="${currencyInput[0]}">${currencyInput[0]}</form:option>
 
             </c:forEach>
         </form:select>
 
+        <input type="submit" value="Submit"/>
 
-        <input type="submit" value="Submit" />
 
     </form:form>
 
 
-
-    <form:form method="POST" modelAttribute="currencyConverter" name="somename" >
-
+    <form:form method="POST" modelAttribute="currencyConverter"  >
 
         <table>
         <c:forEach var="currency" items="${shortNames}">
+
+            <c:if test="${currency[0] == 'USD'}">
 
                 <tr>
                     <td><h2>Currency:</h2><a href="/currency/${currency[0]}"> ${currency[0]}</a></td>
                     <td><h2>Value:</h2> ${currency[1]}</td>
                     <td><h2>Result:</h2> ${currency[2]}</td>
                 </tr>
+            </c:if>
 
             </c:forEach>
         </table>
 
-</form:form>
+            </form:form>
+
+
+
 
 
 
