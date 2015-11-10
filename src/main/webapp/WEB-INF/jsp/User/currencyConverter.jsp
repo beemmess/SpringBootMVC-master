@@ -69,7 +69,7 @@
                     <td><h2>Value:</h2> ${currency[1]}</td>
                     <td><h2>Result:</h2> ${currency[2]}</td>
                 </tr>
-            
+
 
             </c:forEach>
         </table>
