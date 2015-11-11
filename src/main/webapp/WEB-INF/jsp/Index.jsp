@@ -17,6 +17,7 @@
         <li><a href="/postit">Click here for Persistence Layer Demo</a></li>
     </ul>
     <h2><a href="/signup">Click here to sign up!</a></h2>
+    <h2><a href="/currency">Currency</a></h2>
     </body>
     <footer>Class HBV501G, University of Iceland, Fall 2015</footer>
 </html>
