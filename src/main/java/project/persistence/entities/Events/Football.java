@@ -4,7 +4,10 @@ import org.json.JSONException;
 import project.persistence.entities.Data.EventData;
 
 import java.io.IOException;
+import java.sql.Time;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -20,7 +23,7 @@ public class Football extends Sports {
     public int counter;
     public String location;
 
-    public Football(String heimalid, String utilid, int teljari, String stadsetning, String keppni, Date dagur, Date timi) {
+    public Football(String heimalid, String utilid, int teljari, String stadsetning, String keppni, LocalDate dagur, Time timi) {
         super(keppni, dagur, timi);
         homeTeam = heimalid;
         awayTeam = utilid;

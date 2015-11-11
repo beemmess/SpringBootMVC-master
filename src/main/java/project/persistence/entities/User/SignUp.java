@@ -35,6 +35,7 @@ public class SignUp {
         return this.email;
     }
 
+    /*
 <<<<<<< HEAD
     public void setUsername(String username) { this.username = username;
 =======
@@ -42,6 +43,7 @@ public class SignUp {
         this.username = username;
 >>>>>>> CurrencyConverter
     }
+    */
 
     public void setEmail(String email) {
         this.email = email;

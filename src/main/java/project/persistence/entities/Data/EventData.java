@@ -11,8 +11,12 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.sql.Time;
 
 /**
  * Created by audurgudjons on 28/10/15.
@@ -56,9 +60,12 @@ public class EventData {
             JSONObject footballEvent = result.getJSONObject(i);
 
             int counter = footballEvent.getInt("counter");
-            String dateStr = "2015-10-28";
-            SimpleDateFormat dt = new SimpleDateFormat("yyyy-mm-dd");
-            Date date = dt.parse(dateStr);
+
+            String dagur = footballEvent.getString("date");
+            String dateStr = changeFromIslDate(dagur);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
+            LocalDate date = LocalDate.parse(dateStr, formatter);
+
             String timeStr = footballEvent.getString("time");
             SimpleDateFormat tm = new SimpleDateFormat("HH:mm");
             Date time = tm.parse(timeStr);
@@ -99,11 +106,12 @@ public class EventData {
             handbolti[i].setTeams(teams);
             handbolti[i].setVenue(venue);
             handbolti[i].setTournament(tournament);
-            handbolti[i].setDate(date);
+            //handbolti[i].setDate(date);
             handbolti[i].setTime(time);
         }
         return handbolti;
     }
+
 
     public Concerts[] createConcertsEvents() throws IOException, JSONException, ParseException {
         JSONObject concerts = readData("concerts");
@@ -130,14 +138,7 @@ public class EventData {
         }
         return tonleikar;
     }
-    public String title;
-    public String restricted;
-    public double imdbRate;
-    public String imdbLink;
-    public String image;
-    public String showtimes;
-    public String theater;
-    public String schedule;
+
     public Cinema[] createCinemaEvents() throws IOException, JSONException, ParseException {
         JSONObject cinema = readData("cinema");
         JSONArray result = cinema.getJSONArray("results");
@@ -172,7 +173,45 @@ public class EventData {
         return bio;
     }
 
-    public static void main(String args[]) throws ParseException {
 
+    public static String changeFromIslDate(String islDate) {
+        String dagur = islDate.substring(5,7);
+        String month = islDate.substring(islDate.length() - 3);
+        String manudur = "";
+        if(month.equals("jan")) {
+            manudur="01";
+        } else if(month.equals("feb")) {
+            manudur="02";
+        } else if(month.equals("mar")) {
+            manudur="03";
+        } else if(month.equals("apr")) {
+            manudur="04";
+        } else if(month.equals("maí")) {
+            manudur="05";
+        } else if(month.equals("jún")) {
+            manudur="06";
+        } else if(month.equals("júl")) {
+            manudur="07";
+        } else if(month.equals("ágú")) {
+            manudur="08";
+        } else if(month.equals("sep")) {
+            manudur="09";
+        } else if(month.equals("okt")) {
+            manudur="10";
+        } else if(month.equals("nóv")) {
+            manudur="11";
+        } else if(month.equals("des")) {
+            manudur="12";
+        }
+
+        String a = dagur + manudur + "2015";
+        return a;
+    }
+
+
+    public static void main(String args[]) throws ParseException {
+        String date = "fim. 12. nóv";
+        String dagur = changeFromIslDate(date);
+        System.out.println(dagur);
     }
 }

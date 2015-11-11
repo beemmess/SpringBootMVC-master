@@ -5,6 +5,8 @@ import project.persistence.entities.Data.EventData;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -17,7 +19,7 @@ public class Handball extends Sports {
     public String teams;
     public String venue;
 
-    public Handball(String lid, String vollur, String keppni, Date dagur, Date timi) {
+    public Handball(String lid, String vollur, String keppni, LocalDate dagur, Date timi) {
         super(keppni, dagur, timi);
         teams = lid;
         venue = vollur;
@@ -56,7 +58,7 @@ public class Handball extends Sports {
             System.out.println(handbolti.get(i).getTeams());
             System.out.println(handbolti.get(i).getVenue());
             System.out.println(handbolti.get(i).getTournament());
-            System.out.println(handbolti.get(i).getDate());
+            //System.out.println(handbolti.get(i).getDate());
             System.out.println(handbolti.get(i).getTime());
         }
     }
