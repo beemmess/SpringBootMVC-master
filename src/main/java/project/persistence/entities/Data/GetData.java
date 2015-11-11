@@ -57,15 +57,14 @@ public class GetData {
             String shortName  = converter.getString("shortName");
             double value = converter.getDouble("value");
 
-            //int iskValue = 1;
-            //double foreignValue = iskValue/value;
+
+            double foreignValue = 1000/value;
 
 
             currencyConverters[i] = new CurrencyConverter();
             currencyConverters[i].setCurrencyShortName(CurrencyConverter.Currency.valueOf(shortName));
             currencyConverters[i].setValue(value);
-//            currencyConverters[i].setForeignValue(foreignValue);
-  //          currencyConverters[i].setIskValue(iskValue);
+            currencyConverters[i].setForeignValue(foreignValue);
         }
         return currencyConverters;
     }
