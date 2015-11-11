@@ -1,10 +1,11 @@
-package project.persistence.entities.Data;
+package project.service.Implementation;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import org.springframework.stereotype.Service;
 import project.persistence.entities.Info.CurrencyConverter;
+import project.service.CurrencyConverterService;
 
 import java.io.*;
 import java.net.URL;
@@ -12,13 +13,15 @@ import java.nio.charset.Charset;
 import java.text.ParseException;
 
 /**
- * Created by bjarkimar23 on 28.10.2015.
+ * Created by hrabby on 10.11.2015.
  */
-public class GetData {
+/*
+@Service
+public class CurrencyConverterImpl  implements CurrencyConverterService{
+
     private String dataType;
 
-    public GetData(String dataType) {this.dataType = dataType;}
-
+    public CurrencyConverterImpl(String dataType) {this.dataType = dataType;}
 
     //reads data and returns as a string
     private static String readAll(Reader rd) throws IOException {
@@ -30,8 +33,7 @@ public class GetData {
         return sb.toString();
     }
 
-
-    //reads from url
+    //Reads from url
     public static JSONObject readData(String typeOfData) throws IOException, JSONException {
         InputStream is = new URL("http://apis.is/"+typeOfData).openStream();
         try {
@@ -51,23 +53,31 @@ public class GetData {
 
 
         CurrencyConverter[] currencyConverters = new CurrencyConverter[result.length()];
-        for(int i = 0; i < result.length(); i++){
+        for(int i = 0; i < result.length(); i++) {
             JSONObject converter = result.getJSONObject(i);
 
             String shortName  = converter.getString("shortName");
             double value = converter.getDouble("value");
 
-            //int iskValue = 1;
-            //double foreignValue = iskValue/value;
+
+            //double foreignValue = 1000/value;
 
 
             currencyConverters[i] = new CurrencyConverter();
             currencyConverters[i].setCurrencyShortName(CurrencyConverter.Currency.valueOf(shortName));
             currencyConverters[i].setValue(value);
-//            currencyConverters[i].setForeignValue(foreignValue);
-  //          currencyConverters[i].setIskValue(iskValue);
+            //currencyConverters[i].setForeignValue(foreignValue);
         }
         return currencyConverters;
     }
 
+
 }
+
+ /*
+    JSONObject gengi = new JSONObject(gognFraApis.toString());
+    String gengiValid = pathVariableGengid; // thad sem var valid ur dropdown menu
+    JSONObject result = gengi.getJSONObject(gengiValid);
+    model.addAttribute("validGengi",result);
+
+*/

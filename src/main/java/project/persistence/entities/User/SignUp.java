@@ -35,11 +35,12 @@ public class SignUp {
         return this.email;
     }
 
-    public void setUsername() {
-        this.username = username;
+
+    public void setUsername(String username) { this.username = username;
+
     }
 
-    public void setEmail() {
+    public void setEmail(String email) {
         this.email = email;
     }
 
