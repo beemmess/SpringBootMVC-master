@@ -34,14 +34,14 @@ public class CurrencyConverter {
     public CurrencyConverter() {
     }
 
-    public CurrencyConverter(Currency currencyShortName, double value, double foreignValue){
+    public CurrencyConverter(Currency currencyShortName, double value, double iskValue, double foreignValue){
         this.currencyShortName = currencyShortName;
         this.value = value;
 
         //inputValue
-        //this.iskValue = iskValue;
+        this.iskValue = iskValue;
 
-        this.foreignValue = 1000/this.value;
+        this.foreignValue = iskValue/value;
 
 
     }
@@ -60,7 +60,6 @@ public class CurrencyConverter {
 
 
 
-
     public static ArrayList<CurrencyConverter> getCurrencyConverters()throws ParseException, IOException, JSONException {
         String a = "currency";
         GetData data = new GetData(a);
@@ -70,6 +69,7 @@ public class CurrencyConverter {
 
         return currencyList;
     }
+/*
 
     public static void main (String args[]) throws ParseException, JSONException, IOException {
         ArrayList<CurrencyConverter> currencyConverters = getCurrencyConverters();
@@ -79,7 +79,7 @@ public class CurrencyConverter {
             //System.out.println(currencyConverters.get(i).getForeignValue());
         }
     }
-
+*/
 }
 
 
