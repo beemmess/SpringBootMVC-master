@@ -1,13 +1,12 @@
 package project.persistence.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import project.persistence.entities.User.SignUp;
+import project.persistence.entities.Attraction.AllReviews;
 
 import java.util.List;
 
 /**
- * Created by hrabby on 3.11.2015.
+ * Created by bjarkimar23 on 5.11.2015.
  */
 
 /**
@@ -17,15 +16,14 @@ import java.util.List;
  * http://docs.spring.io/spring-data/data-commons/docs/1.6.1.RELEASE/reference/html/repositories.html
  *
  */
-public interface SignUpRepository extends JpaRepository<SignUp, Long> {
+public interface AllReviewsRepository extends JpaRepository<AllReviews, Long>{
 
+    AllReviews save(AllReviews allReviews);
 
-    SignUp save(SignUp signUp);
+    void delete(AllReviews allReviews);
 
-    void delete(SignUp signUp);
+    List<AllReviews> findAll();
 
-    List<SignUp> findAll();
+    AllReviews findOne(Long id);
 
-    SignUp findOne(Long id);
-    //List<SignUp> findByUserName(String username);
 }

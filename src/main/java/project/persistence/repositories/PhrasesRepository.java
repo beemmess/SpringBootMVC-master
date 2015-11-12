@@ -1,14 +1,13 @@
 package project.persistence.repositories;
 
+/**
+ * Created by hrabby on 4.11.2015.
+ */
+
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import project.persistence.entities.User.SignUp;
+import project.persistence.entities.Info.Phrases;
 
 import java.util.List;
-
-/**
- * Created by hrabby on 3.11.2015.
- */
 
 /**
  * By extending the {@link JpaRepository} we have access to powerful methods.
@@ -17,15 +16,16 @@ import java.util.List;
  * http://docs.spring.io/spring-data/data-commons/docs/1.6.1.RELEASE/reference/html/repositories.html
  *
  */
-public interface SignUpRepository extends JpaRepository<SignUp, Long> {
+public interface PhrasesRepository extends JpaRepository<Phrases, Long> {
 
+    Phrases save(Phrases phrases);
 
-    SignUp save(SignUp signUp);
+    void delete(Phrases phrases);
 
-    void delete(SignUp signUp);
+    List<Phrases> findAll();
 
-    List<SignUp> findAll();
+    List<Phrases> findByType(String type);
 
-    SignUp findOne(Long id);
-    //List<SignUp> findByUserName(String username);
+    Phrases findOne(Long id);
+
 }
