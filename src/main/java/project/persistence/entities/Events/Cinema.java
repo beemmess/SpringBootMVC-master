@@ -1,5 +1,13 @@
 package project.persistence.entities.Events;
 
+import org.json.JSONException;
+import project.persistence.entities.Data.EventData;
+
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * Created by bjarkimar23 on 28.10.2015.
  */
@@ -22,6 +30,9 @@ public class Cinema {
         showtimes = syningartimar;
         theater = kvikmyndahus;
         schedule = dagskra;
+    }
+
+    public Cinema() {
     }
 
     public String getTitle(){
@@ -86,5 +97,28 @@ public class Cinema {
 
     public void setSchedule(String dagskra){
         schedule = dagskra;
+    }
+
+    public static ArrayList<Cinema> getCinemaEvents() throws ParseException, IOException, JSONException {
+        String a = "cinema";
+        EventData data = new EventData(a);
+        Cinema [] cinema = data.createCinemaEvents();
+
+        ArrayList<Cinema> cinemaList = new ArrayList<Cinema>(Arrays.asList(cinema));
+        return cinemaList;
+    }
+
+    public static void main(String args[]) throws ParseException, JSONException, IOException {
+        ArrayList<Cinema> cinema = getCinemaEvents();
+        for (int i = 0; i < cinema.size(); i++) {
+            System.out.println(cinema.get(i).getTitle());
+            System.out.println(cinema.get(i).getRestricted());
+            //System.out.println(cinema.get(i).getImdbRate());
+            System.out.println(cinema.get(i).getImdbLink());
+            System.out.println(cinema.get(i).getImage());
+            System.out.println(cinema.get(i).getShowtimes());
+            //System.out.println(cinema.get(i).getTheater());
+            //System.out.println(cinema.get(i).getSchedule());
+        }
     }
 }

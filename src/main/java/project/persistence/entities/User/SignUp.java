@@ -35,7 +35,9 @@ public class SignUp {
         return this.email;
     }
 
+
     public void setUsername(String username) { this.username = username;
+
     }
 
     public void setEmail(String email) {

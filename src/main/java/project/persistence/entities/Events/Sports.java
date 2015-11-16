@@ -8,6 +8,8 @@ import project.persistence.entities.Data.EventData;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -16,13 +18,13 @@ import java.util.Date;
 
 public class Sports {
     public String tournament;
-    public Date date;
+    public LocalDate date;
     public Date time;
 
     public Sports(){
     }
 
-    public Sports(String keppni, Date dagur, Date timi) {
+    public Sports(String keppni, LocalDate dagur, Date timi) {
         tournament = keppni;
         date = dagur;
         time = timi;
@@ -32,7 +34,7 @@ public class Sports {
         return tournament;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
@@ -44,7 +46,7 @@ public class Sports {
         tournament = keppni;
     }
 
-    public void setDate(Date dagur) {
+    public void setDate(LocalDate dagur) {
         date = dagur;
     }
 

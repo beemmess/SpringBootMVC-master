@@ -4,7 +4,10 @@ import org.json.JSONException;
 import project.persistence.entities.Data.EventData;
 
 import java.io.IOException;
+import java.sql.Time;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -20,12 +23,12 @@ public class Football extends Sports {
     public int counter;
     public String location;
 
-    public Football(String heimalid, String utilid, int teljari, String stadsetnding, String keppni, Date dagur, Date timi) {
+    public Football(String heimalid, String utilid, int teljari, String stadsetning, String keppni, LocalDate dagur, Time timi) {
         super(keppni, dagur, timi);
         homeTeam = heimalid;
         awayTeam = utilid;
         counter = teljari;
-        location = stadsetnding;
+        location = stadsetning;
     }
 
     public Football() {
@@ -66,7 +69,7 @@ public class Football extends Sports {
     public static ArrayList<Football> getFootballEvents() throws ParseException, IOException, JSONException {
         String a = "football";
         EventData data = new EventData(a);
-        Football [] fotbolti = data.createFootballEvent();
+        Football [] fotbolti = data.createFootballEvents();
 
         ArrayList<Football> fotboltiList = new ArrayList<Football>(Arrays.asList(fotbolti));
         return fotboltiList;
