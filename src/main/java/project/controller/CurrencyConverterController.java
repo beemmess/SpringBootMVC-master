@@ -11,11 +11,7 @@ import project.service.CurrencyConverterService;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Map;
 
-import static project.service.CurrencyConverterService.*;
 
 /**
  * Created by hrabby on 5.11.2015.
@@ -30,7 +26,7 @@ public class CurrencyConverterController {
     //public CurrencyConverterController(CurrencyConverterService currencyConverterService) {
     //    this.currencyConverterService = currencyConverterService;
     //}
-    
+
 
     @RequestMapping(value="/currency", method = RequestMethod.GET)
     public  String BLaa(Model model) {

@@ -96,26 +96,8 @@ public class CurrencyConverterService {
 
 
     public double inputIskValue(CurrencyConverter currencyConverter){
-        //double iskValue = 100;
-       //currencyConverter.setIskValue(iskValue);
 
         return currencyConverter.getIskValue();
     }
 
-
-/*
-    public static void main(String[] args) throws ParseException, JSONException, IOException {
-
-        CurrencyConverter currencyConverter = new CurrencyConverter();
-        Object[] converter =  convert();
-        Object[] alltCurrency  = new Object[converter.length];
-        for(int i = 0; i < converter.length; i++){
-            alltCurrency[i] =  Arrays.deepToString((Object[]) converter[i]);
-            System.out.println(alltCurrency[i]);
-            //System.out.println("iskValue: " + currencyConverter.getIskValue());
-            //System.out.println("iskValue: " + inputIskValue(currencyConverter));
-
-        }
-    }
-    */
 }
