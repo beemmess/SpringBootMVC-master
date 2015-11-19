@@ -8,16 +8,16 @@ import javax.persistence.*;
 @Table(name="user")
 public class User {
     @Id
-    @Column(name="username")
-    @GeneratedValue
-    private String username;
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String email;
-
+    private String username;
     private String password;
 
-    public User(){}
+    public User(){
+
+    }
 
     public User(String username, String email, String password){
         this.username = username;
@@ -25,17 +25,24 @@ public class User {
         this.password = password;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getUsername(){
-    return this.username;
+    return username;
     }
 
     public String getEmail(){
-        return this.email;
+        return email;
     }
 
     public  String getPassword(){
-        return this.password;
+        return password;
     }
 
     public void setUsername(String username){
@@ -50,7 +57,12 @@ public class User {
         this.password = password;
     }
 
-
+    @Override
+    public String toString() {
+        return String.format(
+                "User[username=%s, email=%s, password]",
+                username,email,password);
+    }
 
 
 

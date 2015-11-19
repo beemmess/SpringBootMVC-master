@@ -8,24 +8,25 @@ import project.persistence.repositories.UserRepository;
 import project.service.UserService;
 
 import java.util.Optional;
+import java.util.Collections;
 
 @Service
 public class UserServiceImplementation implements UserService {
 
-    UserRepository userRepository;
-
+    UserRepository repository;
 
     @Autowired
-    public UserServiceImplementation(UserRepository userRepository){
-        this.userRepository= userRepository;
+    public UserServiceImplementation(UserRepository repository){
+        this.repository = repository;
     }
-
 
     @Override
     public User save(User user ) {
-        return userRepository.save(user);
+        return repository.save(user);
     }
 
+    @Override
+    public void delete(User user) { repository.delete(user);}
     //@Override
     //public Optional<User> getUserByName(String username){
     //    return userRepository.findOneByName(username);
