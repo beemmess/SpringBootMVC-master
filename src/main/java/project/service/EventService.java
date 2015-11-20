@@ -52,4 +52,16 @@ public class EventService {
         ArrayList<Cinema> cinemaList = new ArrayList<Cinema>(Arrays.asList(cinema));
         return cinemaList;
     }
+
+    public static void main(String arg[]) throws ParseException, JSONException, IOException {
+        ArrayList<Concerts> tonleikar = getConcertsEvents();
+        for(int i=0; i<tonleikar.size(); i++){
+            System.out.println(tonleikar.get(i).getEventHallName());
+            System.out.println(tonleikar.get(i).getUserGroupName());
+            System.out.println(tonleikar.get(i).getDateOfShow());
+            System.out.println(tonleikar.get(i).getName());
+            System.out.println(tonleikar.get(i).getEventDateName());
+            System.out.println(tonleikar.get(i).getImageSource());
+        }
+    }
 }

@@ -15,6 +15,13 @@
 </head>
 
 <h1>Handball Events</h1>
-<p>${texti}</p>
+<p>${text}</p>
+<ul>
+    <c:forEach var="handballEvent" items="${handballEvent}">
+        <li>
+            <p>${handballEvent.date} ${handballEvent.time} ${handballEvent.teams} ${handballEvent.venue} ${handballEvent.tournament} </p>
+        </li>
+    </c:forEach>
+</ul>
 </body>
 </html>
