@@ -40,57 +40,152 @@ Fyrsta tegund af google maps
         <script>
             var map;
             var infowindow;
-
+            var servive;
+            var pyrmont = {lat: 64.144136, lng: -21.932653}; // fixed location
+            var pos;
             function initMap() {
-                var pyrmont = {lat: 64.144136, lng: -21.932653};
+
 
                 map = new google.maps.Map(document.getElementById('map'), {
                     center: pyrmont,
                     zoom: 14
                 });
+                <%--
+                                infowindow = new google.maps.InfoWindow();
+                                service = new google.maps.places.PlacesService(map);
 
-                infowindow = new google.maps.InfoWindow();
+                                var service = new google.maps.places.PlacesService(map);
+                                service.nearbySearch({
+                                    location: pyrmont,
+                                    radius: 2000,
+                                    types: ['cafe'],
+                                }, callback);
+                                var service2 = new google.maps.places.PlacesService(map);
+                                service.nearbySearch({
+                                    location: pyrmont,
+                                    radius: 2000,
+                                    types: ['bar'],
+                                }, callback);
+                                var service3 = new google.maps.places.PlacesService(map);
+                                service.nearbySearch({
+                                    location: pyrmont,
+                                    radius: 2000,
+                                    types: ['restaurant'],
+                                }, callback);
+                            }
+                --%>
+                infoWindow = new google.maps.InfoWindow({map: map});
+                service = new google.maps.places.PlacesService(map);
 
-                var service = new google.maps.places.PlacesService(map);
-                service.nearbySearch({
-                    location: pyrmont,
-                    radius: 2000,
-                    types: ['cafe'],
-                }, callback);
-                var service2 = new google.maps.places.PlacesService(map);
-                service.nearbySearch({
-                    location: pyrmont,
-                    radius: 2000,
-                    types: ['bar'],
-                }, callback);
-                var service3 = new google.maps.places.PlacesService(map);
-                service.nearbySearch({
-                    location: pyrmont,
-                    radius: 2000,
-                    types: ['restaurant'],
-                }, callback);
+                // Try HTML5 geolocation.
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        var pos = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+
+                        infoWindow.setPosition(pos);
+                        infoWindow.setContent('Location found.');
+                        map.setCenter(pos);
+                    }, function() {
+                        handleLocationError(true, infoWindow, map.getCenter());
+                    });
+                } else {
+                    // Browser doesn't support Geolocation
+                    handleLocationError(false, infoWindow, map.getCenter());
+                }
+
+                // The idle event is a debounced event, so we can query & listen without
+                // throwing too many requests at the server.
+                map.addListener('idle', performSearch);
+            }
+            // Error gluggi um hvort location fundið eða ekki
+            function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                infoWindow.setPosition(pos);
+                infoWindow.setContent(browserHasGeolocation ?
+                        'Error: The Geolocation service failed.' :
+                        'Error: Your browser doesn\'t support geolocation.');
             }
 
+            function performSearch() {
+                var request = {
+                    location: map.getCenter(),
+                    //location: pyrmont
+                    radius: 250, // Radius til að ákveða hversu marga punkta á að velja í kring
+                    types: ['restaurant']
+
+
+                };
+                service.radarSearch(request, callback);
+                console.log(map.getCenter());
+            }
+            console.log(getPosition(pos));
             function callback(results, status) {
-                if (status === google.maps.places.PlacesServiceStatus.OK) {
-                    for (var i = 0; i < results.length; i++) {
-                        createMarker(results[i]);
-                    }
+                if (status !== google.maps.places.PlacesServiceStatus.OK) {
+                    console.error(status);
+                    return;
+                }
+                for (var i = 0, result; result = results[i]; i++) {
+                    addMarker(result);
                 }
             }
 
-            function createMarker(place) {
-                var placeLoc = place.geometry.location;
+            function addMarker(place) {
                 var marker = new google.maps.Marker({
                     map: map,
-                    position: place.geometry.location
+                    position: place.geometry.location,
+                    icon: {
+                        url: 'https://maps.gstatic.com/mapfiles/ms2/micons/red-dot.png',
+                        anchor: new google.maps.Point(14, 14),
+                        scaledSize: new google.maps.Size(18, 18)
+                    }
                 });
+
                 google.maps.event.addListener(marker, 'click', function() {
-                    infowindow.setContent(place.name + "<br />"+"Type: " + place.types[0] +", "+place.types[1] + "<br />"+ "Rating: "  + place.rating );
-                    infowindow.open(map, this);
+                    service.getDetails(place, function(result, status) {
+                        if (status !== google.maps.places.PlacesServiceStatus.OK) {
+                            console.error(status);
+                            return;
+                        }
+                        infoWindow.setContent(result.name + "<br/>" + result.rating + "<br/>" + result.formatted_address + "<br/>" + result.website + "<br/>" + result.formatted_phone_number );
+                        infoWindow.open(map, marker);
+                    });
                 });
             }
 
+
+<%--
+            function callback(results, status) {
+                if (status !== google.maps.places.PlacesServiceStatus.OK) {
+                    console.error(status);
+                    return;
+                }
+                for (var i = 0, result; result = results[i]; i++) {
+                    addMarker(result);
+                }
+            }
+
+            function addMarker(place) {
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: place.geometry.location,
+
+                });
+
+                google.maps.event.addListener(marker, 'click', function() {
+                    service.getDetails(place, function(result, status) {
+                        if (status !== google.maps.places.PlacesServiceStatus.OK) {
+                            console.error(status);
+                            return;
+                        }
+                        infoWindow.setContent(result.name);
+                        infoWindow.open(map, marker);
+                    });
+                });
+            }
+
+--%>
         </script>
     </head>
     <body>
