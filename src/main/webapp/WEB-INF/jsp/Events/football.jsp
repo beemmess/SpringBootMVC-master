@@ -19,11 +19,7 @@
     <ul>
         <c:forEach var="footballEvent" items="${footballEvent}">
             <li>
-                <p>${footballEvent.date}</p>
-                <p>${footballEvent.homeTeam}</p>
-                <p>${footballEvent.awayTeam}</p>
-                <p>${footballEvent.location}</p>
-                <p>${footballEvent.tournament}</p>
+                <p>${footballEvent.date} ${footballEvent.homeTeam} ${footballEvent.awayTeam} ${footballEvent.location} ${footballEvent.tournament}</p>
             </li>
         </c:forEach>
     </ul>
