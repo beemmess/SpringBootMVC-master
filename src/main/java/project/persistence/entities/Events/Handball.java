@@ -43,6 +43,7 @@ public class Handball extends Sports {
     public void setVenue(String vollur) {
         venue = vollur;
     }
+
     public static ArrayList<Handball> getHandballEvents() throws ParseException, IOException, JSONException {
         String a = "handball";
         EventData data = new EventData(a);

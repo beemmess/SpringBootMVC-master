@@ -14,9 +14,8 @@
     <title>Events</title>
 </head>
 
-<h1>Football Events</h1>
+<h1>Concerts</h1>
 <p>${texti}</p>
-<p>${footballgame}</p>
+${football.homeTeam}
 </body>
 </html>
-

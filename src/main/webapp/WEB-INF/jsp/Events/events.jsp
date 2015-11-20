@@ -14,9 +14,14 @@
     <title>Events</title>
 </head>
 
-<h1>Football Events</h1>
+<h1>Select type of Event</h1>
+
+<h2><a href="events/football">Football</a></h2>
+<h2><a href="events/handball">Handball</a></h2>
+<h2><a href="events/cinema">Cinema</a> </h2>
+<h2><a href="events/concerts">Concerts</a></h2>
+
 <p>${texti}</p>
-<p>${footballgame}</p>
+
 </body>
 </html>
-
