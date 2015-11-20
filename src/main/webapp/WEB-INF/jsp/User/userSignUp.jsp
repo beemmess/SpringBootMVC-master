@@ -9,11 +9,11 @@
     <title>User</title>
 </head>
 <body>
-<h1>UserSignup</h1>
+<h1>${userMsg}</h1>
 
 <table>
-    <tr><td>${User.username}</td></tr>
-    <tr><td>${User.email}</td></tr>
+    <tr><td>${user.username}</td></tr>
+    <tr><td>${user.email}</td></tr>
 </table>
 
 </body>

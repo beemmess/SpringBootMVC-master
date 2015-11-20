@@ -9,7 +9,7 @@
     <title>User</title>
 </head>
 <body>
-<h1>User</h1>
+<h1>${signupMsg}</h1>
 <sf:form method="POST" commandName="user" action="/userinf">
     <table>
         <tr>
@@ -27,6 +27,12 @@
         <tr>
             <td>User password:</td>
             <td><sf:input path="password" type="password" placeholder="Enter password"/></td>
+
+        </tr>
+
+        <tr>
+            <td>User password:</td>
+            <td><sf:input path="password" type="password" placeholder="Rewrite password"/></td>
 
         </tr>
         <tr><td><input type="submit" VALUE="Sign up"/></td></tr>

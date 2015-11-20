@@ -1,40 +1,69 @@
 package project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import project.persistence.entities.User.User;
+import project.persistence.entities.User.UserCreateForm;
+import project.service.Implementation.UserCreateFormValidator;
 import project.service.UserService;
 
+
+import org.springframework.validation.Validator;
+import javax.validation.Valid;
 
 @Controller
 public class UserController {
 
     UserService userService;
+    UserCreateFormValidator userCreateFormValidator;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserCreateFormValidator userCreateFormValidator) {
         this.userService = userService;
+        this.userCreateFormValidator = userCreateFormValidator;
     }
 
 
+    @InitBinder("form")
+    public void initBinder(WebDataBinder binder) {
+        binder.addValidators(userCreateFormValidator);
+    }
+
 
     @RequestMapping(value = "/userinf", method = RequestMethod.GET)
-    public String getView(@ModelAttribute("user") User user, Model model){
+    public String getRegistrationView(@ModelAttribute("user") User user, Model model){
+        String signup = "User registration form";
+        model.addAttribute("signupMsg", signup);
+
         return "User/user";
     }
 
     @RequestMapping(value = "/userinf", method = RequestMethod.POST)
-    public String getUsersPage(@ModelAttribute("user") User user, Model model){
+    public String getUserPage(User user, @Valid@ModelAttribute("form") UserCreateForm form, Model model, BindingResult bindingResult){
+        String userpage = "User page";
+        model.addAttribute("userMsg", userpage);
 
-        String msg = "hallo";
 
-        model.addAttribute("Hallomsg", msg);
-        userService.save(user);
+        if (bindingResult.hasErrors()) {
+             return "User/userSignUp";
+        }
+        try {
+            userService.create(form);
+        } catch (DataIntegrityViolationException e) {
+            bindingResult.reject("email.exists", "Email already exists");
 
+            return "User/userSignUp";
+        }
+
+        //userService.create(form);
 
         return "User/userSignUp";
     }

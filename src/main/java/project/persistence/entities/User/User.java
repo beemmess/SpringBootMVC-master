@@ -1,18 +1,18 @@
 package project.persistence.entities.User;
 
 
-import javax.persistence.Entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name="user")
+@Table(name = "userinfo")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String email;
     private String username;
+    private String email;
     private String password;
 
     public User(){
@@ -44,7 +44,6 @@ public class User {
     public  String getPassword(){
         return password;
     }
-
     public void setUsername(String username){
         this.username = username;
     }
@@ -57,13 +56,13 @@ public class User {
         this.password = password;
     }
 
+
     @Override
     public String toString() {
         return String.format(
-                "User[username=%s, email=%s, password]",
+                "User[username=%s, email=%s, password=%s]",
                 username,email,password);
     }
-
 
 
 
