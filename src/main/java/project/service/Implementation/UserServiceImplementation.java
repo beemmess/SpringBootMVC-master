@@ -38,17 +38,10 @@ public class UserServiceImplementation implements UserService {
     @Override
     public List<User> findAllReverseOrder() {
         List<User> user = repository.findAll();
-
-        // Reverse the list
         Collections.reverse(user);
 
         return user;
     }
-
-   // @Override
-   // public User findOne(Long id) {
-   //     return repository.findOne(id);
-   // }
 
     @Override
     public Optional<User> getUserByName(String username){
@@ -59,12 +52,6 @@ public class UserServiceImplementation implements UserService {
     public Optional<User> getUserByEmail(String email){
         return repository.findOneByEmail(email);
     }
-
-    //@Override
-    //public Collection<User> getAllUsers() {
-    //    return userRepository.findAll(new Sort("username"));
-    //}
-
 
 
     @Override

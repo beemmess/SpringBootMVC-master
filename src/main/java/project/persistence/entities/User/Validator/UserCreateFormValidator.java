@@ -1,4 +1,4 @@
-package project.service.Implementation;
+package project.persistence.entities.User.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
