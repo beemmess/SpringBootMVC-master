@@ -10,13 +10,23 @@
 
 <!DOCTYPE HTML>
 <body>
-<head>
-    <title>Events</title>
-</head>
+    <head>
+        <title>Events</title>
+    </head>
 
-<h1>Football Events</h1>
-<p>${texti}</p>
-<p>${footballgame}</p>
+    <h1>Football Events</h1>
+    <p>${text}</p>
+    <ul>
+        <c:forEach var="footballEvent" items="${footballEvent}">
+            <li>
+                <p>${footballEvent.date}</p>
+                <p>${footballEvent.homeTeam}</p>
+                <p>${footballEvent.awayTeam}</p>
+                <p>${footballEvent.location}</p>
+                <p>${footballEvent.tournament}</p>
+            </li>
+        </c:forEach>
+    </ul>
 </body>
 </html>
 

@@ -1,5 +1,7 @@
 package project.service;
 
+//Má líklegast henda út
+
 import org.json.JSONException;
 import project.persistence.entities.Events.Cinema;
 import project.persistence.entities.Events.Concerts;
