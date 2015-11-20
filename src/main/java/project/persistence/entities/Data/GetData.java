@@ -4,7 +4,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 import project.persistence.entities.Info.CurrencyConverter;
+import project.persistence.entities.Forecast.Weather;
 
 import java.io.*;
 import java.net.URL;
@@ -68,6 +73,39 @@ public class GetData {
   //          currencyConverters[i].setIskValue(iskValue);
         }
         return currencyConverters;
+    }
+
+    public Weather [] createWeather()throws JSONException, ParseException, IOException {
+        JSONObject weather = readData("weather");
+        JSONObject forecasts = readData("forecasts");
+        JSONArray result = weather.getJSONArray("results");
+
+
+        Weather[] weatherForecast = new Weather[result.length()];
+        for(int i = 0; i < result.length(); i++){
+            JSONObject vedur = result.getJSONObject(i);
+
+            /*String ftime = vedur.getString("ftime");
+            String dateStr = changeFromIslDate(ftime);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
+            LocalDate ftime = LocalDate.parse(dateStr, formatter);
+            Date ftime  = vedur.getDate("ftime"); */
+            int F = vedur.getInt("F");
+            String D = vedur.getString("D");
+            int T = vedur.getInt("T");
+            String W = vedur.getString("W");
+            int N = vedur.getInt("N");
+
+            weatherForecast[i] = new Weather();
+            //weatherForecast[i].setFTime(ftime);
+            weatherForecast[i].setWindSpeed(F);
+            weatherForecast[i].setWindDirection(D);
+            weatherForecast[i].setAirTemperature(T);
+            weatherForecast[i].setWeatherDescription(W);
+            weatherForecast[i].setCloudCover(N);
+
+        }
+        return weatherForecast;
     }
 
 }
