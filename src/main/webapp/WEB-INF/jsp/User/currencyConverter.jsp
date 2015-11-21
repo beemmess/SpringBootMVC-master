@@ -9,109 +9,57 @@
 
 <!DOCTYPE HTML>
 <html>
-    <head>
-        <title>Currency converter</title>
-    </head>
+<head>
+    <title>Currency converter</title>
+</head>
+<body>
+<%--
+    <form action="/currency" method="POST">
+        <p>Currency Name: <input type="text" name="currencyShortName"></p>
 
-    <h1>Currency Converter</h1>
-    <%--
-                <form:form method="GET" modelAttribute="currencyConverter">
+        <input type="submit" value="submit">
 
-                        <form:select path="currencyShortName" >
-                        <form:option value=" ">Select currency: </form:option>
-                        <c:forEach var="currency" items="${currencies}" >
-                            <form:option value="${currency}">${currency}</form:option>
-
-                        </c:forEach>
-                    </form:select>
-
-
-                    <input type="submit" value="Submit" />
-
-                </form:form>
-
-                        <form:form method="POST" modelAttribute="currencyConverter" >
-                            <c:forEach var="currency" items="${values}" >
-
-                                <br/>
-                                <label path="value">Value: </label>
-                                <h3>${currency}</h3>
-
-                            </c:forEach>
-
-
-
-                        </form:form>
-
+    </form>
 
 --%>
-    <form:form method="GET" modelAttribute="currencyConverter" action="/currency/${currencyShortName}">
-
-        <form:select path="currencyShortName" >
-            <form:option value="">Select currency: </form:option>
-            <c:forEach var="currencyInput" items="${shortNames}" >
-                <form:option value="${currencyInput[0]}">${currencyInput[0]}</form:option>
-
-            </c:forEach>
-        </form:select>
-
-        <input type="submit" value="Submit"/>
-
-
-    </form:form>
-
-
-    <form:form method="POST" modelAttribute="currencyConverter"  >
-
-        <table>
-        <c:forEach var="currency" items="${shortNames}">
-
-                <tr>
-                    <td><h2>Currency:</h2><sf:input path="currencyShortName" type="text" value="${currency[0]}"  placeholder=" ${currency[0]}"/></td>
-                    <td><h2>Value:</h2> <sf:input path="value" type="text" value="${currency[1]}"  placeholder=" ${currency[1]}"/></td>
-                    <td><h2>iskValue:</h2><sf:input path="iskValue" type="text"   placeholder=" ${currency[2]}" value="${currency[2]}"/></td>
-
-                    <td><h2>Result:</h2>${currency[3]}</td>
-
-
-                    <%
-
-                        String iskvalueString = request.getParameter("iskValue");
-                        double iskValue = 1;
-                        if(iskvalueString != null) {iskValue = Double.parseDouble(iskvalueString);}
-
-                        //String shortName = request.getParameter("currencyShortName");
-                        Object shortName = request.getParameter("currencyShortName");
-                        System.out.print(shortName + " ");
-
-                        String value = request.getParameter("value");
-                        System.out.print(value + " ");
-
-                        System.out.println(iskvalueString + " ");
 
 
 
-                        CurrencyConverter currencyConverter = new CurrencyConverter();
-                        currencyConverter.setIskValue(iskValue);
-                       // currencyConverter.setForeignValue(iskValue/currencyConverter.getValue());
-                        //System.out.println(currencyConverter.getValue());
-                    %>
+<form  method="POST"  action="/currency">
 
-                </tr>
+    <table>
+        <tr>
+            <td>Currency :</td>
+            <td>
+                <select name="currencyShortName">
+                    <option value=" ">Select currency: </option>
+
+                    <option  value="ISK">ISK</option>
+                    <option  value="USD">USD</option>
+                    <option  value="GBP">GBP</option>
+                    <option  value="EUR">EUR</option>
+                    <option  value="CAD">CAD</option>
+                    <option  value="DKK">DKK</option>
+                    <option  value="NOK">NOK</option>
+                    <option  value="SEK">SEK</option>
+                    <option  value="CHF">CHF</option>
+                    <option  value="JPY">JPY</option>
 
 
-            </c:forEach>
+                </select>
+            </td>
+        </tr>
 
-            <input type="submit" value="Submit"/>
-        </table>
+        <tr>
+            <td>Icelandic Value:</td>
+
+            <td><input name="iskValue" type="text"></td>
+        </tr>
+        <tr><td><input type="submit" VALUE="Submit"/></td></tr>
+
+    </table>
+</form >
 
 
-            </form:form>
-
-
-
-
-
-
-   </body>
+</body>
 </html>
