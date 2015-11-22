@@ -16,6 +16,12 @@
 
 <h1>Korta s</h1>
 <p>${texti}</p>
+<tr>
+    <td>Type of interest:</td>
+
+    <td><input name="mapType" type="text" id="mapSearch"></td>
+</tr>
+<tr><td><input type="submit" VALUE="Submit"/></td></tr>
 
 <%--
 Fyrsta tegund af google maps
@@ -38,11 +44,15 @@ Fyrsta tegund af google maps
             }
         </style>
         <script>
+
             var map;
             var infowindow;
             var servive;
             var pyrmont = {lat: 64.144136, lng: -21.932653}; // fixed location
             var pos;
+
+
+
             function initMap() {
 
 
@@ -50,32 +60,11 @@ Fyrsta tegund af google maps
                     center: pyrmont,
                     zoom: 14
                 });
-                <%--
-                                infowindow = new google.maps.InfoWindow();
-                                service = new google.maps.places.PlacesService(map);
 
-                                var service = new google.maps.places.PlacesService(map);
-                                service.nearbySearch({
-                                    location: pyrmont,
-                                    radius: 2000,
-                                    types: ['cafe'],
-                                }, callback);
-                                var service2 = new google.maps.places.PlacesService(map);
-                                service.nearbySearch({
-                                    location: pyrmont,
-                                    radius: 2000,
-                                    types: ['bar'],
-                                }, callback);
-                                var service3 = new google.maps.places.PlacesService(map);
-                                service.nearbySearch({
-                                    location: pyrmont,
-                                    radius: 2000,
-                                    types: ['restaurant'],
-                                }, callback);
-                            }
-                --%>
                 infoWindow = new google.maps.InfoWindow({map: map});
                 service = new google.maps.places.PlacesService(map);
+                var mapSearch = document.getElementById("mapSearch").value;
+
 
                 // Try HTML5 geolocation.
                 if (navigator.geolocation) {
@@ -88,6 +77,13 @@ Fyrsta tegund af google maps
                         infoWindow.setPosition(pos);
                         infoWindow.setContent('Location found.');
                         map.setCenter(pos);
+                        var request = {
+                            location: pos,
+                            radius: 250, // Radius til að ákveða hversu marga punkta á að velja í kring
+                            //types: ['restaurant']
+                            types: mapSearch
+                        };
+
                     }, function() {
                         handleLocationError(true, infoWindow, map.getCenter());
                     });
@@ -110,17 +106,16 @@ Fyrsta tegund af google maps
 
             function performSearch() {
                 var request = {
-                    location: map.getCenter(),
-                    //location: pyrmont
+                    //location: map.getCenter(),
+                    location: pyrmont,
                     radius: 250, // Radius til að ákveða hversu marga punkta á að velja í kring
-                    types: ['restaurant']
-
-
+                    //types: ['restaurant']
+                    types: mapSearch
                 };
                 service.radarSearch(request, callback);
                 console.log(map.getCenter());
             }
-            console.log(getPosition(pos));
+
             function callback(results, status) {
                 if (status !== google.maps.places.PlacesServiceStatus.OK) {
                     console.error(status);
