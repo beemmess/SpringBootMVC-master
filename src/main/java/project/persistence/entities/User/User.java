@@ -1,7 +1,10 @@
 package project.persistence.entities.User;
 
 
+import org.hibernate.validator.constraints.Email;
+
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "userinfo")
@@ -11,7 +14,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     private String username;
+
     private String email;
     private String password;
 

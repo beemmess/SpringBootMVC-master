@@ -27,26 +27,26 @@ public class UserServiceImplementation implements UserService {
         return repository.save(user);
     }
 
-    @Override
-    public void delete(User user) { repository.delete(user);}
+    //@Override
+    //public void delete(User user) { repository.delete(user);}
 
-    @Override
-    public List<User> findAll() {
-        return repository.findAll();
-    }
+    //@Override
+    //public List<User> findAll() {
+    //    return repository.findAll();
+    //}
 
-    @Override
-    public List<User> findAllReverseOrder() {
-        List<User> user = repository.findAll();
-        Collections.reverse(user);
+    //@Override
+    //public List<User> findAllReverseOrder() {
+    //    List<User> user = repository.findAll();
+    //    Collections.reverse(user);
 
-        return user;
-    }
+//        return user;
+  //  }
 
-    @Override
-    public Optional<User> getUserByName(String username){
-        return repository.findOneByName(username);
-    }
+    //@Override
+    //public Optional<User> getUserByName(String username){
+    //    return repository.findOneByName(username);
+    //}
 
     @Override
     public Optional<User> getUserByEmail(String email){

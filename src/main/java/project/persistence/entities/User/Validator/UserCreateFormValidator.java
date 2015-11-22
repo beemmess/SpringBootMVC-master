@@ -1,3 +1,4 @@
+
 package project.persistence.entities.User.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,11 +47,11 @@ public class UserCreateFormValidator implements Validator {
         }
     }
 
-    private void validateName(Errors errors, UserCreateForm form) {
-        if (userService.getUserByName(form.getUsername()).isPresent()) {
-            errors.reject("username.exists", "User with this name already exists");
-        }
-    }
+    //private void validateName(Errors errors, UserCreateForm form) {
+    //    if (userService.getUserByName(form.getUsername()).isPresent()) {
+    //        errors.reject("username.exists", "User with this name already exists");
+    //    }
+    //}
 
 
 

@@ -3,6 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html lang="en">
 <head>
@@ -10,7 +11,9 @@
 </head>
 <body>
 <h1>${signupMsg}</h1>
-<sf:form method="POST" commandName="user" action="/userinf">
+
+<form:errors path="form1.*"/>
+<sf:form method="POST" commandName="form" action="/userinf">
     <table>
         <tr>
             <td>User name:</td>
@@ -31,13 +34,15 @@
         </tr>
 
         <tr>
-            <td>User password:</td>
-            <td><sf:input path="password" type="password" placeholder="Rewrite password"/></td>
+            <td>Repeat password:</td>
+            <td><sf:input path="passwordRepeated" type="password" placeholder="Repeat password"/></td>
 
         </tr>
+
         <tr><td><input type="submit" VALUE="Sign up"/></td></tr>
     </table>
 
 </sf:form>
+
 </body>
 </html>

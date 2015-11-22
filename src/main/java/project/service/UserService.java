@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface UserService {
 
 
-    Optional<User> getUserByName(String username);
+   // Optional<User> getUserByName(String username);
 
     Optional<User> getUserByEmail(String email);
 
@@ -20,11 +20,11 @@ public interface UserService {
 
     User save(User user);
 
-    void delete(User user);
+   // void delete(User user);
 
-    List<User> findAll();
+    //List<User> findAll();
 
-    List<User> findAllReverseOrder();
+   // List<User> findAllReverseOrder();
 
    // User findOne(Long id);
 

@@ -1,14 +1,18 @@
 package project.persistence.entities.User;
 
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.Size;
 
 public class UserCreateForm {
 
-    @NotEmpty
+
+    @Size(min=2, max = 30)
     private String username = "";
 
-    @NotEmpty
+    @Email
     private String email = "";
 
     @NotEmpty
@@ -25,7 +29,7 @@ public class UserCreateForm {
         return email;
     }
 
-    public  String getPassword(){
+    public String getPassword(){
         return password;
     }
 
