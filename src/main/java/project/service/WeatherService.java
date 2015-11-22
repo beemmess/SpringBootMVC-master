@@ -20,7 +20,7 @@ public class WeatherService {
         this.weatherForecast = weatherForecast;
     }
 
-    public ArrayList<Weather> getweatherForecast()throws ParseException, IOException, JSONException {
+    public static ArrayList<Weather> getweatherForecast()throws ParseException, IOException, JSONException {
         String a = "weather";
         GetData data = new GetData(a);
         Weather[] weatherForecast = data.createWeather();
@@ -28,5 +28,16 @@ public class WeatherService {
         ArrayList<Weather> weatherList = new ArrayList<Weather>(Arrays.asList(weatherForecast));
 
         return weatherList;
+    }
+
+    public static void main (String args[]) throws ParseException, JSONException, IOException {
+        ArrayList<Weather> weatherForecast = getweatherForecast();
+        for (int i = 0; i < weatherForecast.size(); i++) {
+            System.out.println(weatherForecast.get(i).getTitle());
+            System.out.println(weatherForecast.get(i).getCreation());
+            System.out.println(weatherForecast.get(i).getValid_from());
+            System.out.println(weatherForecast.get(i).getValid_to());
+            System.out.println(weatherForecast.get(i).getContent());
+        }
     }
 }

@@ -76,8 +76,8 @@ public class GetData {
     }
 
     public Weather [] createWeather()throws JSONException, ParseException, IOException {
-        JSONObject weather = readData("weather");
-        JSONObject forecasts = readData("forecasts");
+        JSONObject weather = readData("weather/texts/is?types=27");
+        //JSONObject forecasts = readData("forecasts");
         JSONArray result = weather.getJSONArray("results");
 
 
@@ -85,12 +85,26 @@ public class GetData {
         for(int i = 0; i < result.length(); i++){
             JSONObject vedur = result.getJSONObject(i);
 
+            String title = vedur.getString("title");
+            String creation = vedur.getString("creation");
+            String valid_from = vedur.getString("valid_from");
+            String valid_to = vedur.getString("valid_to");
+            String content = vedur.getString("content");
+
+            weatherForecast[i] = new Weather();
+            weatherForecast[i].setTitle(title);
+            weatherForecast[i].setCreation(creation);
+            weatherForecast[i].setValid_from(valid_from);
+            weatherForecast[i].setValid_to(valid_to);
+            weatherForecast[i].setContent(content);
+
+
             /*String ftime = vedur.getString("ftime");
             String dateStr = changeFromIslDate(ftime);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
             LocalDate ftime = LocalDate.parse(dateStr, formatter);
-            Date ftime  = vedur.getDate("ftime"); */
-            int F = vedur.getInt("F");
+            Date ftime  = vedur.getDate("ftime");
+            //int F = vedur.getInt("F");
             String D = vedur.getString("D");
             int T = vedur.getInt("T");
             String W = vedur.getString("W");
@@ -98,11 +112,11 @@ public class GetData {
 
             weatherForecast[i] = new Weather();
             //weatherForecast[i].setFTime(ftime);
-            weatherForecast[i].setWindSpeed(F);
+            //weatherForecast[i].setWindSpeed(F);
             weatherForecast[i].setWindDirection(D);
             weatherForecast[i].setAirTemperature(T);
             weatherForecast[i].setWeatherDescription(W);
-            weatherForecast[i].setCloudCover(N);
+            weatherForecast[i].setCloudCover(N); */
 
         }
         return weatherForecast;
