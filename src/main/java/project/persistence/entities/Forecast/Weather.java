@@ -55,9 +55,9 @@ public class Weather {
         GetData data = new GetData(a);
         Weather [] weatherForecast = data.createWeather();
 
-        ArrayList<Weather> weatherForecastList = new ArrayList<Weather>(Arrays.asList(weatherForecast));
+        ArrayList<Weather> weatherList = new ArrayList<Weather>(Arrays.asList(weatherForecast));
 
-        return weatherForecastList;
+        return weatherList;
     }
 
     public static void main (String args[]) throws ParseException, JSONException, IOException {
