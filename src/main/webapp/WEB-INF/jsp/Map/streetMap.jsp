@@ -45,14 +45,15 @@ Fyrsta tegund af google maps
         </style>
         <script>
 
-            var map;
-            var infowindow;
+            var map, places, infoWindow;
+            var markers = [];
             var servive;
+            var autocomplete;
             var pyrmont = {lat: 64.144136, lng: -21.932653}; // fixed location
             var pos;
 
 
-
+// initMap byrjar %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             function initMap() {
 
 
@@ -63,9 +64,22 @@ Fyrsta tegund af google maps
 
                 infoWindow = new google.maps.InfoWindow({map: map});
                 service = new google.maps.places.PlacesService(map);
+                // mapSearch er id
                 var mapSearch = document.getElementById("mapSearch").value;
 
+                // Create the autocomplete object and associate it with the UI input control.
+                // Restrict the search to the default country, and to place type "cities".
+                autocomplete = new google.maps.places.Autocomplete(
+                        /** @type {!HTMLInputElement} */ (
+                                document.getElementById('mapSearch')), {
+                        });
+                places = new google.maps.places.PlacesService(map);
 
+                autocomplete.addListener('place_changed', onPlaceChanged);
+
+
+
+<%--
                 // Try HTML5 geolocation.
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(function(position) {
@@ -77,12 +91,6 @@ Fyrsta tegund af google maps
                         infoWindow.setPosition(pos);
                         infoWindow.setContent('Location found.');
                         map.setCenter(pos);
-                        var request = {
-                            location: pos,
-                            radius: 250, // Radius til að ákveða hversu marga punkta á að velja í kring
-                            //types: ['restaurant']
-                            types: mapSearch
-                        };
 
                     }, function() {
                         handleLocationError(true, infoWindow, map.getCenter());
@@ -92,38 +100,77 @@ Fyrsta tegund af google maps
                     handleLocationError(false, infoWindow, map.getCenter());
                 }
 
+ --%>
+
+
+
+
                 // The idle event is a debounced event, so we can query & listen without
                 // throwing too many requests at the server.
-                map.addListener('idle', performSearch);
-            }
+                //map.addListener('idle', performSearch);
+
+
+                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            }// initMap endar hér %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
             // Error gluggi um hvort location fundið eða ekki
-            function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-                infoWindow.setPosition(pos);
-                infoWindow.setContent(browserHasGeolocation ?
-                        'Error: The Geolocation service failed.' :
-                        'Error: Your browser doesn\'t support geolocation.');
+          //  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+          //      infoWindow.setPosition(pos);
+          //      infoWindow.setContent(browserHasGeolocation ?
+          //              'Error: The Geolocation service failed.' :
+          //              'Error: Your browser doesn\'t support geolocation.');
+          //  }
+
+            // When the user selects a city, get the place details for the city and
+            // zoom the map in on the city.
+            function onPlaceChanged() {
+                var place = autocomplete.getPlace();
+                if (place.geometry) {
+                    map.panTo(place.geometry.location);
+                    map.setZoom(14);
+                    performSearch();
+                } else {
+                    document.getElementById('mapSearch').placeholder = 'Enter a type';
+                }
             }
 
+
+
             function performSearch() {
+                var mapSearch = document.getElementById('mapSearch').value;
                 var request = {
                     //location: map.getCenter(),
                     location: pyrmont,
                     radius: 250, // Radius til að ákveða hversu marga punkta á að velja í kring
                     //types: ['restaurant']
-                    types: mapSearch
+                    types: ['lodging']
                 };
                 service.radarSearch(request, callback);
                 console.log(map.getCenter());
             }
 
+
+
             function callback(results, status) {
+
                 if (status !== google.maps.places.PlacesServiceStatus.OK) {
                     console.error(status);
                     return;
                 }
+                clearMarkers();
                 for (var i = 0, result; result = results[i]; i++) {
                     addMarker(result);
                 }
+            }
+
+            function clearMarkers() {
+                for (var i = 0; i < markers.length; i++) {
+                    if (markers[i]) {
+                        markers[i].setMap(null);
+                    }
+                }
+                markers = [];
             }
 
             function addMarker(place) {
@@ -150,37 +197,6 @@ Fyrsta tegund af google maps
             }
 
 
-<%--
-            function callback(results, status) {
-                if (status !== google.maps.places.PlacesServiceStatus.OK) {
-                    console.error(status);
-                    return;
-                }
-                for (var i = 0, result; result = results[i]; i++) {
-                    addMarker(result);
-                }
-            }
-
-            function addMarker(place) {
-                var marker = new google.maps.Marker({
-                    map: map,
-                    position: place.geometry.location,
-
-                });
-
-                google.maps.event.addListener(marker, 'click', function() {
-                    service.getDetails(place, function(result, status) {
-                        if (status !== google.maps.places.PlacesServiceStatus.OK) {
-                            console.error(status);
-                            return;
-                        }
-                        infoWindow.setContent(result.name);
-                        infoWindow.open(map, marker);
-                    });
-                });
-            }
-
---%>
         </script>
     </head>
     <body>
