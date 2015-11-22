@@ -1,8 +1,13 @@
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.text.DateFormat" %>
 <!DOCTYPE html>
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
 <html lang="en">
 <head>
@@ -24,7 +29,6 @@
                 <%--the `path` attribute matches the `note` attribute of the Entity that was passed in the model--%>
             <td><sf:input path="review" type="text" placeholder="Enter review"/></td>
         </tr>
-
     </table>
 
     <input type="submit" VALUE="Post It!"/>

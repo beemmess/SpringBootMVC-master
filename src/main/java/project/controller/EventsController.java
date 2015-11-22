@@ -38,7 +38,7 @@ public class EventsController {
     @RequestMapping(value="/events")
     public String events(Model model) {
 
-        String texti = "Veldu tegund atburðar";
+        String texti = "Select type of event";
         model.addAttribute("texti", texti);
         return "Events/events";
     }

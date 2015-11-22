@@ -1,6 +1,8 @@
 package project.persistence.entities.Attraction;
 
 import javax.persistence.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -18,6 +20,7 @@ public class AllReviews {
     private Date date;
 
     public AllReviews() {
+        this.date = new Date();
     }
 
     public AllReviews(String username, String review, Date date) {
@@ -58,11 +61,12 @@ public class AllReviews {
     public void setDate(Date date) {
         this.date = date;
     }
+
     @Override
     public String toString() {
         return String.format(
-                "AllReviews[username=%s,review=%s",
-                username, review);
+                "AllReviews[date=‰s, username=%s, review=%s",
+                date, username, review);
     }
 
 }

@@ -3,6 +3,7 @@ package project.service.Implementation;
 //Má líklegast henda út
 
 import org.json.JSONException;
+import org.springframework.stereotype.Service;
 import project.persistence.entities.Data.EventData;
 import project.persistence.entities.Events.Cinema;
 import project.persistence.entities.Events.Concerts;
@@ -18,6 +19,8 @@ import java.util.Arrays;
 /**
  * Created by hlingunnlaugsdottir on 18/11/15.
  */
+
+@Service
 public class EventsServiceImplementation implements EventsService{
 
     @Override
