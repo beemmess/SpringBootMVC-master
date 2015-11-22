@@ -30,9 +30,11 @@ public class UserCreateFormValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         UserCreateForm form = (UserCreateForm) target;
-        validatePasswords(errors, form);
+        validateName(errors, form);
         validateEmail(errors, form);
-        //validateName(errors, form);
+        validatePasswords(errors, form);
+
+
     }
 
     private void validatePasswords(Errors errors, UserCreateForm form) {
@@ -47,11 +49,11 @@ public class UserCreateFormValidator implements Validator {
         }
     }
 
-    //private void validateName(Errors errors, UserCreateForm form) {
-    //    if (userService.getUserByName(form.getUsername()).isPresent()) {
-    //        errors.reject("username.exists", "User with this name already exists");
-    //    }
-    //}
+    private void validateName(Errors errors, UserCreateForm form) {
+          if (userService.getUserByName(form.getUsername()).isPresent()) {
+            errors.reject("username.exists", "User with this name already exists");
+        }
+    }
 
 
 

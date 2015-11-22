@@ -10,13 +10,11 @@
     <title>User</title>
 </head>
 <body>
-<h1>${signupMsg}</h1>
+<h1>${loginMsg}</h1>
 
 
-
-
-<sf:errors path="form.*"/>
-<sf:form method="POST" commandName="form" action="/userinf">
+<sf:errors path="user.*"/>
+<sf:form method="POST" commandName="user" action="/login">
     <table>
         <tr>
             <td>User name:</td>
@@ -24,28 +22,19 @@
 
         </tr>
 
-        <tr>
-            <td>User email:</td>
-            <td><sf:input path="email" type="text" placeholder="Enter email"/></td>
-
-        </tr>
 
         <tr>
             <td>User password:</td>
             <td><sf:input path="password" type="password" placeholder="Enter password"/></td>
-
         </tr>
 
-        <tr>
-            <td>Repeat password:</td>
-            <td><sf:input path="passwordRepeated" type="password" placeholder="Repeat password"/></td>
 
-        </tr>
-
-        <tr><td><input type="submit" VALUE="Sign up"/></td></tr>
+        <tr><td><input type="submit" VALUE="Login"/></td></tr>
     </table>
 
 </sf:form>
+
+
 
 </body>
 </html>

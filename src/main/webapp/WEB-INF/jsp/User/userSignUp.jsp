@@ -12,8 +12,8 @@
 <h1>${userMsg}</h1>
 
 <table>
-    <tr><td>${form1.username}</td></tr>
-    <tr><td>${form1.email}</td></tr>
+    <tr><td>${form.username}</td></tr>
+    <tr><td>${form.email}</td></tr>
 </table>
 
 </body>

@@ -29,13 +29,15 @@ public class UserController {
     }
 
 
-    @InitBinder("form1")
+    @InitBinder("form")
     public void initBinder(WebDataBinder binder) {
         binder.addValidators(userCreateFormValidator);
         //binder.registerCustomEditor(String.class, "email", new UserEmailEditor());
     }
 
 
+
+    ///USER REGISTRATION
     @RequestMapping(value = "/userinf", method = RequestMethod.GET)
     public String getRegistrationView(Model model){
         String signup = "User registration form";
@@ -47,7 +49,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/userinf", method = RequestMethod.POST)
-    public String UserRegistrationPage(@Valid @ModelAttribute ("form1") UserCreateForm form, Model model, BindingResult bindingResult){
+    public String UserRegistrationPage(@Valid @ModelAttribute("form") UserCreateForm form, BindingResult bindingResult, Model model){
         String userpage = "User page";
         model.addAttribute("userMsg", userpage);
 
@@ -62,11 +64,26 @@ public class UserController {
             return "User/user";
         }
 
-       // userService.save(user);
-
         return "User/userSignUp";
     }
 
+
+
+    //USER LOGIN
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String getLoginView(@ModelAttribute("user") User user, Model model) {
+        String login = "User Login form";
+        model.addAttribute("loginMsg", login);
+
+
+        return "User/userLogin";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String userLoginPage(@ModelAttribute("user") User user, Model model){
+
+        return "User/userLogin";
+    }
 
 
 
