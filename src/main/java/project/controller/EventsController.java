@@ -44,7 +44,7 @@ public class EventsController {
     }
 
     @RequestMapping(value="events/football", method = RequestMethod.GET)
-    public String football(Model model) throws ParseException, JSONException, IOException {
+    public String footballViewGet(Model model) throws ParseException, JSONException, IOException {
         String texti = "Next matches :";
         model.addAttribute("text",texti);
 
@@ -54,8 +54,16 @@ public class EventsController {
         return "Events/football";
     }
 
+    @RequestMapping(value="events/football/streetmap", method = RequestMethod.GET)
+    public String footballStreetMapViewGet(Model model){
+        String texti = "Map of Reykjavík's sport stadiums";
+        model.addAttribute("texti",texti);
+        return "Events/sportsStreetMap";
+    }
+
+
     @RequestMapping(value="events/handball", method = RequestMethod.GET)
-    public String handball(Model model) throws ParseException, JSONException, IOException {
+    public String handballViewGet(Model model) throws ParseException, JSONException, IOException {
 
         String texti = "Next matches :";
         model.addAttribute("text",texti);
@@ -66,8 +74,16 @@ public class EventsController {
         return "Events/handball";
     }
 
+    @RequestMapping(value="events/handball/streetmap", method = RequestMethod.GET)
+    public String handballStreetMapViewGet(Model model){
+        String texti = "Map of Reykjavík's sport stadiums";
+        model.addAttribute("texti",texti);
+        return "Events/sportsStreetMap";
+    }
+
+
     @RequestMapping(value="events/cinema", method = RequestMethod.GET)
-    public String cinema(Model model) throws ParseException, JSONException, IOException {
+    public String cinemaViewGet(Model model) throws ParseException, JSONException, IOException {
 
         String texti = "Movie schedule :";
         model.addAttribute("text",texti);
@@ -78,8 +94,15 @@ public class EventsController {
         return "Events/cinema";
     }
 
+    @RequestMapping(value="events/cinema/streetmap", method = RequestMethod.GET)
+    public String cinemaStreetMapViewGet(Model model){
+        String texti = "Map of Reykjavík's movie theaters";
+        model.addAttribute("texti",texti);
+        return "Events/cinemaStreetMap";
+    }
+
     @RequestMapping(value="events/concerts", method = RequestMethod.GET)
-    public String concerts(Model model) throws ParseException, JSONException, IOException {
+    public String concertsViewGet(Model model) throws ParseException, JSONException, IOException {
 
         String texti = "Next concerts :";
         model.addAttribute("text",texti);
@@ -88,5 +111,12 @@ public class EventsController {
         model.addAttribute("concertsEvent", tonleikar);
 
         return "Events/concerts";
+    }
+
+    @RequestMapping(value="events/concerts/streetmap", method = RequestMethod.GET)
+    public String concertsStreetMapViewGet(Model model){
+        String texti = "Map of Reykjavík's concert halls";
+        model.addAttribute("texti",texti);
+        return "Events/concertsStreetMap";
     }
 }

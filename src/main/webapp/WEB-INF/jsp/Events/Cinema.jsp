@@ -1,4 +1,4 @@
-
+<%@page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
@@ -31,5 +31,6 @@
             </tr>
         </c:forEach>
     </table>
+    <h2><a href="/events/cinema/streetmap">See location of movie theaters around Reykjavík</a></h2>
 </body>
 </html>

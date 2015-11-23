@@ -1,3 +1,4 @@
+<%@page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="javax.validation.constraints.Null" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -34,5 +35,6 @@
         </tr>
     </c:forEach>
 </table>
+    <h2><a href="/events/concerts/streetmap">See location of concert halls around Reykjavík </a></h2>
 </body>
 </html>

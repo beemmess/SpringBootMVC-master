@@ -1,3 +1,4 @@
+<%@page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="project.persistence.entities.Info.CurrencyConverter" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="javax.validation.constraints.Null" %>
@@ -32,6 +33,6 @@
             </tr>
         </c:forEach>
     </table>
-
+    <h2><a href="/events/handball/streetmap">See location of sport stadiums around Reykjavík</a></h2>
 </body>
 </html>
