@@ -14,6 +14,7 @@ import project.service.UserService;
 import org.springframework.validation.Validator;
 
 import javax.validation.Valid;
+import java.util.NoSuchElementException;
 
 
 @Controller
@@ -67,22 +68,15 @@ public class UserController {
         return "User/userSignUp";
     }
 
+    @RequestMapping(value = "/userinf/{id}")
+    public String getUserPage(@PathVariable Long id, Model model){
+        userService.getUserById(id);
 
 
-    //USER LOGIN
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String getLoginView(@ModelAttribute("user") User user, Model model) {
-        String login = "User Login form";
-        model.addAttribute("loginMsg", login);
+        String userPage = "welcome to user page";
+        model.addAttribute("userPage", userPage);
+        return "User/userPage";
 
-
-        return "User/userLogin";
-    }
-
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String userLoginPage(@ModelAttribute("user") User user, Model model){
-
-        return "User/userLogin";
     }
 
 

@@ -1,12 +1,8 @@
 package project.persistence.entities.User;
 
 
-import org.hibernate.validator.constraints.Email;
-import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
-import java.util.List;
 
 @Entity
 @Table(name = "userinfo")
@@ -14,17 +10,24 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id", nullable = false, updatable = false)
     private Long id;
 
-
+    @Column(name = "username", nullable = false, unique = true)
     private String username;
 
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
+
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Transient
-    private List<GrantedAuthority> authorities;
 
+    @Column(name = "role", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+/*
     public User(){
 
     }
@@ -33,6 +36,10 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+*/
+    public enum Role {
+        USER, ADMIN;
     }
 
     public Long getId() {
@@ -68,22 +75,25 @@ public class User {
     }
 
 
-    public List<GrantedAuthority> getAuthorities(){
-        return authorities;
+
+    public Role getRole() {
+        return role;
     }
 
-    public void setAuthorities(List<GrantedAuthority> authorities){
-        this.authorities = authorities;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
 
     @Override
     public String toString() {
-        return String.format(
-                "User[username=%s, email=%s, password=%s]",
-                username,email,password);
+        return "User{" +
+                "id=" + id +
+                ", email='" + email.replaceFirst("@.*", "@***") +
+                ", password='" + password.substring(0, 10) +
+                ", role=" + role +
+                '}';
     }
-
 
 
 }

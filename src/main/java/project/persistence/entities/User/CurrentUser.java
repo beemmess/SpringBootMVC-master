@@ -1,13 +1,11 @@
 package project.persistence.entities.User;
 
-import org.springframework.security.core.GrantedAuthority;
+import project.persistence.entities.User.User.Role;
+
 import org.springframework.security.core.authority.AuthorityUtils;
 
 import java.util.Collection;
 
-/**
- * Created by hrabby on 22.11.2015.
- */
 public class CurrentUser extends org.springframework.security.core.userdetails.User {
    private  User user;
 
@@ -15,7 +13,7 @@ public class CurrentUser extends org.springframework.security.core.userdetails.U
 
 
     public CurrentUser(User user){
-        super(user.getUsername(), user.getPassword(), user.getAuthorities());
+        super(user.getUsername(), user.getPassword(), AuthorityUtils.createAuthorityList(user.getRole().toString()));
         this.user = user;
     }
 
@@ -26,6 +24,10 @@ public class CurrentUser extends org.springframework.security.core.userdetails.U
 
     public Long getId(){
         return user.getId();
+    }
+
+    public Role getRole() {
+        return user.getRole();
     }
 
     @Override

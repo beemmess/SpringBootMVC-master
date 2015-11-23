@@ -1,8 +1,10 @@
 
 package project.service.Implementation;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import project.persistence.entities.User.CurrentUser;
 import project.persistence.entities.User.User;
@@ -10,6 +12,7 @@ import project.persistence.entities.User.UserCreateForm;
 import project.persistence.repositories.UserRepository;
 import project.service.UserService;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Collections;
 import java.util.Optional;
@@ -18,18 +21,12 @@ import java.util.Optional;
 public class UserServiceImplementation implements UserService {
 
     UserRepository repository;
-    UserService userService;
 
     @Autowired
-    public UserServiceImplementation(UserService userService, UserRepository repository){
-        this.userService = userService;
+    public UserServiceImplementation(UserRepository repository){
         this.repository = repository;
     }
 
-    @Override
-    public User save(User user) {
-        return repository.save(user);
-    }
 
     @Override
     public Optional<User> getUserByName(String username){
@@ -42,21 +39,33 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public User create(UserCreateForm form) {
-        User user = new User();
-        user.setUsername(form.getUsername());
-        user.setEmail(form.getEmail());
-        user.setPassword(form.getPassword());
-        return repository.save(user);
+    public Optional<User> getUserById(long id) {
+        return Optional.ofNullable(repository.findOne(id));
     }
 
 
     @Override
-    public CurrentUser loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userService.getUserByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException(String.format("User with email=%s was not found", email)));
-        return new CurrentUser(user);
+    public Collection<User> getAllUsers() {
+        return repository.findAll(new Sort("email"));
     }
 
+    @Override
+    public User create(UserCreateForm form) {
+        User user = new User();
+        user.setUsername(form.getUsername());
+        user.setEmail(form.getEmail());
+        user.setPassword(new BCryptPasswordEncoder().encode(form.getPassword()));
+        user.setRole(form.getRole());
+        return repository.save(user);
+    }
+
+/*
+    @Override
+    public CurrentUser loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userService.getUserByName(username)
+                .orElseThrow(() -> new UsernameNotFoundException(String.format("User with username=%s was not found", username)));
+        return new CurrentUser(user);
+    }
+*/
 
 }
