@@ -10,18 +10,27 @@
 
 <!DOCTYPE HTML>
 <body>
-<head>
-    <title>Events</title>
-</head>
+    <head>
+        <title>Events</title>
+    </head>
 
-<h1>Handball Events</h1>
-<p>${text}</p>
-<ul>
-    <c:forEach var="handballEvent" items="${handballEvent}">
-        <li>
-            <p>${handballEvent.date} ${handballEvent.time} ${handballEvent.teams} ${handballEvent.venue} ${handballEvent.tournament} </p>
-        </li>
-    </c:forEach>
-</ul>
+    <h1>Handball Events</h1>
+    <p>${text}</p>
+    <table>
+        <th>Date</th>
+        <th>Teams</th>
+        <th>Venue</th>
+        <th>Tournament</th>
+        <c:forEach var="handballEvent" items="${handballEvent}">
+            <tr>
+                <td> ${handballEvent.date} </td>
+                <td> ${handballEvent.time} </td>
+                <td> ${handballEvent.teams} </td>
+                <td> ${handballEvent.venue} </td>
+                <td> ${handballEvent.tournament} </td>
+            </tr>
+        </c:forEach>
+    </table>
+
 </body>
 </html>

@@ -210,8 +210,6 @@ public class EventData {
 
 
     public static void main(String args[]) throws ParseException {
-        String date = "fim. 12. nóv";
-        String dagur = changeFromIslDate(date);
-        System.out.println(dagur);
+
     }
 }

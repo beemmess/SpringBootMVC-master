@@ -9,18 +9,28 @@
 
 <!DOCTYPE HTML>
 <body>
-<head>
-    <title>Events</title>
-</head>
+    <head>
+        <title>Events</title>
+    </head>
 
-<h1> Concerts</h1>
-<p>${text}</p>
-<ul>
-    <c:forEach var="concertsEvent" items="${concertsEvent}">
-        <li>
-            <p>${concertsEvent.eventDateName} ${concertsEvent.name} ${concertsEvent.dateOfShow} ${concertsEvent.userGroupName} ${concertsEvent.eventHallName} ${concertsEvent.imageSource}</p>
-        </li>
+    <h1> Concerts</h1>
+    <p>${text}</p>
+    <table>
+        <th>Date</th>
+        <th>Name of event</th>
+        <th>Type of event</th>
+        <th>Performer</th>
+        <th>Event Hall</th>
+        <c:forEach var="concertsEvent" items="${concertsEvent}">
+        <tr>
+            <td> ${concertsEvent.dateOfShow} </td>
+            <td> ${concertsEvent.eventDateName} </td>
+            <td> ${concertsEvent.name} </td>
+            <td> ${concertsEvent.userGroupName} </td>
+            <td> ${concertsEvent.eventHallName} </td>
+            <td> ${concertsEvent.imageSource} </td>
+        </tr>
     </c:forEach>
-</ul>
+</table>
 </body>
 </html>

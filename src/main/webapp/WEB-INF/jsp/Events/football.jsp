@@ -16,13 +16,22 @@
 
     <h1>Football Events</h1>
     <p>${text}</p>
-    <ul>
+    <table>
+        <th>Date</th>
+        <th>Home Team</th>
+        <th>Away Team</th>
+        <th>Location</th>
+        <th>Tournament</th>
         <c:forEach var="footballEvent" items="${footballEvent}">
-            <li>
-                <p>${footballEvent.date} ${footballEvent.homeTeam} ${footballEvent.awayTeam} ${footballEvent.location} ${footballEvent.tournament}</p>
-            </li>
+            <tr>
+                <td> ${footballEvent.date} </td>
+                <td> ${footballEvent.homeTeam} </td>
+                <td> ${footballEvent.awayTeam} </td>
+                <td> ${footballEvent.location} </td>
+                <td> ${footballEvent.tournament} </td>
+            </tr>
         </c:forEach>
-    </ul>
+    </table>
 </body>
 </html>
 
