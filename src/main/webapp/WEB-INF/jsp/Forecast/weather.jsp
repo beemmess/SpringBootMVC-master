@@ -13,13 +13,64 @@
     <title>Weather Forecast</title>
 </head>
 
-<p>${text}</p>
-<ul>
+<div class="vedurMynd" style="float:left;">
+
+    <script type="text/javascript" src="http://vedur.is/js/iframe.js"></script>
+    <script type="text/javascript"><!--
+    VI.ifrm.type = 'wst';
+    VI.ifrm.area = 101;
+    VI.ifrm.lang = 'en';
+    VI.ifrm.displayWeather();
+    //-->
+    </script>
+
+</div>
+
+<div class="vindaSpa">
+    <script type="text/javascript" src="http://vedur.is/js/iframe.js"></script>
+    <script type="text/javascript"><!--
+    VI.ifrm.type = 'wel';
+    VI.ifrm.area = 101;
+    VI.ifrm.lang = 'is';
+    VI.ifrm.displayWeather();
+    //-->
+    </script>
+</div>
+
+
+<%--<p>${text}</p> --%>
+
+<div class="vedurspa">
     <c:forEach var="vedur" items="${vedur}">
-        <li>
-            <p>${vedur.title} ${vedur.creation} ${vedur.valid_from} ${vedur.valid_to} ${vedur.content}</p>
+
+            <p>${vedur.title} </p>
+            <p>${vedur.content}</p>
+
+        <%--<li>
+            <p>${vedur.creation}</p>
         </li>
+        <li>
+            <p>${vedur.valid_from}</p>
+        </li>
+        <li>
+            <p>${vedur.valid_to}</p>
+        </li> --%>
+
+
+
     </c:forEach>
-</ul>
+</div>
+
+<style type="text/css">
+    div.vedurspa{
+        width: 40%;
+        padding-left: 45%;
+        padding-top: 3%;
+    }
+
+</style>
+
+
+
 </body>
 </html>
