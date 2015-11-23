@@ -13,9 +13,8 @@
 <head>
     <title>Events</title>
 </head>
-<h2><a href="/streetmap/restaurants">Restaurants</a></h2>
+<h2><a href="/streetmap/museum">museum</a></h2>
 <h2><a href="/streetmap/hotel">Hotel</a></h2>
-<h2><a href="/streetmap/museum">Museum</a></h2>
 
 <h1>Korta s</h1>
 <p>${texti}</p>
@@ -72,7 +71,7 @@ Fyrsta tegund af google maps
 
             map = new google.maps.Map(document.getElementById('map'), {
                 center: pyrmont,
-                zoom: 13
+                zoom: 14
             });
 
             infoWindow = new google.maps.InfoWindow({map: map});
@@ -148,7 +147,7 @@ Fyrsta tegund af google maps
             var place = autocomplete.getPlace();
             if (place.geometry) {
                 map.panTo(place.geometry.location);
-                map.setZoom(13);
+                map.setZoom(14);
 
                 performSearch();
             } else {
@@ -162,14 +161,13 @@ Fyrsta tegund af google maps
             var leit = country;
             var mapSearch = document.getElementById('mapSearch').value;
             var request = {
-                location: pyrmont,
+                location: map.getCenter(),
                 //location: pos,
                 radius: 5000, // Radius til að ákveða hversu marga punkta á að velja í kring
-                //keyword: ['Restaurants']
+                keyword: ['restaurant']
             };
-            //service.radarSearch(request, callback);
-            var service = new google.maps.places.PlacesService(map);
             service.radarSearch(request, callback);
+            //service.textSearch(request, callback);
         }
 
 

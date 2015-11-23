@@ -17,7 +17,7 @@ public class StreetMapController {
     // SERVICE HERNA
 
     @RequestMapping(value="/streetmap")
-    public String football(Model model) {
+    public String streetMap(Model model) {
         System.out.println("llala");
 
         String texti = "Einhver texti herna um KOOOOOOORT";
@@ -25,6 +25,48 @@ public class StreetMapController {
         model.addAttribute("texti",texti);
 
         return "Map/streetMap";
+
+
+
+    }
+
+    @RequestMapping(value="/streetmap/restaurants")
+    public String restaurant(Model model) {
+        System.out.println("llala");
+
+        String texti = "Einhver texti herna um KOOOOOOORT";
+
+        model.addAttribute("texti",texti);
+
+        return "Map/restaurants";
+
+
+
+    }
+
+    @RequestMapping(value="/streetmap/museum")
+    public String musuem(Model model) {
+        System.out.println("llala");
+
+        String texti = "Einhver texti herna um KOOOOOOORT";
+
+        model.addAttribute("texti",texti);
+
+        return "Map/museum";
+
+
+
+    }
+
+    @RequestMapping(value="/streetmap/hotel")
+    public String hotel(Model model) {
+        System.out.println("llala");
+
+        String texti = "Einhver texti herna um KOOOOOOORT";
+
+        model.addAttribute("texti",texti);
+
+        return "Map/hotel";
 
 
 
