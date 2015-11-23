@@ -18,13 +18,13 @@ import java.util.Date;
 
 public class Sports {
     public String tournament;
-    public LocalDate date;
-    public Date time;
+    public String date;
+    public String time;
 
     public Sports(){
     }
 
-    public Sports(String keppni, LocalDate dagur, Date timi) {
+    public Sports(String keppni, String dagur, String timi) {
         tournament = keppni;
         date = dagur;
         time = timi;
@@ -34,11 +34,11 @@ public class Sports {
         return tournament;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
@@ -46,11 +46,11 @@ public class Sports {
         tournament = keppni;
     }
 
-    public void setDate(LocalDate dagur) {
+    public void setDate(String dagur) {
         date = dagur;
     }
 
-    public void setTime(Date timi) {
+    public void setTime(String timi) {
         time = timi;
     }
 

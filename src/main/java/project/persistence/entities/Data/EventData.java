@@ -61,14 +61,14 @@ public class EventData {
 
             int counter = footballEvent.getInt("counter");
 
-            String dagur = footballEvent.getString("date");
-            String dateStr = changeFromIslDate(dagur);
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
-            LocalDate date = LocalDate.parse(dateStr, formatter);
+            String date = footballEvent.getString("date");
+            //String dateStr = changeFromIslDate(dagur);
+            //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
+            //LocalDate date = LocalDate.parse(dateStr, formatter);
 
-            String timeStr = footballEvent.getString("time");
-            SimpleDateFormat tm = new SimpleDateFormat("HH:mm");
-            Date time = tm.parse(timeStr);
+            String time = footballEvent.getString("time");
+            //SimpleDateFormat tm = new SimpleDateFormat("HH:mm");
+            //Date time = tm.parse(timeStr);
             String tournament = footballEvent.getString("tournament");
             String location = footballEvent.getString("location");
             String homeTeam = footballEvent.getString("homeTeam");
@@ -95,18 +95,21 @@ public class EventData {
             String teams = handballEvent.getString("Teams");
             String venue = handballEvent.getString("Venue");
             String tournament = handballEvent.getString("Tournament");
-            String dateStr = "2015-10-28";
-            SimpleDateFormat dt = new SimpleDateFormat("yyyy-mm-dd");
-            Date date = dt.parse(dateStr);
-            String timeStr = handballEvent.getString("Time");
-            SimpleDateFormat tm = new SimpleDateFormat("HH.mm");
-            Date time = tm.parse(timeStr);
+
+            String date = handballEvent.getString("Date");
+            //String dateStr = changeFromIslDate(dagur);
+            //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
+            //LocalDate date = LocalDate.parse(dateStr, formatter);
+
+            String time = handballEvent.getString("Time");
+            //SimpleDateFormat tm = new SimpleDateFormat("HH.mm");
+            //Date time = tm.parse(timeStr);
 
             handbolti[i] = new Handball();
             handbolti[i].setTeams(teams);
             handbolti[i].setVenue(venue);
             handbolti[i].setTournament(tournament);
-            //handbolti[i].setDate(date);
+            handbolti[i].setDate(date);
             handbolti[i].setTime(time);
         }
         return handbolti;
@@ -121,9 +124,17 @@ public class EventData {
             JSONObject concertsEvent = result.getJSONObject(i);
             String eventDateName = concertsEvent.getString("eventDateName");
             String name = concertsEvent.getString("name");
-            String dateStr = concertsEvent.getString("dateOfShow");
-            SimpleDateFormat dt = new SimpleDateFormat("yyyy-mm-dd");
-            Date dateOfShow = dt.parse(dateStr);
+            String dateOfShow = concertsEvent.getString("dateOfShow");
+            String timeOfShow = "time not available";
+            boolean contains = dateOfShow.contains("T");
+            if(contains){
+                String[] dateTime = dateOfShow.split("T");
+                dateOfShow = dateTime[0];
+                timeOfShow = dateTime[1];
+            }
+
+            //SimpleDateFormat dt = new SimpleDateFormat("yyyy-mm-dd");
+            //Date dateOfShow = dt.parse(dateStr);
             String userGroupName = concertsEvent.getString("userGroupName");
             String eventHallName = concertsEvent.getString("eventHallName");
             //String imageSource = concerts.getString("imageSource");
@@ -132,6 +143,7 @@ public class EventData {
             tonleikar[i].setEventDateName(eventDateName);
             tonleikar[i].setName(name);
             tonleikar[i].setDateOfShow(dateOfShow);
+            tonleikar[i].setTimeOfShow(timeOfShow);
             tonleikar[i].setUserGroupName(userGroupName);
             tonleikar[i].setEventHallName(eventHallName);
             //tonleikar[i].setImageSource(imageSource);
@@ -147,28 +159,33 @@ public class EventData {
             JSONObject cinemaEvent = result.getJSONObject(i);
             String title = cinemaEvent.getString("title");
             String restricted = cinemaEvent.getString("restricted");
-            //String imdbRateStr = cinemaEvent.getString("imdb");
-            //double imdbRate = Double.parseDouble(imdbRateStr);
-            String imdbLink = cinemaEvent.getString("imdbLink");
             String image = cinemaEvent.getString("image");
-            String showTimes = cinemaEvent.getString("showtimes");
+
+            JSONArray showTimes = cinemaEvent.getJSONArray("showtimes");
+            String[] theater = new String[showTimes.length()];
+            String[][] schedule = new String[result.length()][showTimes.length()];
+             for(int j=0; j<showTimes.length(); j++) {
+                 JSONObject showTime = showTimes.getJSONObject(j);
+                 theater[j] = showTime.getString("theater");
+                 //schedule[i] = showTime.getString("schedule");
+            }
+
+            bio[i] = new Cinema();
+            bio[i].setTitle(title);
+            bio[i].setRestricted(restricted);
+            bio[i].setImage(image);
+            bio[i].setTheater(theater);
+            //bio[i].setSchedule(schedule);
+
             //JSONArray showTimes = cinemaEvent.getJSONArray("showtimes");
             //JSONObject theaterObj = showTimes.getJSONObject(0);
             //String theater = theaterObj.getString("theater");
             //JSONObject scheduleObj = showTimes.getJSONObject(1);
             //String schedule = scheduleObj.getString("schedule");
             //String schedule = cinemaEvent.getString("schedule");
-
-            bio[i] = new Cinema();
-            bio[i].setTitle(title);
-            bio[i].setRestricted(restricted);
-            //bio[i].setImdbRate(imdbRate);
-            bio[i].setImdbLink(imdbLink);
-            bio[i].setImage(image);
-            bio[i].setShowtimes(showTimes);
-            //bio[i].setTheater(theater);
-            //bio[i].setSchedule(schedule);
-
+            /*
+            "results":[{"title":"Solace","released":" (2015)","restricted":"16 ára","imdb":"6.5/10  1,867 atkv.","imdbLink":"http://www.imdb.com/title/tt1291570","image":"http://kvikmyndir.isnull","showtimes":[{"theater":"Borgarbíó","schedule":["17:40","17:40","17:40","20:00","20:00","20:00","20:00","22:20","22:20","22:20","22:30"]},{"theater":"Sambíóin Álfabakka","schedule":["17:40 (P)","17:40 (1)","20:00 (1)","20:00 (P)","22:20 (1)","22:20 (P)"]},{"theater":"Sambíóin Kringlunni","schedule":["20:00 (2)","22:30 (3)"]},{"theater":"Sambíóin Egilshöll","schedule":["17:40 (2)","20:00 (2)","22:20 (4)"]},{"theater":"Sambíóin Akureyri","schedule":["17:30 (A)","20:00 (A)","22:20 (A)"]},{"theater":"Sambíóin Keflavík","schedule":["22:00 (2)"]}]}
+             */
         }
         return bio;
     }
@@ -202,6 +219,8 @@ public class EventData {
             manudur="11";
         } else if(month.equals("des")) {
             manudur="12";
+        } else {
+            return islDate;
         }
 
         String a = dagur + manudur + "2015";

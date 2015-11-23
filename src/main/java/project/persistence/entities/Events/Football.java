@@ -23,7 +23,7 @@ public class Football extends Sports {
     public int counter;
     public String location;
 
-    public Football(String heimalid, String utilid, int teljari, String stadsetning, String keppni, LocalDate dagur, Time timi) {
+    public Football(String heimalid, String utilid, int teljari, String stadsetning, String keppni, String dagur, String timi) {
         super(keppni, dagur, timi);
         homeTeam = heimalid;
         awayTeam = utilid;

@@ -17,6 +17,7 @@
     <p>${text}</p>
     <table>
         <th>Date</th>
+        <th>Time</th>
         <th>Name of event</th>
         <th>Type of event</th>
         <th>Performer</th>
@@ -24,6 +25,7 @@
         <c:forEach var="concertsEvent" items="${concertsEvent}">
         <tr>
             <td> ${concertsEvent.dateOfShow} </td>
+            <td> ${concertsEvent.timeOfShow}</td>
             <td> ${concertsEvent.eventDateName} </td>
             <td> ${concertsEvent.name} </td>
             <td> ${concertsEvent.userGroupName} </td>

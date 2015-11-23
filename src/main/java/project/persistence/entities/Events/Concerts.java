@@ -16,15 +16,17 @@ import java.util.Date;
 public class Concerts {
     public String eventDateName;
     public String name;
-    public Date dateOfShow;
+    public String dateOfShow;
+    public String timeOfShow;
     public String userGroupName;
     public String eventHallName;
     public String imageSource;
 
-    public Concerts(String nafn, String tonleikarod, Date dagsetning, String tonleikahus, String salur, String mynd) {
+    public Concerts(String nafn, String tonleikarod, String dagsetning, String timi, String tonleikahus, String salur, String mynd) {
         eventDateName = nafn;
         name = tonleikarod;
         dateOfShow = dagsetning;
+        timeOfShow = timi;
         userGroupName = tonleikahus;
         eventHallName = salur;
         imageSource = mynd;
@@ -41,8 +43,12 @@ public class Concerts {
         return name;
     }
 
-    public Date getDateOfShow(){
+    public String getDateOfShow(){
         return dateOfShow;
+    }
+
+    public String getTimeOfShow() {
+        return timeOfShow;
     }
 
     public String getUserGroupName(){
@@ -65,8 +71,12 @@ public class Concerts {
         name = tonleikarod;
     }
 
-    public void setDateOfShow(Date dagsetning){
+    public void setDateOfShow(String dagsetning){
         dateOfShow = dagsetning;
+    }
+
+    public void setTimeOfShow(String timi) {
+        timeOfShow = timi;
     }
 
     public void setUserGroupName(String tonleikahus){

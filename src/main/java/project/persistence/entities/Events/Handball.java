@@ -19,7 +19,7 @@ public class Handball extends Sports {
     public String teams;
     public String venue;
 
-    public Handball(String lid, String vollur, String keppni, LocalDate dagur, Date timi) {
+    public Handball(String lid, String vollur, String keppni, String dagur, String timi) {
         super(keppni, dagur, timi);
         teams = lid;
         venue = vollur;

@@ -18,6 +18,7 @@
     <p>${text}</p>
     <table>
         <th>Date</th>
+        <th>Time</th>
         <th>Teams</th>
         <th>Venue</th>
         <th>Tournament</th>

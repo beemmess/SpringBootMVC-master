@@ -18,6 +18,7 @@
     <p>${text}</p>
     <table>
         <th>Date</th>
+        <th>Time</th>
         <th>Home Team</th>
         <th>Away Team</th>
         <th>Location</th>
@@ -25,6 +26,7 @@
         <c:forEach var="footballEvent" items="${footballEvent}">
             <tr>
                 <td> ${footballEvent.date} </td>
+                <td> ${footballEvent.time} </td>
                 <td> ${footballEvent.homeTeam} </td>
                 <td> ${footballEvent.awayTeam} </td>
                 <td> ${footballEvent.location} </td>
