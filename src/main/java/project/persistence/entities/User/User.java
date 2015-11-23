@@ -89,6 +89,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", username='" + username +
                 ", email='" + email.replaceFirst("@.*", "@***") +
                 ", password='" + password.substring(0, 10) +
                 ", role=" + role +
