@@ -16,6 +16,7 @@
 <h2><a href="/streetmap/restaurants">Restaurants</a></h2>
 <h2><a href="/streetmap/hotel">Hotel</a></h2>
 <h2><a href="/streetmap/museum">Museum</a></h2>
+<h2><a href="/streetmap/walking1">The Batman walking tour</a></h2>
 
 <h1>Korta s</h1>
 <p>${texti}</p>

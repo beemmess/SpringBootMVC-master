@@ -72,6 +72,19 @@ public class StreetMapController {
 
     }
 
+    @RequestMapping(value="/streetmap/walking1")
+    public String walking1(Model model) {
+        System.out.println("llala");
+
+        String texti = "Einhver texti herna um KOOOOOOORT";
+
+        model.addAttribute("texti",texti);
+
+        return "Map/walking1";
+
+
+
+    }
     // Pruuuuufudót tutorial %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 /*
     @RequestMapping(value="/streetmap/{currencyShortName}")
