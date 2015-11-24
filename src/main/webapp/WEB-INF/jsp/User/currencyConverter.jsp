@@ -13,22 +13,10 @@
     <title>Currency converter</title>
 </head>
 <body>
-<%--
-    <form action="/currency" method="POST">
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-    
-        <p>Currency Name: <input type="text" name="currencyShortName"></p>
-
-        <input type="submit" value="submit">
-
-    </form>
-
---%>
-
 
 
 <form  method="POST"  action="/currency">
-
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     <table>
         <tr>
             <td>Currency :</td>
