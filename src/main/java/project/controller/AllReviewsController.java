@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import project.persistence.entities.Attraction.AllReviews;
+import project.persistence.entities.User.CurrentUser;
 import project.service.AllReviewsService;
 
 import java.util.Date;
@@ -36,9 +37,11 @@ public class AllReviewsController {
     }
 
     @RequestMapping(value = "/reviews", method = RequestMethod.POST)
-    public String allReviewsViewPost(@ModelAttribute("allReviews") AllReviews allReviews, Model model){
+    public String allReviewsViewPost(@ModelAttribute("allReviews") AllReviews allReviews, CurrentUser currentUser, Model model){
 
-        allReviewsService.save(allReviews);
+        //allReviewsService.save(allReviews);
+
+        allReviewsService.create(allReviews, currentUser);
 
         model.addAttribute("allReviewses", allReviewsService.findAllReverseOrder());
 

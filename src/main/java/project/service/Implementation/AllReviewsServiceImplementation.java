@@ -3,6 +3,8 @@ package project.service.Implementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.persistence.entities.Attraction.AllReviews;
+import project.persistence.entities.User.CurrentUser;
+import project.persistence.entities.User.User;
 import project.persistence.repositories.AllReviewsRepository;
 import project.service.AllReviewsService;
 
@@ -48,4 +50,13 @@ public class AllReviewsServiceImplementation implements AllReviewsService{
 
         return allReviewses;
     }
+
+    @Override
+    public AllReviews create(AllReviews reviews, CurrentUser currentUser){
+        reviews.setUsername(currentUser.getUsername());
+
+        return save(reviews);
+
+    }
+
 }

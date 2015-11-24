@@ -1,6 +1,7 @@
 package project.service;
 
 import project.persistence.entities.Attraction.AllReviews;
+import project.persistence.entities.User.CurrentUser;
 
 import java.util.List;
 /**
@@ -40,4 +41,7 @@ public interface AllReviewsService {
      * @return A {@link AllReviews} with {@link Long id}
      */
     AllReviews findOne(Long id);
+
+
+    AllReviews create(AllReviews reviews, CurrentUser currentUser);
 }
