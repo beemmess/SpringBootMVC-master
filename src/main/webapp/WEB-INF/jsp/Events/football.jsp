@@ -1,3 +1,4 @@
+<%@page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="project.persistence.entities.Info.CurrencyConverter" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="javax.validation.constraints.Null" %>
@@ -11,18 +12,31 @@
 <!DOCTYPE HTML>
 <body>
     <head>
+        <meta charset="utf-8">
         <title>Events</title>
     </head>
 
     <h1>Football Events</h1>
     <p>${text}</p>
-    <ul>
+    <table>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Home Team</th>
+        <th>Away Team</th>
+        <th>Location</th>
+        <th>Tournament</th>
         <c:forEach var="footballEvent" items="${footballEvent}">
-            <li>
-                <p>${footballEvent.date} ${footballEvent.homeTeam} ${footballEvent.awayTeam} ${footballEvent.location} ${footballEvent.tournament}</p>
-            </li>
+            <tr>
+                <td> ${footballEvent.date} </td>
+                <td> ${footballEvent.time} </td>
+                <td> ${footballEvent.homeTeam} </td>
+                <td> ${footballEvent.awayTeam} </td>
+                <td> ${footballEvent.location} </td>
+                <td> ${footballEvent.tournament} </td>
+            </tr>
         </c:forEach>
-    </ul>
+    </table>
+    <h2><a href="/events/football/streetmap">See location of sports stadiums around Reykjavík</a></h2>
 </body>
 </html>
 
