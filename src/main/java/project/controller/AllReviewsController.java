@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import project.persistence.entities.Attraction.AllReviews;
 import project.service.AllReviewsService;
+
+import java.util.Date;
+
 /**
  * Created by bjarkimar23 on 5.11.2015.
  */

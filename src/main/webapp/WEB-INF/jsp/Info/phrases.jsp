@@ -14,34 +14,6 @@
 
     <h1>Phrases</h1>
 
-    <sf:form method="POST" commandName="phrases" action="/phrases">
-        <table>
-            <tr>
-                <td> Name:</td>
-                    <%--the `path` attribute matches the `name` attribute of the Entity that was passed in the model--%>
-                <td><sf:input path="type" type="text" placeholder="TYPE"/></td>
-            </tr>
-            <tr>
-                <td>Notes:</td>
-                    <%--the `path` attribute matches the `note` attribute of the Entity that was passed in the model--%>
-                <td><sf:textarea path="english" type="text" placeholder="ENGLISH"/></td>
-            </tr>
-            <tr>
-                <td>Notes:</td>
-                    <%--the `path` attribute matches the `note` attribute of the Entity that was passed in the model--%>
-                <td><sf:textarea path="icelandic" type="text" placeholder="ICELANDIC"/></td>
-            </tr>
-        </table>
-
-        <input type="submit" VALUE="Post It!"/>
-
-
-
-    </sf:form>
-
-
-
-
     <c:choose>
         <%--If the model has an attribute with the name `postitNotes`--%>
         <c:when test="${not empty phrase}">
@@ -72,5 +44,6 @@
         <c:otherwise>
             <h3>No phrases!</h3>
         </c:otherwise>
-    </c:choose></body>
+    </c:choose>
+    </body>
 </html>

@@ -12,31 +12,27 @@
 <!DOCTYPE HTML>
 <body>
     <head>
-        <meta charset="utf-8">
         <title>Events</title>
     </head>
 
-    <h1>Football Events</h1>
+    <h1>Handball Events</h1>
     <p>${text}</p>
     <table>
         <th>Date</th>
         <th>Time</th>
-        <th>Home Team</th>
-        <th>Away Team</th>
-        <th>Location</th>
+        <th>Teams</th>
+        <th>Venue</th>
         <th>Tournament</th>
-        <c:forEach var="footballEvent" items="${footballEvent}">
+        <c:forEach var="handballEvent" items="${handballEvent}">
             <tr>
-                <td> ${footballEvent.date} </td>
-                <td> ${footballEvent.time} </td>
-                <td> ${footballEvent.homeTeam} </td>
-                <td> ${footballEvent.awayTeam} </td>
-                <td> ${footballEvent.location} </td>
-                <td> ${footballEvent.tournament} </td>
+                <td> ${handballEvent.date} </td>
+                <td> ${handballEvent.time} </td>
+                <td> ${handballEvent.teams} </td>
+                <td> ${handballEvent.venue} </td>
+                <td> ${handballEvent.tournament} </td>
             </tr>
         </c:forEach>
     </table>
-    <h2><a href="/events/football/streetmap">See location of sports stadiums around Reykjavík</a></h2>
+    <h2><a href="/events/handball/streetmap">See location of sport stadiums around Reykjavík</a></h2>
 </body>
 </html>
-

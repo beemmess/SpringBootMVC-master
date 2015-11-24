@@ -23,7 +23,7 @@ public class Football extends Sports {
     public int counter;
     public String location;
 
-    public Football(String heimalid, String utilid, int teljari, String stadsetning, String keppni, LocalDate dagur, Time timi) {
+    public Football(String heimalid, String utilid, int teljari, String stadsetning, String keppni, String dagur, String timi) {
         super(keppni, dagur, timi);
         homeTeam = heimalid;
         awayTeam = utilid;
@@ -64,28 +64,6 @@ public class Football extends Sports {
 
     public void setLocation(String stadsetning) {
         location = stadsetning;
-    }
-
-    public static ArrayList<Football> getFootballEvents() throws ParseException, IOException, JSONException {
-        String a = "football";
-        EventData data = new EventData(a);
-        Football [] fotbolti = data.createFootballEvents();
-
-        ArrayList<Football> fotboltiList = new ArrayList<Football>(Arrays.asList(fotbolti));
-        return fotboltiList;
-    }
-
-    public static void main (String args[]) throws ParseException, JSONException, IOException {
-        ArrayList<Football> fotbolti = getFootballEvents();
-        for(int i=0; i<fotbolti.size(); i++) {
-            System.out.println(fotbolti.get(i).getCounter());
-            System.out.println(fotbolti.get(i).getDate());
-            System.out.println(fotbolti.get(i).getTime());
-            System.out.println(fotbolti.get(i).getTournament());
-            System.out.println(fotbolti.get(i).getLocation());
-            System.out.println(fotbolti.get(i).getHomeTeam());
-            System.out.println(fotbolti.get(i).getAwayTeam());
-        }
     }
 }
 
