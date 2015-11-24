@@ -16,8 +16,8 @@
 <h2><a href="/streetmap/restaurants">Restaurants</a></h2>
 <h2><a href="/streetmap/museum">museum</a></h2>
 
-<h1>Korta s</h1>
-<p>${texti}</p>
+<h1>Map</h1>
+<p>${headMsg}</p>
 <tr>
     <td>Type of interest:</td>
 
@@ -146,7 +146,7 @@ Fyrsta tegund af google maps
             var country = document.getElementById('country').value;
             var place = autocomplete.getPlace();
             if (place.geometry) {
-                map.panTo(place.geometry.location);
+              //  map.panTo(place.geometry.location);
                 map.setZoom(14);
 
                 performSearch();
@@ -163,7 +163,7 @@ Fyrsta tegund af google maps
             var request = {
                 location: map.getCenter(),
                 //location: pos,
-                radius: 5000, // Radius til að ákveða hversu marga punkta á að velja í kring
+                radius: 1500, // Radius til að ákveða hversu marga punkta á að velja í kring
                 keyword: ['hotel']
             };
             service.radarSearch(request, callback);
@@ -178,7 +178,6 @@ Fyrsta tegund af google maps
                 console.error(status);
                 return;
             }
-            clearMarkers();
             for (var i = 0, result; result = results[i]; i++) {
                 addMarker(result);
             }

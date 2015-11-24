@@ -62,7 +62,7 @@ Fyrsta tegund af google maps
         var autocomplete;
         var pyrmont = {lat: 64.144136, lng: -21.932653}; // fixed location
         var pos;
-
+        var restaurantName ="";
 
 
         // initMap byrjar %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -106,7 +106,7 @@ Fyrsta tegund af google maps
                     map.setCenter(pos);
                     console.log(pos);
                     //console.log(pos);
-                    //positionSearch(pos);
+                    //performSearch(pos);
 
 
                 }, function() {
@@ -156,7 +156,7 @@ Fyrsta tegund af google maps
         }
 
 
-        function performSearch() {
+        function performSearch(pos) {
             clearMarkers();
             var leit = country;
             var mapSearch = document.getElementById('mapSearch').value;
@@ -208,14 +208,21 @@ Fyrsta tegund af google maps
                         console.error(status);
                         return;
                     }
-                    infoWindow.setContent(result.name + "<br/>" + result.rating + "<br/>" + result.formatted_address + "<br/>" + result.website + "<br/>" + result.formatted_phone_number );
+                    infoWindow.setContent(result.name + "<br/>" + result.rating + "<br/>" + result.formatted_address + "<br/>" + result.website + "<br/>" + result.formatted_phone_number + "<br/>" + result.types[0] );
                     infoWindow.open(map, marker);
+                    var nafn = result.name;
+                    console.log(nafn);
+                    localStorage.setItem("resultName", nafn);
+
 
                 });
+               // restaurantName = result.name;
+                //console.log.(restaurantName);
 
             });
             markers.push(marker);
         }
+
 
 
     </script>
@@ -227,6 +234,7 @@ Fyrsta tegund af google maps
 </body>
 
 <h1>${halloMsg}</h1>
+
 
 
 </html>
