@@ -10,19 +10,18 @@
 
 <!DOCTYPE HTML>
 <body>
-    <head>
-        <title>Events</title>
-    </head>
+<head>
+    <title>Events</title>
+</head>
 
-    <h1>Football Events</h1>
-    <p>${text}</p>
-    <ul>
-        <c:forEach var="footballEvent" items="${footballEvent}">
-            <li>
-                <p>${footballEvent.date} ${footballEvent.homeTeam} ${footballEvent.awayTeam} ${footballEvent.location} ${footballEvent.tournament}</p>
-            </li>
-        </c:forEach>
-    </ul>
+<h1>Select type of Event</h1>
+
+<h2><a href="events/football">Football</a></h2>
+<h2><a href="events/handball">Handball</a></h2>
+<h2><a href="events/cinema">Cinema</a> </h2>
+<h2><a href="events/concerts">Concerts</a></h2>
+
+<p>${texti}</p>
+
 </body>
 </html>
-
