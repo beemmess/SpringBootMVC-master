@@ -1,0 +1,88 @@
+package project.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Map;
+
+/**
+ * Created by bjarkimar23 on 16.11.2015.
+ */
+@Controller
+public class StreetMapController {
+    // SERVICE HERNA
+
+    @RequestMapping(value="/streetmap")
+    public String streetMap(Model model) {
+        System.out.println("llala");
+
+        String texti = "Einhver texti herna um KOOOOOOORT";
+
+        model.addAttribute("texti",texti);
+
+        return "Map/streetMap";
+
+
+
+    }
+
+    @RequestMapping(value="/streetmap/restaurants")
+    public String restaurant(Model model) {
+        System.out.println("llala");
+
+        String texti = "Einhver texti herna um KOOOOOOORT";
+
+        model.addAttribute("texti",texti);
+
+        return "Map/restaurants";
+
+
+
+    }
+
+    @RequestMapping(value="/streetmap/museum")
+    public String musuem(Model model) {
+        System.out.println("llala");
+
+        String texti = "Einhver texti herna um KOOOOOOORT";
+
+        model.addAttribute("texti",texti);
+
+        return "Map/museum";
+
+
+
+    }
+
+    @RequestMapping(value="/streetmap/hotel")
+    public String hotel(Model model) {
+        System.out.println("llala");
+
+        String texti = "Einhver texti herna um KOOOOOOORT";
+
+        model.addAttribute("texti",texti);
+
+        return "Map/hotel";
+
+
+
+    }
+
+    @RequestMapping(value="/streetmap/walking1")
+    public String walking1(Model model) {
+        System.out.println("llala");
+
+        String texti = "Einhver texti herna um KOOOOOOORT";
+
+        model.addAttribute("texti",texti);
+
+        return "Map/walking1";
+
+
+
+    }
+}

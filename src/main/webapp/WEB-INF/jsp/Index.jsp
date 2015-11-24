@@ -18,7 +18,11 @@
     </ul>
     <h2><a href="/signup">Click here to sign up!</a></h2>
     <h2><a href="/currency">Currency</a></h2>
+<<<<<<< HEAD
+    <h2><a href="/streetmap">StreetMap</a></h2>
+=======
     <h2><a href="/events">Events</a> </h2>
+>>>>>>> master
     </body>
     <footer>Class HBV501G, University of Iceland, Fall 2015</footer>
 </html>
