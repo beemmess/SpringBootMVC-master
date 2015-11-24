@@ -39,7 +39,7 @@ public class UserController {
 
 
     ///USER REGISTRATION
-    @RequestMapping(value = "/userinf", method = RequestMethod.GET)
+    @RequestMapping(value = "/public/create", method = RequestMethod.GET)
     public String getRegistrationView(Model model){
         String signup = "User registration form";
         model.addAttribute("signupMsg", signup);
@@ -49,7 +49,7 @@ public class UserController {
         return "User/user";
     }
 
-    @RequestMapping(value = "/userinf", method = RequestMethod.POST)
+    @RequestMapping(value = "/public/create", method = RequestMethod.POST)
     public String UserRegistrationPage(@Valid @ModelAttribute("form") UserCreateForm form, BindingResult bindingResult, Model model){
         String userpage = "User page";
         model.addAttribute("userMsg", userpage);
@@ -68,7 +68,7 @@ public class UserController {
         return "User/userSignUp";
     }
 
-    @RequestMapping(value = "/userinf/{id}")
+    @RequestMapping(value = "/userpage/{id}")
     public String getUserPage(@PathVariable Long id, Model model){
         userService.getUserById(id);
 

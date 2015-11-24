@@ -16,9 +16,16 @@
     <ul>
         <li><a href="/postit">Click here for Persistence Layer Demo</a></li>
     </ul>
-    <h2><a href="/userinf">Click here to sign up!</a></h2>
-    <h2><a href="/currency">Currency</a></h2>
+    <h2><a href="/public/create">Click here to sign up!</a></h2>
+    <h2><a href="/public/currency">Currency</a></h2>
     <h2><a href="/login">Login</a></h2>
+    <h2><a href="/userpage/{id}">My page</a></h2>
     </body>
     <footer>Class HBV501G, University of Iceland, Fall 2015</footer>
+
+
+    <form action="/logout" method="post">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <button type="submit">Log out</button>
+    </form>
 </html>

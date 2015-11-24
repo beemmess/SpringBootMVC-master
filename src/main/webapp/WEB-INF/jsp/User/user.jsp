@@ -16,7 +16,7 @@
 
 
 <sf:errors path="form.*"/>
-<sf:form method="POST" commandName="form" action="/userinf">
+<sf:form method="POST" commandName="form" action="/public/create">
     <table>
         <tr>
             <td>User name:</td>
