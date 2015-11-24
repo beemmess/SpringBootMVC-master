@@ -15,6 +15,8 @@
 <body>
 <%--
     <form action="/currency" method="POST">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    
         <p>Currency Name: <input type="text" name="currencyShortName"></p>
 
         <input type="submit" value="submit">
