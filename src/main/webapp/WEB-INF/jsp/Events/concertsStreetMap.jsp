@@ -39,7 +39,7 @@
         var vodafonhollin = {lat:64.133032, lng:-21.922166};
         var haskolabio = {lat:64.140487, lng:-21.954605};
 
-        var infowindow;
+        var infowindowLocation;
         var map;
 
         function initialize()
@@ -51,15 +51,34 @@
             };
 
             map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+            infowindow = new google.maps.InfoWindow({
+            });
+
+            // Try HTML5 geolocation.
+            infowindowLocation = new google.maps.InfoWindow({map: map});
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+
+                    infowindowLocation.setPosition(pos);
+                    infowindowLocation.setContent('Location found.');
+                    map.setCenter(pyrmont);
+                }, function() {
+                    handleLocationError(true, infowindowLocation, map.getCenter());
+                });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infowindowLocation, map.getCenter());
+            }
 
             var marker=new google.maps.Marker({
                 position:grafarvogskirkja,
             });
 
             marker.setMap(map);
-
-            infowindow = new google.maps.InfoWindow({
-            });
 
             google.maps.event.addListener(marker, 'click', function() {
                 infowindow.setContent("Grafarvogskirkja");
@@ -241,7 +260,13 @@
                 infowindow.setContent("Háskólabíó");
                 infowindow.open(map, this);
             });
+        }
 
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ?
+                    'Error: The Geolocation service failed.' :
+                    'Error: Your browser doesn\'t support geolocation.');
         }
 
         google.maps.event.addDomListener(window, 'load', initialize);

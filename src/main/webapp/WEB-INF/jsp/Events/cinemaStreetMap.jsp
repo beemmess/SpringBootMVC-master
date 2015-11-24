@@ -30,121 +30,145 @@
         var akureyri = {lat:65.682985, lng: -18.090370};
         var paradis = {lat:64.145744, lng:-21.926051};
 
-        var infowindow;
         var map;
+        var infowindow;
+        var infowindowLocation;
 
-        function initialize()
-        {
+        function initialize() {
             mapProp = {
-                center:pyrmont,
-                zoom:12,
-                mapTypeId:google.maps.MapTypeId.ROADMAP
+                center: pyrmont,
+                zoom: 12,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
             };
 
-            map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+            map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+            infowindow = new google.maps.InfoWindow({
+            });
 
-            var marker=new google.maps.Marker({
-                position:alfabakki,
+            // Try HTML5 geolocation.
+            infowindowLocation = new google.maps.InfoWindow({map: map});
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+
+                    infowindowLocation.setPosition(pos);
+                    infowindowLocation.setContent('Location found.');
+                    map.setCenter(pyrmont);
+                }, function() {
+                    handleLocationError(true, infowindowLocation, map.getCenter());
+                });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infowindowLocation, map.getCenter());
+            }
+
+            var marker = new google.maps.Marker({
+                position: alfabakki,
             });
 
             marker.setMap(map);
-
-            infowindow = new google.maps.InfoWindow({
-             });
-
-            google.maps.event.addListener(marker, 'click', function() {
+            google.maps.event.addListener(marker, 'click', function () {
                 infowindow.setContent("Sambíóin Álfabakka");
                 infowindow.open(map, this);
             });
 
-            var marker1=new google.maps.Marker({
-                position:smarabio,
+            var marker1 = new google.maps.Marker({
+                position: smarabio,
             });
 
             marker1.setMap(map);
 
-            google.maps.event.addListener(marker1, 'click', function() {
+            google.maps.event.addListener(marker1, 'click', function () {
                 infowindow.setContent("Smárabíó");
                 infowindow.open(map, this);
             });
 
-            var marker2=new google.maps.Marker({
-                position:laugarasbio,
+            var marker2 = new google.maps.Marker({
+                position: laugarasbio,
             });
 
             marker2.setMap(map);
 
-            google.maps.event.addListener(marker2, 'click', function() {
+            google.maps.event.addListener(marker2, 'click', function () {
                 infowindow.setContent("Laugarásbíó");
                 infowindow.open(map, this);
             });
 
-            var marker3=new google.maps.Marker({
-                position:kringlubio,
+            var marker3 = new google.maps.Marker({
+                position: kringlubio,
             });
 
             marker3.setMap(map);
 
-            google.maps.event.addListener(marker3, 'click', function() {
+            google.maps.event.addListener(marker3, 'click', function () {
                 infowindow.setContent("Kringlubíó");
                 infowindow.open(map, this);
             });
 
-            var marker4=new google.maps.Marker({
-                position:haskolabio,
+            var marker4 = new google.maps.Marker({
+                position: haskolabio,
             });
 
             marker4.setMap(map);
 
-            google.maps.event.addListener(marker4, 'click', function() {
+            google.maps.event.addListener(marker4, 'click', function () {
                 infowindow.setContent("Háskólabíó");
                 infowindow.open(map, this);
             });
 
-            var marker5=new google.maps.Marker({
-                position:egilsholl,
+            var marker5 = new google.maps.Marker({
+                position: egilsholl,
             });
 
             marker5.setMap(map);
 
-            google.maps.event.addListener(marker5, 'click', function() {
+            google.maps.event.addListener(marker5, 'click', function () {
                 infowindow.setContent("Sambíóin Egilshöll");
                 infowindow.open(map, this);
             });
 
-            var marker6=new google.maps.Marker({
-                position:keflavik,
+            var marker6 = new google.maps.Marker({
+                position: keflavik,
             });
 
             marker6.setMap(map);
 
-            google.maps.event.addListener(marker6, 'click', function() {
+            google.maps.event.addListener(marker6, 'click', function () {
                 infowindow.setContent("Sambíóin Keflavík");
                 infowindow.open(map, this);
             });
 
-            var marker7=new google.maps.Marker({
-                position:akureyri,
+            var marker7 = new google.maps.Marker({
+                position: akureyri,
             });
 
             marker7.setMap(map);
 
-            google.maps.event.addListener(marker7, 'click', function() {
+            google.maps.event.addListener(marker7, 'click', function () {
                 infowindow.setContent("Sambíóin Akureyri");
                 infowindow.open(map, this);
             });
 
-            var marker1=new google.maps.Marker({
-                position:paradis,
+            var marker1 = new google.maps.Marker({
+                position: paradis,
             });
 
             marker8.setMap(map);
 
-            google.maps.event.addListener(marker8, 'click', function() {
+            google.maps.event.addListener(marker8, 'click', function () {
                 infowindow.setContent("Bíó Paradís");
                 infowindow.open(map, this);
             });
+        }
 
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ?
+                    'Error: The Geolocation service failed.' :
+                    'Error: Your browser doesn\'t support geolocation.');
         }
 
         google.maps.event.addDomListener(window, 'load', initialize);
