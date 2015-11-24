@@ -7,12 +7,14 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import project.persistence.entities.User.CurrentUser;
 import project.persistence.entities.User.User;
 import project.persistence.entities.User.UserCreateForm;
 import project.persistence.entities.User.Validator.UserCreateFormValidator;
 import project.service.UserService;
 import org.springframework.validation.Validator;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.NoSuchElementException;
 
@@ -40,7 +42,7 @@ public class UserController {
 
     ///USER REGISTRATION
     @RequestMapping(value = "/public/create", method = RequestMethod.GET)
-    public String getRegistrationView(Model model){
+    public String getRegistrationView(CurrentUser currentUser, Model model){
         String signup = "User registration form";
         model.addAttribute("signupMsg", signup);
 
@@ -68,17 +70,19 @@ public class UserController {
         return "User/userSignUp";
     }
 
-    @RequestMapping(value = "/userpage/{id}")
-    public String getUserPage(@PathVariable Long id, Model model){
-        userService.getUserById(id);
 
 
-        String userPage = "welcome to user page";
+    //Current User. MyPage
+    @RequestMapping(value = "/userpage/{id}",  method = RequestMethod.GET)
+    public String getUserPage(@PathVariable("id") Long id, @ModelAttribute("currentUser") CurrentUser currentUser, Model model){
+
+        String username = currentUser.getUsername();
+        String userPage = "welcome to user page, " + username;
         model.addAttribute("userPage", userPage);
+
+
         return "User/userPage";
-
     }
-
 
 
 }
