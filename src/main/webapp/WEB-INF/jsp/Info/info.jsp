@@ -16,8 +16,8 @@
 
 ${texti}
 
-<h2><a href="/phrases">Phrases</a></h2>
-<h2><a href="/usefulphonenumbers">Useful Phone Numbers</a></h2>
+<h2><a href="/info/phrases">Phrases</a></h2>
+<h2><a href="/info/usefulphonenumbers">Useful Phone Numbers</a></h2>
 
 </body>
 </html>
