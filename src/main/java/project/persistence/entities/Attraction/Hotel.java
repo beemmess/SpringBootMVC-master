@@ -1,9 +1,23 @@
 package project.persistence.entities.Attraction;
 
-/**
- * Created by bjarkimar23 on 28.10.2015.
- */
+
 public class Hotel extends Attraction{
-    public int stars;
+    private int star;
+
+    public Hotel(int star, String type, String name, double lat, double lng){
+        super(type, name, lat, lng);
+        this.star = star;
+
+    }
+
+
+    public int getStar(){
+        return star;
+    }
+
+    public void setStar(int star){
+        this.star=star;
+    }
+
 
 }
