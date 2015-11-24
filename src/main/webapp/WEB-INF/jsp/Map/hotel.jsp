@@ -210,11 +210,14 @@ Fyrsta tegund af google maps
                     }
                     infoWindow.setContent(result.name + "<br/>" + result.rating + "<br/>" + result.formatted_address + "<br/>" + result.website + "<br/>" + result.formatted_phone_number );
                     infoWindow.open(map, marker);
-
                 });
 
             });
             markers.push(marker);
+        }
+
+        function showPlaces() {
+            
         }
 
 
