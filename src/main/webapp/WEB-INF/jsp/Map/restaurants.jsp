@@ -8,38 +8,10 @@
 <%@ taglib prefix="th" uri="http://www.springframework.org/tags/form" %>
 
 
-<!DOCTYPE HTML>
-
+<!DOCTYPE html>
+<html>
 <head>
-    <title>Events</title>
-</head>
-<h2><a href="/streetmap/museum">museum</a></h2>
-<h2><a href="/streetmap/hotel">Hotel</a></h2>
-
-<h1>Korta s</h1>
-<p>${texti}</p>
-<tr>
-    <td>Type of interest:</td>
-
-    <td><input name="mapType" type="text" id="mapSearch"></td>
-</tr>
-<tr><td><input type="submit" VALUE="Submit"/></td></tr>
-
-<div id="controls">
-    <select id="country">
-        <option value=" ">Nothing</option>
-        <option value="musuem">Musuem</option>
-        <option value="resturant">Restaurant</option>
-
-    </select>
-</div>
-
-<%--
-Fyrsta tegund af google maps
---%>
-
-<head>
-    <title>Place searches</title>
+    <title>Place Autocomplete Hotel Search</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <style>
@@ -47,193 +19,403 @@ Fyrsta tegund af google maps
             height: 100%;
             margin: 0;
             padding: 0;
-
         }
         #map {
-            height: 80%;
-            width: 80%;
+            height: 100%;
         }
     </style>
-    <script>
 
-        var map, places, infoWindow;
-        var markers = [];
-        var servive;
-        var autocomplete;
-        var pyrmont = {lat: 64.144136, lng: -21.932653}; // fixed location
-        var pos;
-        var restaurantName ="";
+    <style>
+        table {
+            font-size: 12px;
+        }
+        #map {
+            width: 880px;
+        }
+        #listing {
+            position: absolute;
+            width: 200px;
+            height: 550px;
+            overflow: auto;
+            left: 882px;
+            top: 0px;
+            cursor: pointer;
+            overflow-x: hidden;
+        }
+        #findhotels {
+            position: absolute;
+            text-align: right;
+            width: 100px;
+            font-size: 14px;
+            padding: 4px;
+            z-index: 5;
+            background-color: #fff;
+        }
+        #locationField {
+            position: absolute;
+            width: 190px;
+            height: 25px;
+            left: 108px;
+            top: 0px;
+            z-index: 5;
+            background-color: #fff;
+        }
+        #controls {
+            position: absolute;
+            left: 300px;
+            width: 140px;
+            top: 0px;
+            z-index: 5;
+            background-color: #fff;
+        }
+        #autocomplete {
+            width: 100%;
+        }
+        #country {
+            width: 100%;
+        }
+        .placeIcon {
+            width: 20px;
+            height: 34px;
+            margin: 4px;
+        }
+        .hotelIcon {
+            width: 24px;
+            height: 24px;
+        }
+        #resultsTable {
+            border-collapse: collapse;
+            width: 240px;
+        }
+        #rating {
+            font-size: 13px;
+            font-family: Arial Unicode MS;
+        }
+        .iw_table_row {
+            height: 18px;
+        }
+        .iw_attribute_name {
+            font-weight: bold;
+            text-align: right;
+        }
+        .iw_table_icon {
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="findhotels">
+    Find hotels in:
+</div>
+
+<div id="locationField">
+    <input id="autocomplete" placeholder="Enter a city" type="text" />
+</div>
 
 
-        // initMap byrjar %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        function initMap() {
 
 
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: pyrmont,
-                zoom: 14
+
+<div id="map"></div>
+
+<div id="listing">
+    <table id="resultsTable">
+        <tbody id="results"></tbody>
+    </table>
+</div>
+
+<div style="display: none">
+    <div id="info-content">
+        <table>
+            <tr id="iw-url-row" class="iw_table_row">
+                <td id="iw-icon" class="iw_table_icon"></td>
+                <td id="iw-url"></td>
+            </tr>
+            <tr id="iw-address-row" class="iw_table_row">
+                <td class="iw_attribute_name">Address:</td>
+                <td id="iw-address"></td>
+            </tr>
+            <tr id="iw-phone-row" class="iw_table_row">
+                <td class="iw_attribute_name">Telephone:</td>
+                <td id="iw-phone"></td>
+            </tr>
+            <tr id="iw-rating-row" class="iw_table_row">
+                <td class="iw_attribute_name">Rating:</td>
+                <td id="iw-rating"></td>
+            </tr>
+            <tr id="iw-website-row" class="iw_table_row">
+                <td class="iw_attribute_name">Website:</td>
+                <td id="iw-website"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script>
+
+    var map, places, infoWindow;
+    var markers = [];
+    var servive;
+    var autocomplete;
+    var pyrmont = {lat: 64.144136, lng: -21.932653}; // fixed location
+    var MARKER_PATH = 'https://maps.gstatic.com/intl/en_us/mapfiles/marker_green';
+    var hostnameRegexp = new RegExp('^https?://.+?/');
+
+
+    // initMap byrjar %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    function initMap() {
+
+
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: pyrmont,
+            zoom: 14
+        });
+
+        infoWindow = new google.maps.InfoWindow({
+            content: document.getElementById('info-content')
+        });
+        //service = new google.maps.places.PlacesService(map);
+        // mapSearch er id
+        //var mapSearch = document.getElementById("mapSearch").value;
+
+        // Create the autocomplete object and associate it with the UI input control.
+        // Restrict the search to the default country, and to place type "cities".
+
+        var autocomplete = document.getElementById("autocomplete").value;
+
+        // Create the autocomplete object and associate it with the UI input control.
+        // Restrict the search to the default country, and to place type "cities".
+        autocomplete = new google.maps.places.Autocomplete(
+                /** @type {!HTMLInputElement} */ (
+                        document.getElementById('autocomplete')), {
+                });
+        places = new google.maps.places.PlacesService(map);
+
+        autocomplete.addListener('place_changed', onPlaceChanged);
+
+        // document.getElementById('country').addEventListener(
+        //       'change', onPlaceChanged);
+
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                infoWindow.setPosition(pos);
+                infoWindow.setContent('Location found.');
+                //map.setCenter(pos);
+
+                console.log(pos);
+                //performSearch(pos);
+
+
+            }, function() {
+                handleLocationError(true, infoWindow, map.getCenter());
+                //search()
             });
 
-            infoWindow = new google.maps.InfoWindow({map: map});
-            service = new google.maps.places.PlacesService(map);
-            // mapSearch er id
-            var mapSearch = document.getElementById("mapSearch").value;
+        } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infoWindow, map.getCenter());
+        }
 
-            // Create the autocomplete object and associate it with the UI input control.
-            // Restrict the search to the default country, and to place type "cities".
-            autocomplete = new google.maps.places.Autocomplete(
-                    /** @type {!HTMLInputElement} */ (
-                            document.getElementById('mapSearch')), {
+
+
+        // The idle event is a debounced event, so we can query & listen without
+        // throwing too many requests at the server.
+        map.addListener('idle', search);
+
+
+        //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    }// initMap endar hér %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    // Error gluggi um hvort location fundið eða ekki
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                'Error: The Geolocation service failed.' :
+                'Error: Your browser doesn\'t support geolocation.');
+    }
+
+    // When the user selects a city, get the place details for the city and
+    // zoom the map in on the city.
+    function onPlaceChanged() {
+        var place = autocomplete.getPlace();
+        if (place.geometry) {
+            map.panTo(place.geometry.location);
+            map.setZoom(14);
+            search();
+        } else {
+            document.getElementById('autocomplete').placeholder = 'Enter a type';
+        }
+    }
+
+
+    function search() {
+        var search = {
+            bounds: map.getBounds(),
+            types: ('restaurant|hotel')
+        };
+
+        places.nearbySearch(search, function(results, status) {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                clearResults();
+                clearMarkers();
+                // Create a marker for each hotel found, and
+                // assign a letter of the alphabetic to each marker icon.
+                for (var i = 0; i < results.length; i++) {
+                    var markerLetter = String.fromCharCode('A'.charCodeAt(0) + i);
+                    var markerIcon = MARKER_PATH + markerLetter + '.png';
+                    // Use marker animation to drop the icons incrementally on the map.
+                    markers[i] = new google.maps.Marker({
+                        position: results[i].geometry.location,
+                        animation: google.maps.Animation.DROP,
+                        icon: markerIcon
                     });
-            places = new google.maps.places.PlacesService(map);
-
-            autocomplete.addListener('place_changed', onPlaceChanged);
-
-           // document.getElementById('country').addEventListener(
-             //       'change', onPlaceChanged);
-
-
-            // Try HTML5 geolocation.
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    var pos = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
-
-                    infoWindow.setPosition(pos);
-                    infoWindow.setContent('Location found.');
-                    map.setCenter(pos);
-                    console.log(pos);
-                    //console.log(pos);
-                    //performSearch(pos);
-
-
-                }, function() {
-                    handleLocationError(true, infoWindow, map.getCenter());
-                performSearch()
-                });
-
-            } else {
-                // Browser doesn't support Geolocation
-                handleLocationError(false, infoWindow, map.getCenter());
+                    // If the user clicks a hotel marker, show the details of that hotel
+                    // in an info window.
+                    markers[i].placeResult = results[i];
+                    google.maps.event.addListener(markers[i], 'click', showInfoWindow);
+                    setTimeout(dropMarker(i), i * 100);
+                    addResult(results[i], i);
+                }
             }
+        });
+    }
 
-
-
-
-
-            // The idle event is a debounced event, so we can query & listen without
-            // throwing too many requests at the server.
-            map.addListener('idle', performSearch);
-
-
-            //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        }// initMap endar hér %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-        // Error gluggi um hvort location fundið eða ekki
-        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-            infoWindow.setPosition(pos);
-            infoWindow.setContent(browserHasGeolocation ?
-                    'Error: The Geolocation service failed.' :
-                    'Error: Your browser doesn\'t support geolocation.');
-        }
-
-        // When the user selects a city, get the place details for the city and
-        // zoom the map in on the city.
-        function onPlaceChanged() {
-            var country = document.getElementById('country').value;
-            var place = autocomplete.getPlace();
-            if (place.geometry) {
-                map.panTo(place.geometry.location);
-                map.setZoom(14);
-
-                performSearch();
-            } else {
-                document.getElementById('mapSearch').placeholder = 'Enter a type';
-            }
-        }
-
-
-        function performSearch(pos) {
-            clearMarkers();
-            var leit = country;
-            var mapSearch = document.getElementById('mapSearch').value;
-            var request = {
-                location: map.getCenter(),
-                //location: pos,
-                radius: 5000, // Radius til að ákveða hversu marga punkta á að velja í kring
-                keyword: ['restaurant']
-            };
-            service.radarSearch(request, callback);
-            //service.textSearch(request, callback);
-        }
-
-
-
-        function callback(results, status) {
-
-            if (status !== google.maps.places.PlacesServiceStatus.OK) {
-                console.error(status);
-                return;
-            }
-            clearMarkers();
-            for (var i = 0, result; result = results[i]; i++) {
-                addMarker(result);
-            }
-        }
-
-        function clearMarkers() {
-            for (var i = 0; i < markers.length; i++) {
+    function clearMarkers() {
+        for (var i = 0; i < markers.length; i++) {
+            if (markers[i]) {
                 markers[i].setMap(null);
             }
-            markers = [];
         }
+        markers = [];
+    }
 
-        function addMarker(place) {
-            var marker = new google.maps.Marker({
-                map: map,
-                position: place.geometry.location,
-                icon: {
-                    url: 'https://maps.gstatic.com/mapfiles/ms2/micons/red-dot.png',
-                    anchor: new google.maps.Point(14, 14),
-                    scaledSize: new google.maps.Size(18, 18)
-                }
-            });
 
-            google.maps.event.addListener(marker, 'click', function() {
-                service.getDetails(place, function(result, status) {
+
+
+    function dropMarker(i) {
+        return function() {
+            markers[i].setMap(map);
+        };
+    }
+
+    function addResult(result, i) {
+        var results = document.getElementById('results');
+        var markerLetter = String.fromCharCode('A'.charCodeAt(0) + i);
+        var markerIcon = MARKER_PATH + markerLetter + '.png';
+
+        var tr = document.createElement('tr');
+        tr.style.backgroundColor = (i % 2 === 0 ? '#F0F0F0' : '#FFFFFF');
+        tr.onclick = function() {
+            google.maps.event.trigger(markers[i], 'click');
+        };
+
+        var iconTd = document.createElement('td');
+        var nameTd = document.createElement('td');
+        var icon = document.createElement('img');
+        icon.src = markerIcon;
+        icon.setAttribute('class', 'placeIcon');
+        icon.setAttribute('className', 'placeIcon');
+        var name = document.createTextNode(result.name);
+        iconTd.appendChild(icon);
+        nameTd.appendChild(name);
+        tr.appendChild(iconTd);
+        tr.appendChild(nameTd);
+        results.appendChild(tr);
+    }
+
+    function clearResults() {
+        var results = document.getElementById('results');
+        while (results.childNodes[0]) {
+            results.removeChild(results.childNodes[0]);
+        }
+    }
+
+    // Get the place details for a hotel. Show the information in an info window,
+    // anchored on the marker for the hotel that the user selected.
+    function showInfoWindow() {
+        var marker = this;
+        places.getDetails({placeId: marker.placeResult.place_id},
+                function(place, status) {
                     if (status !== google.maps.places.PlacesServiceStatus.OK) {
-                        console.error(status);
                         return;
                     }
-                    infoWindow.setContent(result.name + "<br/>" + result.rating + "<br/>" + result.formatted_address + "<br/>" + result.website + "<br/>" + result.formatted_phone_number + "<br/>" + result.types[0] );
                     infoWindow.open(map, marker);
-                    var nafn = result.name;
-                    console.log(nafn);
-                    localStorage.setItem("resultName", nafn);
-
-
+                    buildIWContent(place);
                 });
-               // restaurantName = result.name;
-                //console.log.(restaurantName);
+    }
 
-            });
-            markers.push(marker);
+
+
+    // Load the place information into the HTML elements used by the info window.
+    function buildIWContent(place) {
+        document.getElementById('iw-icon').innerHTML = '<img class="hotelIcon" ' +
+                'src="' + place.icon + '"/>';
+        document.getElementById('iw-url').innerHTML = '<b><a href="' + place.url +
+                '">' + place.name + '</a></b>';
+        document.getElementById('iw-address').textContent = place.vicinity;
+
+        if (place.formatted_phone_number) {
+            document.getElementById('iw-phone-row').style.display = '';
+            document.getElementById('iw-phone').textContent =
+                    place.formatted_phone_number;
+        } else {
+            document.getElementById('iw-phone-row').style.display = 'none';
         }
 
+        // Assign a five-star rating to the hotel, using a black star ('&#10029;')
+        // to indicate the rating the hotel has earned, and a white star ('&#10025;')
+        // for the rating points not achieved.
+        if (place.rating) {
+            var ratingHtml = '';
+            for (var i = 0; i < 5; i++) {
+                if (place.rating < (i + 0.5)) {
+                    ratingHtml += '&#10025;';
+                } else {
+                    ratingHtml += '&#10029;';
+                }
+                document.getElementById('iw-rating-row').style.display = '';
+                document.getElementById('iw-rating').innerHTML = ratingHtml;
+            }
+        } else {
+            document.getElementById('iw-rating-row').style.display = 'none';
+        }
+
+        // The regexp isolates the first part of the URL (domain plus subdomain)
+        // to give a short URL for displaying in the info window.
+        if (place.website) {
+            var fullUrl = place.website;
+            var website = hostnameRegexp.exec(place.website);
+            if (website === null) {
+                website = 'http://' + place.website + '/';
+                fullUrl = website;
+            }
+            document.getElementById('iw-website-row').style.display = '';
+            document.getElementById('iw-website').textContent = website;
+        } else {
+            document.getElementById('iw-website-row').style.display = 'none';
+        }
+    }
 
 
-    </script>
+
+
+
+</script>
 </head>
 <body>
 <div id="map"></div>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmiPMXCC8z9ib1MGhhcGH-BgAjxC2Hp7g&libraries=places&callback=initMap"
         async defer></script>
-</body>
-
-<h1>${halloMsg}</h1>
 
 
 
