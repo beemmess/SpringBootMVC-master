@@ -37,7 +37,7 @@ public class PhrasesController {
         return "Info/info";
     }
 
-    @RequestMapping(value = "/phrases", method = RequestMethod.GET)
+    @RequestMapping(value = "/info/phrases", method = RequestMethod.GET)
     public String phrasesViewGet(Model model) {
         model.addAttribute("phrases", new Phrases());
 
@@ -60,7 +60,7 @@ public class PhrasesController {
     }
     */
 
-    @RequestMapping(value = "/usefulphonenumbers", method = RequestMethod.GET)
+    @RequestMapping(value = "/info/usefulphonenumbers", method = RequestMethod.GET)
     public String usefulPhoneNumbersViewGet(Model model) {
         model.addAttribute("usefulphonenumbers", new UsefulPhoneNumbers());
 
