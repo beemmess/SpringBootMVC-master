@@ -50,9 +50,10 @@ Fyrsta tegund af google maps
 
         }
         #map {
-            height: 80%;
+            height: 50%;
             width: 50%;
         }
+
 
     </style>
     <script>
@@ -63,7 +64,6 @@ Fyrsta tegund af google maps
         var autocomplete;
         var pyrmont = {lat: 64.144136, lng: -21.932653}; // fixed location
         var pos;
-
 
 
         // initMap byrjar %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -124,7 +124,6 @@ Fyrsta tegund af google maps
             // The idle event is a debounced event, so we can query & listen without
             // throwing too many requests at the server.
             map.addListener('idle', performSearch);
-
 
             //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         }// initMap endar hér %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -206,32 +205,25 @@ Fyrsta tegund af google maps
                     }
                     infoWindow.setContent(result.name + "<br/>" + result.rating + "<br/>" + result.formatted_address + "<br/>" + result.website + "<br/>" + result.formatted_phone_number );
                     infoWindow.open(map, marker);
-                    document.getElementById("map").onclick = function () {
-                        var div = document.createElement("div");
-                        document.getElementsByTagName('body')[0].appendChild(div);
-                    };
-
-                    //var element = document.createElement("div");
-                    //element.id = 'testqq';
-                    //element.align ='rigth';
-                    //var el = document.getElementById('testqq');
-                    //console.log(result.name, result.formatted_address);
+                    var para = document.createElement("p");
+                    var node = document.createTextNode(result.name+ "   rating:     " + result.rating);
+                    para.appendChild(node);
+                    var element = document.getElementById("para");
+                    element.appendChild(para);
                 });
-
             });
+
             markers.push(marker);
         }
-
-        function showPlaces() {
-            console.log(result.name);
-        }
-
 
     </script>
 </head>
 <body>
+
 <div id="map"></div>
-<div id="restaurant"></div>
+<div id="para">
+</div>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmiPMXCC8z9ib1MGhhcGH-BgAjxC2Hp7g&libraries=places&callback=initMap"
         async defer></script>
 </body>
