@@ -21,7 +21,6 @@
     <h2><a href="/info">Useful Information</a> </h2>
     <h2><a href="/currency">Currency</a></h2>
     <h2><a href="/streetmap">StreetMap</a></h2>
-    <h2><a href="/events">Events</a> </h2>
     </body>
     <footer>Class HBV501G, University of Iceland, Fall 2015</footer>
 </html>
