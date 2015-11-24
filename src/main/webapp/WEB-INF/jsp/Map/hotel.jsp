@@ -205,11 +205,6 @@ Fyrsta tegund af google maps
                     }
                     infoWindow.setContent(result.name + "<br/>" + result.rating + "<br/>" + result.formatted_address + "<br/>" + result.website + "<br/>" + result.formatted_phone_number );
                     infoWindow.open(map, marker);
-                    var para = document.createElement("p");
-                    var node = document.createTextNode(result.name+ "   rating:     " + result.rating);
-                    para.appendChild(node);
-                    var element = document.getElementById("para");
-                    element.appendChild(para);
                 });
             });
 
