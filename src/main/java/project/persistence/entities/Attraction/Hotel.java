@@ -7,7 +7,6 @@ public class Hotel extends Attraction{
     public Hotel(int star, String type, String name, AllReviews[] allReviews, double lat, double lng){
         super(type, name, allReviews, lat, lng);
         this.star = star;
-
     }
 
     public int getStar(){
