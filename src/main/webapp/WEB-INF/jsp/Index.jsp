@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -17,13 +18,11 @@
     </ul>
 
     <h2><a href="/public/create">Click here to sign up!</a></h2>
-    <h2><a href="/public/currency">Currency</a></h2>
     <h2><a href="/login">Login</a></h2>
 
     <h2><a href="/currency">Currency converter</a></h2>
     <h2><a href="/events">Check out the events schedule!</a></h2>
     <h2><a href="/info">Useful Information</a> </h2>
-    <h2><a href="/currency">Currency</a></h2>
     <h2><a href="/streetmap">StreetMap</a></h2>
 
     </body>
