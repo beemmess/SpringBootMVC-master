@@ -20,7 +20,7 @@
     <h2><a href="/public/currency">Currency</a></h2>
     <h2><a href="/login">Login</a></h2>
 
-    <h2><a href=" <c:url value="/userpage/${currentUser.id}" />">My page</a></h2>
+
 
 =======
     <h2><a href="/signup">Click here to sign up!</a></h2>
@@ -34,6 +34,7 @@
     <footer>Class HBV501G, University of Iceland, Fall 2015</footer>
     <c:if test="${not empty currentUser.username}"><h2>Logged in as ${currentUser.username}</h2>
 
+        <h2><a href=" <c:url value="/userpage/${currentUser.id}" />">My page</a></h2>
 
         <form action="/logout" method="post">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
