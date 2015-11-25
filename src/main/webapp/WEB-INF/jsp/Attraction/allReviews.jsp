@@ -21,8 +21,11 @@
     <table>
         <tr>
             <td> User Name:</td>
-                <%--the `path` attribute matches the `name` attribute of the Entity that was passed in the model--%>
             <td>${currentUser.username}</td>
+        </tr>
+        <tr>
+            <td> Restaurant:</td>
+            <td><sf:input path="restaurant" type="text"></sf:input></td>
         </tr>
         <tr>
             <td>Review:</td>

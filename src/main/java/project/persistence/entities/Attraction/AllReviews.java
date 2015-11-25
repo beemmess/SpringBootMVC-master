@@ -1,6 +1,5 @@
 package project.persistence.entities.Attraction;
 
-import com.sun.tools.doclint.HtmlTag;
 
 import javax.persistence.*;
 import java.text.DateFormat;
@@ -20,16 +19,20 @@ public class AllReviews {
     private String username;
     private String review;
     private Date date;
+
+    private String restaurant;
+
     //private Attraction attraction;
 
     public AllReviews() {
         this.date = new Date();
     }
 
-    public AllReviews(String username, String review, Date date) {
+    public AllReviews(String username, String review, Date date, String restaurant) {
         this.username = username;
         this.review = review;
         this.date = date;
+        this.restaurant = restaurant;
         //this.attraction = attraction;
     }
 
@@ -53,11 +56,19 @@ public class AllReviews {
         return this.date;
     }
 
+    public String getRestaurant(){
+        return this.restaurant;
+    }
+
     /*
     public void getAttraction() {
         return this.attracion;
     }
     */
+
+    public void setId(Long id){
+        this.id = id;
+    }
 
     public void setUsername(String username) {
 
@@ -71,6 +82,9 @@ public class AllReviews {
     public void setDate(Date date) {
         this.date = date;
     }
+
+
+    public void setRestaurant(String restaurant) {this.restaurant = restaurant;}
 
     /*
     public void setAttraction(Attraction attraction){
