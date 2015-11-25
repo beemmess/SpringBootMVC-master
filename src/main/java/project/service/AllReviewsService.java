@@ -46,4 +46,8 @@ public interface AllReviewsService {
 
 
     AllReviews create(AllReviews reviews, CurrentUser currentUser);
+
+    List<AllReviews> findByUsername(String username);
+
+
 }

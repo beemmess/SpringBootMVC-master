@@ -29,4 +29,6 @@ public interface AllReviewsRepository extends JpaRepository<AllReviews, Long>{
 
     List<AllReviews> findByRestaurant(String restaurant);
 
+    List<AllReviews> findByUsername(String username);
+
 }

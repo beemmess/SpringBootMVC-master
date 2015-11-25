@@ -25,9 +25,7 @@ public class AllReviewsController {
     @RequestMapping(value = "/streetmap/restaurants", method = RequestMethod.GET)
     public  String allReviewsViewGet( Model model){
         model.addAttribute("allReviews", new AllReviews());
-        model.addAttribute("allReview", allReviewsService.findAll());
-
-        //model.addAttribute("restaurant", allReviewsService.findByRestaurant(restaurant));
+        //model.addAttribute("allReview", allReviewsService.findAll());
 
         //return the view
         return "Map/restaurants";
@@ -35,13 +33,12 @@ public class AllReviewsController {
 
 
     @RequestMapping(value = "/streetmap/restaurants", method = RequestMethod.POST)
-    public String allReviewsViewPost(@ModelAttribute("allReviews") AllReviews allReviews, CurrentUser currentUser, Model model){
+    public String allReviewsViewPost(@RequestParam("restaurant") String restaurant, AllReviews allReviews, CurrentUser currentUser, Model model){
 
-        //allReviewsService.save(allReviews);
 
-        allReviewsService.create(allReviews, currentUser);
+        model.addAttribute("allReviews", allReviewsService.create(allReviews, currentUser));
 
-        model.addAttribute("allReview", allReviewsService.findAll());
+        model.addAttribute("allReview", allReviewsService.findByRestaurant(restaurant));
 
 
         //return the view
@@ -49,15 +46,5 @@ public class AllReviewsController {
     }
 
 
-    @RequestMapping(value = "/streetmap/restaurants/{restaurant}", method = RequestMethod.GET)
-    public String postitNoteGetNotesFromName(@PathVariable String restaurant,
-                                             Model model){
-        model.addAttribute("allReview", allReviewsService.findByRestaurant(restaurant));
-
-        model.addAttribute("allreviews", new AllReviews());
-
-        // Return the view
-        return "Map/restaurants";
-    }
 
 }

@@ -115,12 +115,10 @@
 
 <body>
 
-<div id="findhotels">
-    Find hotels in:
-</div>
+
 
 <div id="locationField">
-    <input id="autocomplete" placeholder="Enter a city" type="text" />
+    <input id="autocomplete" placeholder="Enter a city" type="hidden" />
 </div>
 
 
@@ -431,6 +429,7 @@
 
 <p>This example uses the addEventListener() method to attach a click event to a button.</p>
 
+<%---WRITE REVIEW ---%>
 <sf:form method="POST" commandName="allReviews" action="/streetmap/restaurants">
 <table>
     <tr>
@@ -454,15 +453,16 @@
     <input type="submit" VALUE="Post It!"/>
 </sf:form>
 
-
-
 <c:choose>
     <c:when test="${not empty allReview}">
         <table>
             <c:forEach var="review" items="${allReview}">
                 <tr>
                     <td><a href="/streetmap/restaurants/${review.restaurant}">${review.restaurant}</a></td>
-                    <td>${review.review}</td>
+
+                        <td>${review.review}</td>
+                        <td>${review.username}</td>
+                        <td>${review.date}</td>
                 </tr>
             </c:forEach>
         </table>
@@ -478,13 +478,6 @@
         document.getElementById("RestaurantName").innerHTML = document.getElementById("iw-url").innerHTML;
         //document.getElementById("RestaurantType").innerHTML = document.getElementById("iw-type").innerHTML;
 
-        /*
-        var seeReviewsButton = document.createElement("BUTTON");
-        var seeReviewsButtonText = document.createTextNode("See reviews");
-        seeReviewsButton.appendChild(seeReviewsButtonText);
-        var restaurantReviewsForm = document.getElementById("reviewsForm");
-        restaurantReviewsForm.appendChild(seeReviewsButton);
-        */
     }
 
 </script>

@@ -92,8 +92,6 @@ public class StreetMapController {
 
         return "Map/walking1";
 
-
-
     }
 
 }
