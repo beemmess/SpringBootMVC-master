@@ -374,7 +374,7 @@
     function buildIWContent(place) {
         document.getElementById('iw-icon').innerHTML = '<img class="hotelIcon" ' +
                 'src="' + place.icon + '"/>';
-        document.getElementById('iw-url').innerHTML = '<b>' + place.name + '</b>';
+        document.getElementById('iw-url').innerHTML = place.name;
         document.getElementById('iw-type').innerHTML = '<b>' + place.types[0] + '</b>';
         document.getElementById('iw-address').textContent = place.vicinity;
 
@@ -441,13 +441,12 @@
     </tr>
 
     <tr>
-        <td>Restaurant</td>
-        <td><sf:select path = "restaurant" id="RestaurantName" name="RestaurantName">
-            <sf:option value="RestaurantName"  />
+        <td>Restaurant:</td>
+        <td>
+        <form:textarea disabled="true" path="restaurant" id="RestaurantName"/>
+    </td>
 
-        </sf:select></td>
     </tr>
-
 
     <tr>
         <td>Review:</td>
@@ -456,6 +455,14 @@
 </table>
     <input type="submit" VALUE="Post It!"/>
 </sf:form>
+
+
+  <c:forEach var="review" items="${reviews}">
+      <p>${review.review}</p>
+  </c:forEach>
+
+
+
 
 <script>
     document.getElementById("results").addEventListener("click", Restaurant);
