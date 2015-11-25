@@ -6,9 +6,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by bjarkimar23 on 5.11.2015.
- */
+
 @Entity
 @Table(name = "allreviews")
 public class AllReviews {

@@ -23,12 +23,12 @@
     <meta charset="utf-8">
     <style>
         html, body {
-            height: 100%;
+            height: 90%;
             margin: 0;
             padding: 0;
         }
         #map {
-            height: 100%;
+            height: 90%;
         }
     </style>
 
@@ -295,7 +295,7 @@
                     // in an info window.
                     markers[i].placeResult = results[i];
                     google.maps.event.addListener(markers[i], 'click', showInfoWindow);
-                    var restaurantName = markers[i]
+                    var restaurantName = markers[i];
                     console.log(restaurantName);
                     setTimeout(dropMarker(i), i * 100);
                     addResult(results[i], i);
@@ -441,7 +441,7 @@
     <tr>
         <td>Restaurant:</td>
         <td>
-        <form:textarea disabled="true" path="restaurant" id="RestaurantName"/>
+        <form:textarea path="restaurant" id="RestaurantName"/>
     </td>
 
     </tr>
@@ -455,12 +455,28 @@
 </sf:form>
 
 
+
+<c:choose>
+    <c:when test="${not empty allReview}">
+        <table>
+            <c:forEach var="review" items="${allReview}">
+                <tr>
+                    <td><a href="/streetmap/restaurants/${review.restaurant}">${review.restaurant}</a></td>
+                    <td>${review.review}</td>
+                </tr>
+            </c:forEach>
+        </table>
+    </c:when>
+</c:choose>
+
+
+
 <script>
     document.getElementById("results").addEventListener("click", Restaurant);
 
     function Restaurant() {
         document.getElementById("RestaurantName").innerHTML = document.getElementById("iw-url").innerHTML;
-        document.getElementById("RestaurantType").innerHTML = document.getElementById("iw-type").innerHTML;
+        //document.getElementById("RestaurantType").innerHTML = document.getElementById("iw-type").innerHTML;
 
         /*
         var seeReviewsButton = document.createElement("BUTTON");
