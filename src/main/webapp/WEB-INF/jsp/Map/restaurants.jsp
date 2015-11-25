@@ -31,6 +31,7 @@
         }
         #map {
             width: 880px;
+            top: 40px;
         }
         #listing {
             position: absolute;
@@ -38,7 +39,7 @@
             height: 550px;
             overflow: auto;
             left: 882px;
-            top: 0px;
+            top: 40px;
             cursor: pointer;
             overflow-x: hidden;
         }
@@ -86,6 +87,7 @@
         #resultsTable {
             border-collapse: collapse;
             width: 240px;
+
         }
         #rating {
             font-size: 13px;
@@ -155,7 +157,7 @@
 
 <script>
 
-    var map, places, infoWindow;
+    var map, places, infoWindow, infoWindow1;
     var markers = [];
     var servive;
     var autocomplete;
@@ -200,29 +202,27 @@
 
 
         // Try HTML5 geolocation.
+        // Try HTML5 geolocation.
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
+
                 var pos = {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 };
 
-                infoWindow.setPosition(pos);
-                infoWindow.setContent('Location found.');
-                //map.setCenter(pos);
-
-                console.log(pos);
-                //performSearch(pos);
-
+                var marker = new google.maps.Marker({
+                    position: pos,
+                    map: map,
+                    title: 'Location Found'
+                });
 
             }, function() {
-                handleLocationError(true, infoWindow, map.getCenter());
-                //search()
+                handleLocationError(true, infoWindow1, map.getCenter());
             });
-
         } else {
             // Browser doesn't support Geolocation
-            handleLocationError(false, infoWindow, map.getCenter());
+            handleLocationError(false, infoWindow1, map.getCenter());
         }
 
 
@@ -237,12 +237,13 @@
     //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     // Error gluggi um hvort location fundið eða ekki
-    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
+    function handleLocationError(browserHasGeolocation, infoWindow1, pos) {
+        infoWindow1.setPosition(pos);
+        infoWindow1.setContent(browserHasGeolocation ?
                 'Error: The Geolocation service failed.' :
                 'Error: Your browser doesn\'t support geolocation.');
     }
+
 
     // When the user selects a city, get the place details for the city and
     // zoom the map in on the city.
@@ -261,7 +262,7 @@
     function search() {
         var search = {
             bounds: map.getBounds(),
-            types: ('restaurant|hotel')
+            keyword: ['restaurant']
         };
 
         places.nearbySearch(search, function(results, status) {
@@ -420,7 +421,6 @@
 
 
 </html>
-
 
 
 
