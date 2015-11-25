@@ -430,14 +430,6 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmiPMXCC8z9ib1MGhhcGH-BgAjxC2Hp7g&libraries=places&callback=initMap"
         async defer></script>
 
-<<<<<<< HEAD
-
-
-=======
-<p>This example uses the addEventListener() method to attach a click event to a button.</p>
-
-<%---WRITE REVIEW ---%>
->>>>>>> GoogleMaps
 <sf:form method="POST" commandName="allReviews" action="/streetmap/restaurants">
 <table>
     <tr>
