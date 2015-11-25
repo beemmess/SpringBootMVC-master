@@ -8,6 +8,7 @@ import project.persistence.entities.User.User;
 import project.persistence.repositories.AllReviewsRepository;
 import project.service.AllReviewsService;
 
+import javax.websocket.OnClose;
 import java.util.Collections;
 import java.util.List;
 
@@ -41,6 +42,11 @@ public class AllReviewsServiceImplementation implements AllReviewsService{
     @Override
     public AllReviews findOne(Long id){
         return repository.findOne(id);
+    }
+
+    @Override
+    public List<AllReviews> findByRestaurant(String restaurant){
+        return repository.findByRestaurant(restaurant);
     }
 
     @Override

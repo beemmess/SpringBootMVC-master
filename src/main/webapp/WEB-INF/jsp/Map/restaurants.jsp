@@ -9,6 +9,12 @@
 
 
 
+
+
+
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -151,6 +157,10 @@
             <tr id="iw-website-row" class="iw_table_row">
                 <td class="iw_attribute_name">Website:</td>
                 <td id="iw-website"></td>
+            </tr>
+            <tr id="iw-type-row" class="iw_table_row">
+                <td class="iw_attribute_name">Type:</td>
+                <td id="iw-type"></td>
             </tr>
         </table>
     </div>
@@ -364,7 +374,8 @@
     function buildIWContent(place) {
         document.getElementById('iw-icon').innerHTML = '<img class="hotelIcon" ' +
                 'src="' + place.icon + '"/>';
-        document.getElementById('iw-url').innerHTML = '<b>' + place.name + '</b>';
+        document.getElementById('iw-url').innerHTML = place.name;
+        document.getElementById('iw-type').innerHTML = '<b>' + place.types[0] + '</b>';
         document.getElementById('iw-address').textContent = place.vicinity;
 
         if (place.formatted_phone_number) {
@@ -414,9 +425,7 @@
 
 
 </script>
-</head>
-<body>
-<div id="map"></div>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmiPMXCC8z9ib1MGhhcGH-BgAjxC2Hp7g&libraries=places&callback=initMap"
         async defer></script>
 
@@ -424,57 +433,59 @@
 
 
 
-<p id="demo"></p>
+<sf:form method="POST" commandName="allReviews" action="/streetmap/restaurants">
+<table>
+    <tr>
+        <td> User Name:</td>
+        <td>${currentUser.username}</td>
+    </tr>
+
+    <tr>
+        <td>Restaurant:</td>
+        <td>
+        <form:textarea disabled="true" path="restaurant" id="RestaurantName"/>
+    </td>
+
+    </tr>
+
+    <tr>
+        <td>Review:</td>
+        <td> <form:textarea path="review" /></td>
+    </tr>
+</table>
+    <input type="submit" VALUE="Post It!"/>
+</sf:form>
+
+
+  <c:forEach var="review" items="${reviews}">
+      <p>${review.review}</p>
+  </c:forEach>
+
+
+
 
 <script>
-    document.getElementById("results").addEventListener("click", displayDate);
+    document.getElementById("results").addEventListener("click", Restaurant);
 
-    function displayDate() {
-        document.getElementById("demo").innerHTML = document.getElementById("iw-url").innerHTML;
+
+
+
+    function Restaurant() {
+        document.getElementById("RestaurantName").innerHTML = document.getElementById("iw-url").innerHTML;
+        document.getElementById("RestaurantType").innerHTML = document.getElementById("iw-type").innerHTML;
+        var seeReviewsButton = document.createElement("BUTTON");
+        var writeReviewsButton = document.createElement("BUTTON");
+        var seeReviewsButtonText = document.createTextNode("See reviews");
+        var writeReviewsButtonText =document.createTextNode("Write reviews");
+        seeReviewsButton.appendChild(seeReviewsButtonText);
+        writeReviewsButton.appendChild(writeReviewsButtonText);
+        var restaurantName = document.getElementById("RestaurantName");
+        restaurantName.appendChild(seeReviewsButton);
+        restaurantName.appendChild(writeReviewsButton);
+        //console.log.(restaurantName);
     }
+
 </script>
 
-
-
+</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

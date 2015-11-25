@@ -25,30 +25,30 @@ public class AllReviewsController {
     public AllReviewsController(AllReviewsService allReviewsService){
         this.allReviewsService = allReviewsService;
     }
-
-    @RequestMapping(value = "/reviews", method = RequestMethod.GET)
+/*
+    @RequestMapping(value = "/streetmap/restaurants", method = RequestMethod.GET)
     public  String allReviewsViewGet(Model model){
         model.addAttribute("allReviews", new AllReviews());
 
-        model.addAttribute("allReviewses", allReviewsService.findAllReverseOrder());
 
         //return the view
-        return "Attraction/allReviews";
+        return "Map/restaurants";
     }
 
-    @RequestMapping(value = "/reviews", method = RequestMethod.POST)
+
+    @RequestMapping(value = "/streetmap/restaurants", method = RequestMethod.POST)
     public String allReviewsViewPost(@ModelAttribute("allReviews") AllReviews allReviews, CurrentUser currentUser, Model model){
 
         //allReviewsService.save(allReviews);
 
         allReviewsService.create(allReviews, currentUser);
 
-        model.addAttribute("allReviewses", allReviewsService.findAllReverseOrder());
-
-        model.addAttribute("allRebiews", new AllReviews());
 
         //return the view
-        return "Attraction/allReviews";
+        return "Map/restaurants";
     }
+ */
+
+
 
 }

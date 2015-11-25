@@ -42,6 +42,8 @@ public interface AllReviewsService {
      */
     AllReviews findOne(Long id);
 
+    List<AllReviews> findByRestaurant(String restaurant);
+
 
     AllReviews create(AllReviews reviews, CurrentUser currentUser);
 }
