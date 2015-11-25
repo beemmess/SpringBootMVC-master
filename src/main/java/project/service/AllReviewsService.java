@@ -1,6 +1,7 @@
 package project.service;
 
 import project.persistence.entities.Attraction.AllReviews;
+import project.persistence.entities.User.CurrentUser;
 
 import java.util.List;
 /**
@@ -28,7 +29,6 @@ public interface AllReviewsService {
      */
     List<AllReviews>findAll();
 
-
     /**
      * Get all {@link AllReviews} in reverse order
      * @return A reversed list {@link AllReviews}
@@ -42,4 +42,6 @@ public interface AllReviewsService {
      */
     AllReviews findOne(Long id);
 
+
+    AllReviews create(AllReviews reviews, CurrentUser currentUser);
 }

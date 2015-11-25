@@ -50,9 +50,11 @@ Fyrsta tegund af google maps
 
         }
         #map {
-            height: 80%;
-            width: 80%;
+            height: 50%;
+            width: 50%;
         }
+
+
     </style>
     <script>
 
@@ -62,7 +64,6 @@ Fyrsta tegund af google maps
         var autocomplete;
         var pyrmont = {lat: 64.144136, lng: -21.932653}; // fixed location
         var pos;
-
 
 
         // initMap byrjar %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -120,13 +121,9 @@ Fyrsta tegund af google maps
             }
 
 
-
-
-
             // The idle event is a debounced event, so we can query & listen without
             // throwing too many requests at the server.
             map.addListener('idle', performSearch);
-
 
             //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         }// initMap endar hér %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -170,8 +167,6 @@ Fyrsta tegund af google maps
             //service.textSearch(request, callback);
         }
 
-
-
         function callback(results, status) {
 
             if (status !== google.maps.places.PlacesServiceStatus.OK) {
@@ -209,18 +204,20 @@ Fyrsta tegund af google maps
                     }
                     infoWindow.setContent(result.name + "<br/>" + result.rating + "<br/>" + result.formatted_address + "<br/>" + result.website + "<br/>" + result.formatted_phone_number );
                     infoWindow.open(map, marker);
-
                 });
-
             });
+
             markers.push(marker);
         }
-
 
     </script>
 </head>
 <body>
+
 <div id="map"></div>
+<div id="para">
+</div>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmiPMXCC8z9ib1MGhhcGH-BgAjxC2Hp7g&libraries=places&callback=initMap"
         async defer></script>
 </body>

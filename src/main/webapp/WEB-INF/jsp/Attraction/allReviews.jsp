@@ -22,12 +22,13 @@
         <tr>
             <td> User Name:</td>
                 <%--the `path` attribute matches the `name` attribute of the Entity that was passed in the model--%>
-            <td><sf:input path="username" type="text" placeholder="Enter username"/></td>
+            <td>${currentUser.username}</td>
         </tr>
         <tr>
             <td>Review:</td>
                 <%--the `path` attribute matches the `note` attribute of the Entity that was passed in the model--%>
-            <td><sf:input path="review" type="text" placeholder="Enter review"/></td>
+            <%--<td><sf:input path="review" type="textarea" placeholder="Enter review"/></td>--%>
+           <td> <form:textarea path="review" /></td>
         </tr>
     </table>
 

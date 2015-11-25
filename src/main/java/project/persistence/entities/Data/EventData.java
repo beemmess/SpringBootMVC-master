@@ -164,7 +164,7 @@ public class EventData {
             JSONArray showTimes = cinemaEvent.getJSONArray("showtimes");
             String[] theater = new String[showTimes.length()];
             String[][] schedule = new String[result.length()][showTimes.length()];
-             for(int j=0; j<showTimes.length(); j++) {
+            for(int j=0; j<showTimes.length(); j++) {
                  JSONObject showTime = showTimes.getJSONObject(j);
                  theater[j] = showTime.getString("theater");
                  schedule[i][j] = showTime.getString("schedule");
