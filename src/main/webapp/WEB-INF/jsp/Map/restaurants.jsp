@@ -8,6 +8,7 @@
 <%@ taglib prefix="th" uri="http://www.springframework.org/tags/form" %>
 
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -284,6 +285,8 @@
                     // in an info window.
                     markers[i].placeResult = results[i];
                     google.maps.event.addListener(markers[i], 'click', showInfoWindow);
+                    var restaurantName = markers[i]
+                    console.log(restaurantName);
                     setTimeout(dropMarker(i), i * 100);
                     addResult(results[i], i);
                 }
@@ -361,8 +364,7 @@
     function buildIWContent(place) {
         document.getElementById('iw-icon').innerHTML = '<img class="hotelIcon" ' +
                 'src="' + place.icon + '"/>';
-        document.getElementById('iw-url').innerHTML = '<b><a href="' + place.url +
-                '">' + place.name + '</a></b>';
+        document.getElementById('iw-url').innerHTML = '<b>' + place.name + '</b>';
         document.getElementById('iw-address').textContent = place.vicinity;
 
         if (place.formatted_phone_number) {
@@ -418,9 +420,44 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmiPMXCC8z9ib1MGhhcGH-BgAjxC2Hp7g&libraries=places&callback=initMap"
         async defer></script>
 
+<p>This example uses the addEventListener() method to attach a click event to a button.</p>
+
+
+
+<p id="demo"></p>
+
+<script>
+    document.getElementById("results").addEventListener("click", displayDate);
+
+    function displayDate() {
+        document.getElementById("demo").innerHTML = document.getElementById("iw-url").innerHTML;
+    }
+</script>
+
 
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
