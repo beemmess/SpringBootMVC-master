@@ -12,6 +12,15 @@
 <body>
 <h1>${userPage}</h1>
 
+<table>
+    <th>My Reviews</th>
+<c:forEach items="${reviews}" var="reviews">
+    <tr>
+        <td>${reviews.restaurant}</td>
+        <td>${reviews.review}</td>
+    </tr>
+</c:forEach>
+</table>
 
 </body>
 </html>

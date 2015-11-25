@@ -1,8 +1,11 @@
 package project.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import project.persistence.entities.Attraction.AllReviews;
+import project.service.AllReviewsService;
 
 import java.util.Map;
 
@@ -12,6 +15,12 @@ import java.util.Map;
 @Controller
 public class StreetMapController {
     // SERVICE HERNA
+    AllReviewsService allReviewsService;
+
+    @Autowired
+    public StreetMapController(AllReviewsService allReviewsService){
+        this.allReviewsService = allReviewsService;
+    }
 
     @ModelAttribute
     public void addingCommonObjects(Model model){
@@ -42,8 +51,6 @@ public class StreetMapController {
         model.addAttribute("texti",texti);
 
         return "Map/restaurants";
-
-
 
     }
 
@@ -85,7 +92,6 @@ public class StreetMapController {
 
         return "Map/walking1";
 
-
-
     }
+
 }
