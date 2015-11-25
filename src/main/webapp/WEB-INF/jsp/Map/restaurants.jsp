@@ -46,10 +46,10 @@
         #listing {
             position: absolute;
             width: 200px;
-            height: 550px;
+            height: 652px;    /* var 550 */
             overflow: auto;
             left: 882px;
-            top: 40px;
+            top: 204px;
             cursor: pointer;
             overflow-x: hidden;
         }

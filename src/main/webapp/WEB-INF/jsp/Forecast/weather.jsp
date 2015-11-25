@@ -31,7 +31,7 @@
     <script type="text/javascript"><!--
     VI.ifrm.type = 'wel';
     VI.ifrm.area = 101;
-    VI.ifrm.lang = 'is';
+    VI.ifrm.lang = 'en';
     VI.ifrm.displayWeather();
     //-->
     </script>
