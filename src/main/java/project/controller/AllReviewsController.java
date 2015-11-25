@@ -25,7 +25,7 @@ public class AllReviewsController {
     public AllReviewsController(AllReviewsService allReviewsService){
         this.allReviewsService = allReviewsService;
     }
-/*
+
     @RequestMapping(value = "/streetmap/restaurants", method = RequestMethod.GET)
     public  String allReviewsViewGet(Model model){
         model.addAttribute("allReviews", new AllReviews());
@@ -47,8 +47,5 @@ public class AllReviewsController {
         //return the view
         return "Map/restaurants";
     }
- */
-
-
 
 }
