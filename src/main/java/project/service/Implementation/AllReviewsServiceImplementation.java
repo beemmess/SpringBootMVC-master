@@ -65,4 +65,10 @@ public class AllReviewsServiceImplementation implements AllReviewsService{
 
     }
 
+    @Override
+    public  List<AllReviews> findByUsername(String username){
+        return repository.findByUsername(username);
+
+    }
+
 }

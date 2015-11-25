@@ -7,10 +7,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import project.persistence.entities.Attraction.AllReviews;
 import project.persistence.entities.User.CurrentUser;
 import project.persistence.entities.User.User;
 import project.persistence.entities.User.UserCreateForm;
 import project.persistence.entities.User.Validator.UserCreateFormValidator;
+import project.service.AllReviewsService;
 import project.service.UserService;
 import org.springframework.validation.Validator;
 
@@ -24,11 +26,13 @@ public class UserController {
 
     UserService userService;
     UserCreateFormValidator userCreateFormValidator;
+    AllReviewsService allReviewsService;
 
     @Autowired
-    public UserController(UserService userService, UserCreateFormValidator userCreateFormValidator) {
+    public UserController(UserService userService, UserCreateFormValidator userCreateFormValidator, AllReviewsService allReviewsService) {
         this.userService = userService;
         this.userCreateFormValidator = userCreateFormValidator;
+        this.allReviewsService = allReviewsService;
     }
 
 
@@ -79,6 +83,8 @@ public class UserController {
         String username = currentUser.getUsername();
         String userPage = "welcome to user page, " + username;
         model.addAttribute("userPage", userPage);
+
+        model.addAttribute("reviews", allReviewsService.findByUsername(currentUser.getUsername()));
 
 
         return "User/userPage";
