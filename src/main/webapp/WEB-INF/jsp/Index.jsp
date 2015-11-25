@@ -5,65 +5,79 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html lang="en">
+<link href='https://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet' type='text/css'>
 
     <head>
         <title>Happy Tourist Reykjavík</title>
     </head>
     <body>
-
+        <img src="JonG.jpg">
         <h1>Welcome to Happy tourist Reykjavík!</h1>
 
     <div id="wrapper">
 
         <div id="navMenu">
-
             <ul>
                 <li>
-                    <a href="#">Products</a>
+                    <a href="#">Useful Information</a>
                     <ul>
-                        <li><a href="#">link item</a></li>
-                        <li><a href="#">link item</a></li>
-                        <li><a href="#">link item</a></li>
-                        <li><a href="#">link item</a></li>
+                        <li><a href="/currency">Currency Converter</a></li>
+                        <li><a href="/info/phrases">Phrases</a></li>
+                        <li><a href="/info/usefulphonenumbers">Phone numbers</a></li>
                     </ul>
                 </li>
             </ul>
 
             <ul>
                 <li>
-                    <a href="#">Products</a>
+                    <a href="">Events</a>
                     <ul>
-                        <li><a href="#">link item</a></li>
-                        <li><a href="#">link item</a></li>
-                        <li><a href="#">link item</a></li>
-                        <li><a href="#">link item</a></li>
+                        <li><a href="/events/cinema">Cinema</a></li>
+                        <li><a href="/events/concerts">Concerts</a></li>
+                        <li><a href="/events/football">Football</a></li>
+                        <li><a href="/events/handball">Handball</a></li>
                     </ul>
                 </li>
             </ul>
 
             <ul>
                 <li>
-                    <a href="#">Products</a>
+                    <a href="/streetmap">Streetmap</a>
                     <ul>
-                        <li><a href="#">link item</a></li>
-                        <li><a href="#">link item</a></li>
-                        <li><a href="#">link item</a></li>
-                        <li><a href="#">link item</a></li>
+                        <li><a href="/events/cinema/streetmap">Cinema Streetmap</a></li>
+                        <li><a href="/events/concerts/streetmap">Concert Streetmap</a></li>
+                        <li><a href="/events/football/streetmap">Football Streetmap</a></li>
+                        <li><a href="/events/handball/streetmap">Handball Streetmap</a></li>
                     </ul>
                 </li>
             </ul>
 
             <ul>
                 <li>
-                    <a href="#">Products</a>
+                    <a href="">Forecast</a>
                     <ul>
-                        <li><a href="#">link item</a></li>
-                        <li><a href="#">link item</a></li>
-                        <li><a href="#">link item</a></li>
-                        <li><a href="#">link item</a></li>
+                        <li><a href="/weather">Weather Forecast</a></li>
+                        <li><a href="/aurora">Aurora Forecast</a></li>
                     </ul>
                 </li>
             </ul>
+
+            <ul>
+                <li>
+                    <a href="/public/create">Sign Up</a>
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    <a href="/login">Login</a>
+                </li>
+            </ul>
+
+
+
+
+
 
             <br class="clearFloat">
 
@@ -71,20 +85,24 @@
 
     </div>
 
-    <ul>
+   <!-- <ul>
         <li><a href="/postit">Click here for Persistence Layer Demo</a></li>
     </ul>
 
+    <!--
     <h2><a href="/public/create">Click here to sign up!</a></h2>
     <h2><a href="/login">Login</a></h2>
 
     <h2><a href="/currency">Currency converter</a></h2>
     <h2><a href="/events">Check out the events schedule!</a></h2>
     <h2><a href="/info">Useful Information</a> </h2>
-    <h2><a href="/streetmap">StreetMap</a></h2>
+    <h2><a href="/streetmap">StreetMap</a></h2>  !-->
 
     </body>
-    <footer>Class HBV501G, University of Iceland, Fall 2015</footer>
+
+    <!-- <footer>Class HBV501G, University of Iceland, Fall 2015</footer>  -->
+
+    <div class="loggedIn">
     <c:if test="${not empty currentUser.username}"><h2>Logged in as ${currentUser.username}</h2>
 
         <h2><a href=" <c:url value="/userpage/${currentUser.id}" />">My page</a></h2>
@@ -93,25 +111,39 @@
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <button type="submit">Log out</button>
 
-
-
             <h2><a href="/reviews">Write review</a></h2>
 
         </form></c:if>
+    </div>
 
 
     <style type="text/css">
+
+        *{
+        }
+
+        body{
+            font-family: 'PT Sans Narrow', sans-serif;
+            image:
+            /*background-image: url(http://3.bp.blogspot.com/-I6lfSyUQfxw/UrAULxkuyDI/AAAAAAAAQs0/GmAIGohkeaY/s1600/waterfall-godafoss-iceland.jpg); */
+        }
+
         h1{
-            font-style: italic;
             text-align: center;
             padding-top: 1em;
             height: 3em;
-            border-bottom: 2em solid black;
+            border-bottom: 2px solid black;
+        }
+
+        img{
+            width: 20px;
+            height:20px;
         }
 
         #navMenu{
             margin: 0;
             padding: 0;
+            padding-left: 150px;
         }
 
         #navMenu ul{
@@ -124,14 +156,13 @@
             margin: 0;
             padding: 0;
             list-style: none;
-            float:left;
+            float: left;
             position: relative;
-            background: #999;
+
         }
 
         #navMenu ul li a{
             text-align: center;
-            font-family: "Comic Sans MS", cursive;
             text-decoration: none;
             height: 30px;
             width: 150px;
@@ -170,6 +201,10 @@
             clear: both;
             margin: 0;
             padding: 0;
+        }
+
+        .loggedIn{
+            position: right;
         }
 
 
