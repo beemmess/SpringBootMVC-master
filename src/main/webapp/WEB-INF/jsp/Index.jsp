@@ -11,8 +11,22 @@
         <title>Happy Tourist Reykjavík</title>
     </head>
     <body>
-        <img src="JonG.jpg">
+        <!-- <img src="JonG.jpg">  !-->
         <h1>Welcome to Happy tourist Reykjavík!</h1>
+
+        <div class="loggedIn">
+            <c:if test="${not empty currentUser.username}"><h2>Logged in as ${currentUser.username}</h2>
+
+                <h2><a href=" <c:url value="/userpage/${currentUser.id}" />">My page</a></h2>
+
+                <form action="/logout" method="post">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <button type="submit">Log out</button>
+
+                    <h2><a href="/reviews">Write review</a></h2>
+
+                </form></c:if>
+        </div>
 
     <div id="wrapper">
 
@@ -21,10 +35,15 @@
                 <li>
                     <a href="#">Useful Information</a>
                     <ul>
-                        <li><a href="/currency">Currency Converter</a></li>
                         <li><a href="/info/phrases">Phrases</a></li>
                         <li><a href="/info/usefulphonenumbers">Phone numbers</a></li>
                     </ul>
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    <a href="/currency">Currency Converter</a>
                 </li>
             </ul>
 
@@ -48,6 +67,10 @@
                         <li><a href="/events/concerts/streetmap">Concert Streetmap</a></li>
                         <li><a href="/events/football/streetmap">Football Streetmap</a></li>
                         <li><a href="/events/handball/streetmap">Handball Streetmap</a></li>
+                        <li><a href="/streetmap/restaurants">Restaurant Streetmap</a></li>
+                        <li><a href="/streetmap/hotel">Hotel Streetmap</a></li>
+                        <li><a href="/streetmap/museum">Museum Streetmap</a></li>
+                        <li><a href="/streetmap/walking1">Batman Streetmap</a></li>
                     </ul>
                 </li>
             </ul>
@@ -100,7 +123,7 @@
 
     </body>
 
-    <!-- <footer>Class HBV501G, University of Iceland, Fall 2015</footer>  -->
+    <!-- <footer>Class HBV501G, University of Iceland, Fall 2015</footer>
 
     <div class="loggedIn">
     <c:if test="${not empty currentUser.username}"><h2>Logged in as ${currentUser.username}</h2>
@@ -114,7 +137,7 @@
             <h2><a href="/reviews">Write review</a></h2>
 
         </form></c:if>
-    </div>
+    </div>   -->
 
 
     <style type="text/css">
@@ -124,8 +147,7 @@
 
         body{
             font-family: 'PT Sans Narrow', sans-serif;
-            image:
-            /*background-image: url(http://3.bp.blogspot.com/-I6lfSyUQfxw/UrAULxkuyDI/AAAAAAAAQs0/GmAIGohkeaY/s1600/waterfall-godafoss-iceland.jpg); */
+            /*background-image: url(http://sadcars.com/skrar/image/blog_2013/Iceland%20driving%20winter%20Travel%20adventures.jpg); */
         }
 
         h1{
@@ -204,7 +226,7 @@
         }
 
         .loggedIn{
-            position: right;
+            float: right;
         }
 
 
