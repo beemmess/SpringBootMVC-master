@@ -26,8 +26,8 @@
 
     function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 13,
-            center: {lat: 64.148861, lng: -21.935008},
+            zoom: 15,
+            center: {lat: 64.145501,lng: -21.937641},
             mapTypeId: google.maps.MapTypeId.TERRAIN
         });
 
@@ -44,7 +44,7 @@
             {lat: 64.147995, lng: -21.940877},
             {lat: 64.147597, lng: -21.938602},
             {lat: 64.146788, lng: -21.939203},
-            {lat:  64.147186, lng: -21.942089},
+            {lat: 64.147186, lng: -21.942089},
             {lat: 64.144484, lng: -21.945156},
             {lat: 64.143076, lng: -21.943664}
 
@@ -54,7 +54,7 @@
             geodesic: true,
             strokeColor: '#FF0000',
             strokeOpacity: 1.0,
-            strokeWeight: 2
+            strokeWeight: 3
         });
 
         flightPath.setMap(map);

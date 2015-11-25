@@ -17,6 +17,9 @@
 
 <!DOCTYPE html>
 <html>
+<h2><a href="/streetmap/restaurants">Restaurants</a></h2>
+<h2><a href="/streetmap/museum">Museum</a></h2>
+<h2><a href="/">Home</a></h2>
 <head>
     <title>Place Autocomplete Hotel Search</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -428,8 +431,6 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmiPMXCC8z9ib1MGhhcGH-BgAjxC2Hp7g&libraries=places&callback=initMap"
         async defer></script>
-
-<p>This example uses the addEventListener() method to attach a click event to a button.</p>
 
 
 
