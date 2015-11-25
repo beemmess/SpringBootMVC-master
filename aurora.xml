@@ -1,0 +1,183 @@
+<?xml version="1.0"?>
+
+	<aurora>
+		<night_data> 
+		<evening_date>15-03-02</evening_date> 
+		<activity_forecast>4</activity_forecast> 
+			<sun>
+				<sunset>18:48</sunset>
+				<darkness>19:36</darkness>
+				<dawn>07:42</dawn>
+				<sunrise>08:30</sunrise>
+			</sun>
+			<moon>
+				<age>12</age>
+				<schedule_type>3</schedule_type>
+				<schedule_description>Moon sets</schedule_description> 
+				<moonset>07:36</moonset>
+				<moonrise/>
+			</moon>
+		</night_data>
+
+		<night_data>
+		<evening_date>15-03-03</evening_date> 
+		<activity_forecast>4</activity_forecast>
+			<sun>
+				<sunset>18:51</sunset>
+				<darkness>19:39</darkness>
+				<dawn>07:38</dawn>
+				<sunrise>08:26</sunrise>
+			</sun>
+			<moon>
+				<age>13</age>
+				<schedule_type>3</schedule_type> 
+				<schedule_description>Moon sets</schedule_description> 
+				<moonset>07:51</moonset>
+				<moonrise/>
+			</moon>
+		</night_data>
+
+		<night_data>
+		<evening_date>15-03-04</evening_date> 
+		<activity_forecast>3</activity_forecast>
+			<sun>
+				<sunset>18:54</sunset>
+				<darkness>19:42</darkness>
+				<dawn>07:35</dawn>
+				<sunrise>08:23</sunrise>
+			</sun>
+			<moon>
+				<age>14</age>
+				<schedule_type>3</schedule_type> 
+				<schedule_description>Moon sets</schedule_description> 
+				<moonset>08:03</moonset>
+				<moonrise/>
+			</moon>
+		</night_data>
+
+		<night_data>
+		<evening_date>15-03-05</evening_date> 
+		<activity_forecast/>
+			<sun>
+				<sunset>18:57</sunset>
+				<darkness>19:45</darkness>
+				<dawn>07:32</dawn>
+				<sunrise>08:19</sunrise>
+			</sun>
+			<moon>
+				<age>15</age>
+				<schedule_type>4</schedule_type>
+				<schedule_description>Moon rises and sets</schedule_description> 
+				<moonrise>19:07</moonrise>
+				<moonset>08:14</moonset>
+			</moon>
+		</night_data>
+
+		<night_data>
+		<evening_date>15-03-06</evening_date>
+		<activity_forecast/>
+			<sun>
+				<sunset>19:00</sunset>
+				<darkness>19:48</darkness>
+				<dawn>07:28</dawn>
+				<sunrise>08:16</sunrise>
+			</sun>
+			<moon>
+				<age>16</age>
+				<schedule_type>2</schedule_type>
+				<schedule_description>Moon rises</schedule_description> 
+				<moonrise>20:23</moonrise>
+				<moonset/>
+			</moon>
+		</night_data>
+
+		<night_data>
+		<evening_date>15-03-07</evening_date>
+		<activity_forecast/>
+			<sun>
+				<sunset>19:03</sunset>
+				<darkness>19:51</darkness>
+				<dawn>07:25</dawn>
+				<sunrise>08:12</sunrise>
+			</sun>
+			<moon>
+				<age>17</age>
+				<schedule_type>2</schedule_type> 
+				<schedule_description>Moon rises</schedule_description> 
+				<moonrise>21:39</moonrise>
+				<moonset/>
+			</moon>
+		</night_data>
+
+		<night_data>
+		<evening_date>15-03-08</evening_date> 
+		<activity_forecast/>
+			<sun>
+				<sunset>19:06</sunset>
+				<darkness>19:54</darkness>
+				<dawn>07:21</dawn>
+				<sunrise>08:09</sunrise>
+			</sun>
+			<moon>
+				<age>18</age>
+				<schedule_type>2</schedule_type> 
+				<schedule_description>Moon rises</schedule_description> 
+				<moonrise>22:55</moonrise>
+				<moonset/>
+			</moon>
+		</night_data>
+
+		<night_data> 
+		<evening_date>15-03-09</evening_date> 
+		<activity_forecast/>
+			<sun>
+				<sunset>19:09</sunset>
+				<darkness>19:57</darkness>
+				<dawn>07:18</dawn>
+				<sunrise>08:05</sunrise>
+			</sun>
+			<moon>
+				<age>19</age>
+				<schedule_type>2</schedule_type> 
+				<schedule_description>Moon rises</schedule_description>
+				<moonrise>00:12</moonrise>
+				<moonset/>
+			</moon>
+		</night_data>
+
+		<night_data>
+		<evening_date>15-03-10</evening_date> 
+		<activity_forecast/>
+			<sun>
+				<sunset>19:12</sunset>
+				<darkness>20:00</darkness>
+				<dawn>07:14</dawn>
+				<sunrise>08:02</sunrise>
+			</sun>
+			<moon>
+				<age>20</age>
+				<schedule_type>2</schedule_type> 
+				<schedule_description>Moon rises</schedule_description> 
+				<moonrise>01:29</moonrise>
+				<moonset/>
+			</moon>
+		</night_data>
+
+		<night_data>
+		<evening_date>15-03-11</evening_date> 
+		<activity_forecast/>
+			<sun>
+				<sunset>19:15</sunset>
+				<darkness>20:03</darkness>
+				<dawn>07:11</dawn>
+				<sunrise>07:58</sunrise>
+			</sun>
+			<moon>
+				<age>21</age>
+				<schedule_type>2</schedule_type> 
+				<schedule_description>Moon rises</schedule_description> 
+				<moonrise>02:43</moonrise>
+				<moonset/>
+			</moon>
+		</night_data>
+	</aurora>
