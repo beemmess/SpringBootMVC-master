@@ -52,8 +52,6 @@ public class StreetMapController {
 
         return "Map/restaurants";
 
-
-
     }
 
     @RequestMapping(value="/streetmap/museum")
@@ -96,24 +94,6 @@ public class StreetMapController {
 
 
 
-    }
-
-
-
-    @RequestMapping(value = "/streetmap/restaurants", method = RequestMethod.GET)
-    public String allReviewsRestaurant(Model model){
-
-        //allReviewsService.save(allReviews);
-
-        //allReviewsService.create(allReviews, currentUser);
-        model.addAttribute("review", new AllReviews());
-
-        // allReviewsService.findAll();
-
-
-        model.addAttribute("reviews", allReviewsService.findAll());
-        //return the view
-        return "Map/restaurants";
     }
 
 }

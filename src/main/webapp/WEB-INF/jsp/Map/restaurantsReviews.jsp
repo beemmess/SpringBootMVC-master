@@ -115,6 +115,7 @@
 
 <body>
 
+<%--
 <div id="findhotels">
     Find hotels in:
 </div>
@@ -165,7 +166,7 @@
         </table>
     </div>
 </div>
-
+--%>
 <script>
 
     var map, places, infoWindow, infoWindow1;
@@ -431,44 +432,54 @@
 
 <p>This example uses the addEventListener() method to attach a click event to a button.</p>
 
+
 <sf:form method="POST" commandName="allReviews" action="/streetmap/restaurants">
-<table>
-    <tr>
-        <td> User Name:</td>
-        <td>${currentUser.username}</td>
-    </tr>
+    <table>
+        <tr>
+            <td> User Name:</td>
+            <td>${currentUser.username}</td>
+        </tr>
 
-    <tr>
-        <td>Restaurant:</td>
-        <td>
-        <form:textarea disabled="true" path="restaurant" id="RestaurantName"/>
-    </td>
+        <tr>
+            <td>Restaurant:</td>
+            <td>
+                <form:textarea disabled="true" path="restaurant" id="RestaurantName"/>
+            </td>
 
-    </tr>
+        </tr>
 
-    <tr>
-        <td>Review:</td>
-        <td> <form:textarea path="review" /></td>
-    </tr>
-</table>
+        <tr>
+            <td>Review:</td>
+            <td> <form:textarea path="review" /></td>
+        </tr>
+    </table>
     <input type="submit" VALUE="Post It!"/>
 </sf:form>
+
+<%--
+  <c:forEach var="review" items="${reviews}">
+      <p>${review.review}</p>
+  </c:forEach>
+--%>
 
 
 <script>
     document.getElementById("results").addEventListener("click", Restaurant);
 
+
     function Restaurant() {
         document.getElementById("RestaurantName").innerHTML = document.getElementById("iw-url").innerHTML;
         document.getElementById("RestaurantType").innerHTML = document.getElementById("iw-type").innerHTML;
-
-        /*
         var seeReviewsButton = document.createElement("BUTTON");
+        var writeReviewsButton = document.createElement("BUTTON");
         var seeReviewsButtonText = document.createTextNode("See reviews");
+        var writeReviewsButtonText =document.createTextNode("Write reviews");
         seeReviewsButton.appendChild(seeReviewsButtonText);
-        var restaurantReviewsForm = document.getElementById("reviewsForm");
-        restaurantReviewsForm.appendChild(seeReviewsButton);
-        */
+        writeReviewsButton.appendChild(writeReviewsButtonText);
+        var restaurantName = document.getElementById("RestaurantName");
+        restaurantName.appendChild(seeReviewsButton);
+        restaurantName.appendChild(writeReviewsButton);
+        //console.log.(restaurantName);
     }
 
 </script>
