@@ -44,18 +44,19 @@ Fyrsta tegund af google maps
     <meta charset="utf-8">
     <style>
         html, body {
-            height: 100%;
+            height: 80%;
             margin: 0;
             padding: 0;
 
         }
         #map {
-            height: 50%;
-            width: 50%;
+            height: 100%;
+            width: 100%;
         }
 
 
     </style>
+
     <script>
 
         var map, places, infoWindow;
@@ -205,6 +206,11 @@ Fyrsta tegund af google maps
                     }
                     infoWindow.setContent(result.name + "<br/>" + result.rating + "<br/>" + result.formatted_address + "<br/>" + result.website + "<br/>" + result.formatted_phone_number );
                     infoWindow.open(map, marker);
+                    var para = document.createElement("p");
+                    var node = document.createTextNode(result.name+ "   rating:     " + result.rating);
+                    para.appendChild(node);
+                    var element = document.getElementById("para");
+                    element.appendChild(para);
                 });
             });
 
@@ -216,8 +222,7 @@ Fyrsta tegund af google maps
 <body>
 
 <div id="map"></div>
-<div id="para">
-</div>
+<div id="para" align="top"></div>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmiPMXCC8z9ib1MGhhcGH-BgAjxC2Hp7g&libraries=places&callback=initMap"
         async defer></script>
