@@ -9,6 +9,8 @@
 
 
 
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -151,6 +153,10 @@
             <tr id="iw-website-row" class="iw_table_row">
                 <td class="iw_attribute_name">Website:</td>
                 <td id="iw-website"></td>
+            </tr>
+            <tr id="iw-type-row" class="iw_table_row">
+                <td class="iw_attribute_name">Type:</td>
+                <td id="iw-type"></td>
             </tr>
         </table>
     </div>
@@ -365,6 +371,7 @@
         document.getElementById('iw-icon').innerHTML = '<img class="hotelIcon" ' +
                 'src="' + place.icon + '"/>';
         document.getElementById('iw-url').innerHTML = '<b>' + place.name + '</b>';
+        document.getElementById('iw-type').innerHTML = '<b>' + place.types[0] + '</b>';
         document.getElementById('iw-address').textContent = place.vicinity;
 
         if (place.formatted_phone_number) {
@@ -414,9 +421,7 @@
 
 
 </script>
-</head>
-<body>
-<div id="map"></div>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmiPMXCC8z9ib1MGhhcGH-BgAjxC2Hp7g&libraries=places&callback=initMap"
         async defer></script>
 
@@ -424,57 +429,17 @@
 
 
 
-<p id="demo"></p>
+<p id="RestaurantName"></p>
+<p id="RestaurantType"></p>
 
 <script>
-    document.getElementById("results").addEventListener("click", displayDate);
+    document.getElementById("results").addEventListener("click", Restaurant);
 
-    function displayDate() {
-        document.getElementById("demo").innerHTML = document.getElementById("iw-url").innerHTML;
+    function Restaurant() {
+        document.getElementById("RestaurantName").innerHTML = document.getElementById("iw-url").innerHTML;
+        document.getElementById("RestaurantType").innerHTML = document.getElementById("iw-type").innerHTML;
     }
 </script>
 
-
-
+</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
