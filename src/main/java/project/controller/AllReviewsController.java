@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import project.persistence.entities.Attraction.AllReviews;
+import project.persistence.entities.User.CurrentUser;
 import project.service.AllReviewsService;
 
 import java.util.Date;
@@ -25,27 +26,25 @@ public class AllReviewsController {
         this.allReviewsService = allReviewsService;
     }
 
-    @RequestMapping(value = "/reviews", method = RequestMethod.GET)
+    @RequestMapping(value = "/streetmap/restaurants", method = RequestMethod.GET)
     public  String allReviewsViewGet(Model model){
         model.addAttribute("allReviews", new AllReviews());
 
-        model.addAttribute("allReviewses", allReviewsService.findAllReverseOrder());
 
         //return the view
-        return "Attraction/allReviews";
+        return "Map/restaurants";
     }
 
-    @RequestMapping(value = "/reviews", method = RequestMethod.POST)
-    public String allReviewsViewPost(@ModelAttribute("allReviews") AllReviews allReviews, Model model){
+    @RequestMapping(value = "/streetmap/restaurants", method = RequestMethod.POST)
+    public String allReviewsViewPost(@ModelAttribute("allReviews") AllReviews allReviews, CurrentUser currentUser, Model model){
 
-        allReviewsService.save(allReviews);
+        //allReviewsService.save(allReviews);
 
-        model.addAttribute("allReviewses", allReviewsService.findAllReverseOrder());
+        allReviewsService.create(allReviews, currentUser);
 
-        model.addAttribute("allRebiews", new AllReviews());
 
         //return the view
-        return "Attraction/allReviews";
+        return "Map/restaurants";
     }
 
 }

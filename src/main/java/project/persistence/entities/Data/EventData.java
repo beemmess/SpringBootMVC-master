@@ -164,10 +164,11 @@ public class EventData {
             JSONArray showTimes = cinemaEvent.getJSONArray("showtimes");
             String[] theater = new String[showTimes.length()];
             String[][] schedule = new String[result.length()][showTimes.length()];
-             for(int j=0; j<showTimes.length(); j++) {
+            for(int j=0; j<showTimes.length(); j++) {
                  JSONObject showTime = showTimes.getJSONObject(j);
                  theater[j] = showTime.getString("theater");
-                 //schedule[i] = showTime.getString("schedule");
+                 schedule[i][j] = showTime.getString("schedule");
+                 System.out.println(schedule[i][j]);
             }
 
             bio[i] = new Cinema();
@@ -175,7 +176,7 @@ public class EventData {
             bio[i].setRestricted(restricted);
             bio[i].setImage(image);
             bio[i].setTheater(theater);
-            //bio[i].setSchedule(schedule);
+            bio[i].setSchedule(schedule);
 
             //JSONArray showTimes = cinemaEvent.getJSONArray("showtimes");
             //JSONObject theaterObj = showTimes.getJSONObject(0);

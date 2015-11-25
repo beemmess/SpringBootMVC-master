@@ -1,5 +1,6 @@
 package project.persistence.entities.Attraction;
 
+
 import javax.persistence.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -19,14 +20,20 @@ public class AllReviews {
     private String review;
     private Date date;
 
+    private String restaurant;
+
+    //private Attraction attraction;
+
     public AllReviews() {
         this.date = new Date();
     }
 
-    public AllReviews(String username, String review, Date date) {
+    public AllReviews(String username, String review, Date date, String restaurant) {
         this.username = username;
         this.review = review;
         this.date = date;
+        this.restaurant = restaurant;
+        //this.attraction = attraction;
     }
 
     public Long getId() {
@@ -49,6 +56,20 @@ public class AllReviews {
         return this.date;
     }
 
+    public String getRestaurant(){
+        return this.restaurant;
+    }
+
+    /*
+    public void getAttraction() {
+        return this.attracion;
+    }
+    */
+
+    public void setId(Long id){
+        this.id = id;
+    }
+
     public void setUsername(String username) {
 
         this.username = username;
@@ -62,11 +83,20 @@ public class AllReviews {
         this.date = date;
     }
 
+
+    public void setRestaurant(String restaurant) {this.restaurant = restaurant;}
+
+    /*
+    public void setAttraction(Attraction attraction){
+        this.attraction = attraction;
+    }
+    */
+
     @Override
     public String toString() {
         return String.format(
-                "AllReviews[date=‰s, username=%s, review=%s",
-                date, username, review);
+                "AllReviews[date=‰s, username=%s, review=%s, restaurant=%s]",
+                date, username, review, restaurant);
     }
 
 }

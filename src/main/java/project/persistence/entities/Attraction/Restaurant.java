@@ -5,10 +5,9 @@ public class Restaurant extends Attraction {
 
     private String restaurantType;
 
-    public Restaurant(String restaurantType, String type, String name, double lat, double lng){
-        super(type, name, lat, lng);
+    public Restaurant(String restaurantType, String type, String name, AllReviews[] allReviews, double lat, double lng){
+        super(type, name, allReviews, lat, lng);
         this.restaurantType = restaurantType;
-
     }
 
     public String getRestaurantType(){
@@ -18,7 +17,4 @@ public class Restaurant extends Attraction {
     public void setRestaurantType(String restaurantType){
         this.restaurantType = restaurantType;
     }
-
-
-
 }

@@ -34,6 +34,11 @@
         <form action="/logout" method="post">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <button type="submit">Log out</button>
+
+
+
+            <h2><a href="/reviews">Write review</a></h2>
+
         </form></c:if>
 
 

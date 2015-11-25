@@ -16,8 +16,8 @@
 <h2><a href="/streetmap/restaurants">Restaurants</a></h2>
 <h2><a href="/streetmap/museum">museum</a></h2>
 
-<h1>Korta s</h1>
-<p>${texti}</p>
+<h1>Map</h1>
+<p>${headMsg}</p>
 <tr>
     <td>Type of interest:</td>
 
@@ -44,16 +44,19 @@ Fyrsta tegund af google maps
     <meta charset="utf-8">
     <style>
         html, body {
-            height: 100%;
+            height: 80%;
             margin: 0;
             padding: 0;
 
         }
         #map {
-            height: 80%;
-            width: 80%;
+            height: 100%;
+            width: 100%;
         }
+
+
     </style>
+
     <script>
 
         var map, places, infoWindow;
@@ -62,7 +65,6 @@ Fyrsta tegund af google maps
         var autocomplete;
         var pyrmont = {lat: 64.144136, lng: -21.932653}; // fixed location
         var pos;
-
 
 
         // initMap byrjar %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -120,13 +122,9 @@ Fyrsta tegund af google maps
             }
 
 
-
-
-
             // The idle event is a debounced event, so we can query & listen without
             // throwing too many requests at the server.
             map.addListener('idle', performSearch);
-
 
             //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         }// initMap endar hér %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -146,7 +144,7 @@ Fyrsta tegund af google maps
             var country = document.getElementById('country').value;
             var place = autocomplete.getPlace();
             if (place.geometry) {
-                map.panTo(place.geometry.location);
+              //  map.panTo(place.geometry.location);
                 map.setZoom(14);
 
                 performSearch();
@@ -163,14 +161,12 @@ Fyrsta tegund af google maps
             var request = {
                 location: map.getCenter(),
                 //location: pos,
-                radius: 5000, // Radius til að ákveða hversu marga punkta á að velja í kring
+                radius: 1500, // Radius til að ákveða hversu marga punkta á að velja í kring
                 keyword: ['hotel']
             };
             service.radarSearch(request, callback);
             //service.textSearch(request, callback);
         }
-
-
 
         function callback(results, status) {
 
@@ -178,7 +174,6 @@ Fyrsta tegund af google maps
                 console.error(status);
                 return;
             }
-            clearMarkers();
             for (var i = 0, result; result = results[i]; i++) {
                 addMarker(result);
             }
@@ -210,18 +205,24 @@ Fyrsta tegund af google maps
                     }
                     infoWindow.setContent(result.name + "<br/>" + result.rating + "<br/>" + result.formatted_address + "<br/>" + result.website + "<br/>" + result.formatted_phone_number );
                     infoWindow.open(map, marker);
-
+                    var para = document.createElement("p");
+                    var node = document.createTextNode(result.name+ "   rating:     " + result.rating);
+                    para.appendChild(node);
+                    var element = document.getElementById("para");
+                    element.appendChild(para);
                 });
-
             });
+
             markers.push(marker);
         }
-
 
     </script>
 </head>
 <body>
+
 <div id="map"></div>
+<div id="para" align="top"></div>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmiPMXCC8z9ib1MGhhcGH-BgAjxC2Hp7g&libraries=places&callback=initMap"
         async defer></script>
 </body>
