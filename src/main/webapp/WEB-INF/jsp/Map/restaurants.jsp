@@ -11,6 +11,10 @@
 
 
 
+
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -429,12 +433,35 @@
 
 
 
-<p id="RestaurantName"></p>
-<p id="RestaurantType"></p>
+<sf:form method="POST" commandName="allReviews" action="/streetmap/restaurants">
+<table>
+    <tr>
+        <td> User Name:</td>
+        <td>${currentUser.username}</td>
+    </tr>
 
+    <tr>
+        <td>Restaurant</td>
+        <td><sf:select path = "restaurant" id="RestaurantName" name="RestaurantName">
+            <sf:option value="RestaurantName"  />
+
+        </sf:select></td>
+    </tr>
+
+
+    <tr>
+        <td>Review:</td>
+        <td> <form:textarea path="review" /></td>
+    </tr>
+</table>
+    <input type="submit" VALUE="Post It!"/>
+</sf:form>
 
 <script>
     document.getElementById("results").addEventListener("click", Restaurant);
+
+
+
 
     function Restaurant() {
         document.getElementById("RestaurantName").innerHTML = document.getElementById("iw-url").innerHTML;
@@ -448,8 +475,9 @@
         var restaurantName = document.getElementById("RestaurantName");
         restaurantName.appendChild(seeReviewsButton);
         restaurantName.appendChild(writeReviewsButton);
+        //console.log.(restaurantName);
     }
-    
+
 </script>
 
 </body>

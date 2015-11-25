@@ -95,8 +95,8 @@ public class AllReviews {
     @Override
     public String toString() {
         return String.format(
-                "AllReviews[date=‰s, username=%s, review=%s",
-                date, username, review);
+                "AllReviews[date=‰s, username=%s, review=%s, restaurant=%s]",
+                date, username, review, restaurant);
     }
 
 }
