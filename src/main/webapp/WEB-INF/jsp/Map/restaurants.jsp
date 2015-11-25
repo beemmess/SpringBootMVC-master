@@ -432,13 +432,24 @@
 <p id="RestaurantName"></p>
 <p id="RestaurantType"></p>
 
+
 <script>
     document.getElementById("results").addEventListener("click", Restaurant);
 
     function Restaurant() {
         document.getElementById("RestaurantName").innerHTML = document.getElementById("iw-url").innerHTML;
         document.getElementById("RestaurantType").innerHTML = document.getElementById("iw-type").innerHTML;
+        var seeReviewsButton = document.createElement("BUTTON");
+        var writeReviewsButton = document.createElement("BUTTON");
+        var seeReviewsButtonText = document.createTextNode("See reviews");
+        var writeReviewsButtonText =document.createTextNode("Write reviews");
+        seeReviewsButton.appendChild(seeReviewsButtonText);
+        writeReviewsButton.appendChild(writeReviewsButtonText);
+        var restaurantName = document.getElementById("RestaurantName");
+        restaurantName.appendChild(seeReviewsButton);
+        restaurantName.appendChild(writeReviewsButton);
     }
+    
 </script>
 
 </body>
