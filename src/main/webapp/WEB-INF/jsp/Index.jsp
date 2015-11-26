@@ -139,22 +139,6 @@
         </form></c:if>
     </div>   -->
 
-<div class="loggedIn">
-    <c:if test="${not empty currentUser.username}"><h2>Logged in as ${currentUser.username}</h2>
-
-        <h2><a href=" <c:url value="/userpage/${currentUser.id}" />">My page</a></h2>
-
-        <form action="/logout" method="post">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-            <h2><a href="/reviews">Write review</a></h2>
-
-            <button type="submit">Log out</button>
-
-
-
-        </form></c:if>
-</div>
-
 
     <style type="text/css">
 
