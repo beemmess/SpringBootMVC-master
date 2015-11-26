@@ -14,6 +14,20 @@
         <!-- <img src="JonG.jpg">  !-->
         <h1>Welcome to Happy tourist Reykjavík!</h1>
 
+
+        <div class="loggedIn">
+            <c:if test="${not empty currentUser.username}"><h2>Logged in as ${currentUser.username}</h2>
+
+                <h2><a href=" <c:url value="/userpage/${currentUser.id}" />">My page</a></h2>
+
+                <form action="/logout" method="post">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <button type="submit">Log out</button>
+
+
+                </form></c:if>
+        </div>
+        
     <div id="wrapper">
 
         <div id="navMenu">

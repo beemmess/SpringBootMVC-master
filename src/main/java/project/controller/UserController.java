@@ -47,8 +47,6 @@ public class UserController {
     ///USER REGISTRATION
     @RequestMapping(value = "/public/create", method = RequestMethod.GET)
     public String getRegistrationView(CurrentUser currentUser, Model model){
-        String signup = "User registration form";
-        model.addAttribute("signupMsg", signup);
 
         model.addAttribute("form", new UserCreateForm());
 
