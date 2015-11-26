@@ -43,6 +43,7 @@
 <div class="vedurspa">
     <c:forEach var="vedur" items="${vedur}">
 
+          <%--
             <p>${vedur.title} </p>
             <p>${vedur.content}</p>
 
@@ -62,6 +63,7 @@
 </div>
 
 <style type="text/css">
+
     div.vedurspa{
         width: 40%;
         padding-left: 45%;
