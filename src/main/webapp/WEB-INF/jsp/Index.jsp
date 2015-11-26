@@ -14,20 +14,6 @@
         <!-- <img src="JonG.jpg">  !-->
         <h1>Welcome to Happy tourist Reykjavík!</h1>
 
-        <div class="loggedIn">
-            <c:if test="${not empty currentUser.username}"><h2>Logged in as ${currentUser.username}</h2>
-
-                <h2><a href=" <c:url value="/userpage/${currentUser.id}" />">My page</a></h2>
-
-                <form action="/logout" method="post">
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    <button type="submit">Log out</button>
-
-                    <h2><a href="/reviews">Write review</a></h2>
-
-                </form></c:if>
-        </div>
-
     <div id="wrapper">
 
         <div id="navMenu">
@@ -139,14 +125,32 @@
         </form></c:if>
     </div>   -->
 
+<div class="loggedIn">
+    <c:if test="${not empty currentUser.username}"><h2>Logged in as ${currentUser.username}</h2>
+
+        <h2><a href=" <c:url value="/userpage/${currentUser.id}" />">My page</a></h2>
+
+        <form action="/logout" method="post">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <h2><a href="/reviews">Write review</a></h2>
+
+            <button type="submit">Log out</button>
+
+
+
+        </form></c:if>
+</div>
+
 
     <style type="text/css">
 
         *{
+
         }
 
         body{
             font-family: 'PT Sans Narrow', sans-serif;
+            font-size: 18px;
             /*background-image: url(http://sadcars.com/skrar/image/blog_2013/Iceland%20driving%20winter%20Travel%20adventures.jpg); */
         }
 
@@ -157,6 +161,10 @@
             border-bottom: 2px solid black;
         }
 
+        h2 a:hover{
+            background: #E0E0E0;
+        }
+
         img{
             width: 20px;
             height:20px;
@@ -165,7 +173,7 @@
         #navMenu{
             margin: 0;
             padding: 0;
-            padding-left: 150px;
+            padding-left: 140px;
         }
 
         #navMenu ul{
@@ -189,9 +197,9 @@
             height: 30px;
             width: 150px;
             display: block;
-            color: #FFF;
+            color: #000;
             border: 1px solid #FFF;
-            text-shadow: 1px 1px 1px #000;
+            /*text-shadow: 1px 1px 1px #000; */
         }
 
         #navMenu ul ul {
@@ -207,7 +215,7 @@
         /******************************/
 
         #navMenu li:hover {
-            background: #09F;
+            background: #E0E0E0;
         }
 
         #navMenu ul li:hover ul li a:hover{
@@ -226,7 +234,15 @@
         }
 
         .loggedIn{
-            float: right;
+            font-size: 14px;
+            float: left;
+            margin-top: 200px;
+            margin-left: 10px;
+        }
+
+        .loggedIn a{
+            color: #000;
+            text-decoration: none;
         }
 
 
