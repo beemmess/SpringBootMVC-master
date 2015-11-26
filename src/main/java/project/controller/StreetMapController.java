@@ -30,7 +30,6 @@ public class StreetMapController {
 
     @RequestMapping(value="/streetmap")
     public String streetMap(Model model) {
-        System.out.println("llala");
 
         String texti = "Einhver texti herna um KOOOOOOORT";
 
@@ -44,7 +43,7 @@ public class StreetMapController {
 
     @RequestMapping(value="/streetmap/restaurants")
     public String restaurant(Model model) {
-        System.out.println("llala");
+
 
         String texti = "Einhver texti herna um KOOOOOOORT";
 
@@ -56,7 +55,7 @@ public class StreetMapController {
 
     @RequestMapping(value="/streetmap/museum")
     public String musuem(Model model) {
-        System.out.println("llala");
+
 
         String texti = "Einhver texti herna um KOOOOOOORT";
 
@@ -70,7 +69,7 @@ public class StreetMapController {
 
     @RequestMapping(value="/streetmap/hotel")
     public String hotel(Model model) {
-        System.out.println("llala");
+
 
         String texti = "Einhver texti herna um KOOOOOOORT";
 
@@ -84,7 +83,6 @@ public class StreetMapController {
 
     @RequestMapping(value="/streetmap/walking1")
     public String walking1(Model model) {
-        System.out.println("llala");
 
         String texti = "Einhver texti herna um KOOOOOOORT";
 

@@ -168,7 +168,6 @@ public class EventData {
                  JSONObject showTime = showTimes.getJSONObject(j);
                  theater[j] = showTime.getString("theater");
                  schedule[i][j] = showTime.getString("schedule");
-                 System.out.println(schedule[i][j]);
             }
 
             bio[i] = new Cinema();
