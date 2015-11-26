@@ -10,9 +10,7 @@
     <title>User</title>
 </head>
 <body>
-<h1>${signupMsg}</h1>
-
-
+<h1>Registration form</h1>
 
 
 <sf:errors path="form.*"/>

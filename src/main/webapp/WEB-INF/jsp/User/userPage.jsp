@@ -17,7 +17,7 @@
 <c:forEach items="${reviews}" var="reviews">
     <tr>
         <td>${reviews.restaurant}</td>
-        <td>${reviews.review}</td>
+        <td><p>${reviews.review}</p></td>
     </tr>
 </c:forEach>
 </table>

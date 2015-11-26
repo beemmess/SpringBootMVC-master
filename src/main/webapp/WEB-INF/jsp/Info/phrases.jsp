@@ -20,8 +20,7 @@
             <%--Create a table for the Postit Notes--%>
             <table>
 
-                    <tr>
-                        <th>Type</th><th>English</th><th>Icelandic</th>
+                    <tr><th>English</th><th>Icelandic</th>
                     </tr>
                     <%--For each postit note, that is in the list that was passed in the model--%>
                     <%--generate a row in the table--%>
@@ -32,7 +31,6 @@
                             <%--it in the singular item var, and then just a dot followed by the attribute name--%>
 
                             <%--Create a link based on the name attribute value--%>
-                        <td>${phrases.type}</td>
                         <td>${phrases.english}</td>
                                 <td>${phrases.icelandic}</td>
                     </tr>
