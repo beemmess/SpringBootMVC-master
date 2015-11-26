@@ -145,7 +145,9 @@
         color: #000;
         text-decoration: none;
     }
-
+    tr:nth-child(even) {
+        background-color: #F0F0F0  ;
+    }
 
 </style>
 </html>
