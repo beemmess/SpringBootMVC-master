@@ -17,9 +17,25 @@
 
 <!DOCTYPE html>
 <html>
-<h2><a href="/streetmap/restaurants">Restaurants</a></h2>
-<h2><a href="/streetmap/museum">Museum</a></h2>
-<h2><a href="/">Home</a></h2>
+<link href='https://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet' type='text/css'>
+
+<div id="wrapper">
+
+    <div id="navMenu">
+        <ul>
+            <li>
+                <a href="">Streetmaps</a>
+                <ul>
+                    <li><a href="/streetmap/restaurants">Restaurant Streetmap</a></li>
+                    <li><a href="/streetmap/hotel">Hotel Streetmap</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/">Home</a>
+            </li>
+        </ul>
+    </div>
+</div>
 
 <head>
     <title>Place Autocomplete Hotel Search</title>
@@ -37,8 +53,12 @@
     </style>
 
     <style>
+        body{
+            font-family: 'PT Sans Narrow', sans-serif;
+        }
+
         table {
-            font-size: 12px;
+            font-size: 14px;
         }
         #map {
             width: 880px;
@@ -47,10 +67,10 @@
         #listing {
             position: absolute;
             width: 200px;
-            height: 550px;
+            height: 532px;
             overflow: auto;
             left: 882px;
-            top: 40px;
+            top: 120px;
             cursor: pointer;
             overflow-x: hidden;
         }
@@ -70,7 +90,7 @@
             left: 108px;
             top: 0px;
             z-index: 5;
-            background-color: #fff;
+            background-color: transparent;
         }
         #controls {
             position: absolute;
@@ -114,6 +134,68 @@
         .iw_table_icon {
             text-align: right;
         }
+
+        #navMenu{
+            padding: 0;
+            height: 4em;
+        }
+
+        #navMenu ul{
+            padding: 0;
+            line-height: 30px;
+        }
+
+        #navMenu li{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            float: left;
+            position: relative;
+
+        }
+
+        #navMenu ul li a{
+            text-align: center;
+            text-decoration: none;
+            height: 30px;
+            width: 150px;
+            display: block;
+            color: #000 ;
+            border: 1px solid #FFF;
+            /*text-shadow: 1px 1px 1px #000; */
+        }
+
+        #navMenu ul ul {
+            position: absolute;
+            visibility: hidden;
+            top: 32px;
+        }
+
+        #navMenu ul li:hover ul{
+            visibility: visible;
+        }
+
+        /******************************/
+
+        #navMenu li:hover {
+            background: #E0E0E0;
+        }
+
+        #navMenu ul li:hover ul li a:hover{
+            background: #CCC;
+            color: #000;
+        }
+
+        #navMenu a:hover{
+            color: #000;
+        }
+
+        .clearFloat{
+            clear: both;
+            margin: 0;
+            padding: 0;
+        }
+
     </style>
 </head>
 
