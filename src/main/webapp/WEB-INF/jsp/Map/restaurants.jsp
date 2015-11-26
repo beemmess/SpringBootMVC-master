@@ -7,19 +7,31 @@
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="th" uri="http://www.springframework.org/tags/form" %>
 
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html>
-<h2><a href="/streetmap/restaurants">Restaurants</a></h2>
+<link href='https://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet' type='text/css'>
+
+<div id="wrapper">
+
+    <div id="navMenu">
+        <ul>
+            <li>
+                <a href="">Streetmaps</a>
+                <ul>
+                    <li><a href="/streetmap/restaurants">Restaurant Streetmap</a></li>
+                    <li><a href="/streetmap/museum">Museum Streetmap</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/">Home</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- <h2><a href="/streetmap/restaurants">Restaurants</a></h2>
 <h2><a href="/streetmap/museum">Museum</a></h2>
-<h2><a href="/">Home</a></h2>
+<h2><a href="/">Home</a></h2>   -->
 <head>
     <title>Place Autocomplete Hotel Search</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -36,9 +48,22 @@
     </style>
 
     <style>
-        table {
-            font-size: 12px;
+        body{
+            font-family: 'PT Sans Narrow', sans-serif;
         }
+
+        table {
+            font-size: 14px;
+            padding:60px;
+        }
+
+        #button{
+            float: left;
+            margin-top: -45px;
+            margin-left: 112px;
+        }
+
+
         #map {
             width: 880px;
             top: 40px;
@@ -46,10 +71,10 @@
         #listing {
             position: absolute;
             width: 200px;
-            height: 652px;    /* var 550 */
+            height: 470px;    /* var 550 */
             overflow: auto;
             left: 882px;
-            top: 204px;
+            top: 120px;
             cursor: pointer;
             overflow-x: hidden;
         }
@@ -69,7 +94,7 @@
             left: 108px;
             top: 0px;
             z-index: 5;
-            background-color: #fff;
+            background-color: transparent;
         }
         #controls {
             position: absolute;
@@ -113,6 +138,69 @@
         .iw_table_icon {
             text-align: right;
         }
+
+        #navMenu{
+            padding: 0;
+            height: 4em;
+        }
+
+        #navMenu ul{
+            padding: 0;
+            line-height: 30px;
+        }
+
+        #navMenu li{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            float: left;
+            position: relative;
+
+        }
+
+        #navMenu ul li a{
+            text-align: center;
+            text-decoration: none;
+            height: 30px;
+            width: 150px;
+            display: block;
+            color: #000 ;
+            border: 1px solid #FFF;
+            /*text-shadow: 1px 1px 1px #000; */
+        }
+
+        #navMenu ul ul {
+            position: absolute;
+            visibility: hidden;
+            top: 32px;
+        }
+
+        #navMenu ul li:hover ul{
+            visibility: visible;
+        }
+
+        /******************************/
+
+        #navMenu li:hover {
+            background: #E0E0E0;
+        }
+
+        #navMenu ul li:hover ul li a:hover{
+            background: #CCC;
+            color: #000;
+        }
+
+        #navMenu a:hover{
+            color: #000;
+        }
+
+        .clearFloat{
+            clear: both;
+            margin: 0;
+            padding: 0;
+        }
+
+
     </style>
 </head>
 
@@ -450,7 +538,7 @@
         <td> <form:textarea path="review" /></td>
     </tr>
 </table>
-    <input type="submit" VALUE="Post It!"/>
+    <input id="button" type="submit" VALUE="Post It!"/>
 </sf:form>
 
 <c:choose>
