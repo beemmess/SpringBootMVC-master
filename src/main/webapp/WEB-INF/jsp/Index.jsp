@@ -149,7 +149,7 @@
         body{
             font-family: 'PT Sans Narrow', sans-serif;
             font-size: 18px;
-            height: 650px;
+            height: 800px;
             background: -webkit-linear-gradient(white, #778899 ); /* For Safari 5.1 to 6.0 */
             background: -moz-linear-gradient(white, #778899 ); /* For Firefox 3.6 to 15 */
             background: linear-gradient(white, #778899); /* Standard syntax (must be last) */

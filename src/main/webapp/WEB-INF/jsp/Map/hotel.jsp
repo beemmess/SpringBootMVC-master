@@ -67,7 +67,7 @@
         #listing {
             position: absolute;
             width: 200px;
-            height: 532px;
+            height: 620px;
             overflow: auto;
             left: 882px;
             top: 120px;
