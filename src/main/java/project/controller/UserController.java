@@ -79,7 +79,7 @@ public class UserController {
     public String getUserPage(@PathVariable("id") Long id, @ModelAttribute("currentUser") CurrentUser currentUser, Model model){
 
         String username = currentUser.getUsername();
-        String userPage = "welcome to user page, " + username;
+        String userPage = "Welcome to user page, " + username;
         model.addAttribute("userPage", userPage);
 
         model.addAttribute("reviews", allReviewsService.findByUsername(currentUser.getUsername()));
