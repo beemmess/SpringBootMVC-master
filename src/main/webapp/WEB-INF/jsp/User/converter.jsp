@@ -3,6 +3,16 @@
 <html>
 <head>
     <title>Currency converter</title>
+    <div id="wrapper">
+
+        <div id="navMenu">
+            <ul>
+                <li>
+                    <a href="/">Home</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </head>
 <body>
 
