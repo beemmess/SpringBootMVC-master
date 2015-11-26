@@ -18,8 +18,8 @@
             <li>
                 <a href="">Streetmaps</a>
                 <ul>
-                    <li><a href="/streetmap/restaurants">Restaurant Streetmap</a></li>
                     <li><a href="/streetmap/museum">Museum Streetmap</a></li>
+                    <li><a href="/streetmap/hotel">Hotel Streetmap</a></li>
                 </ul>
             </li>
             <li>
