@@ -31,7 +31,7 @@
     <script type="text/javascript"><!--
     VI.ifrm.type = 'wel';
     VI.ifrm.area = 101;
-    VI.ifrm.lang = 'is';
+    VI.ifrm.lang = 'en';
     VI.ifrm.displayWeather();
     //-->
     </script>
@@ -43,6 +43,7 @@
 <div class="vedurspa">
     <c:forEach var="vedur" items="${vedur}">
 
+          <%--
             <p>${vedur.title} </p>
             <p>${vedur.content}</p>
 
@@ -62,6 +63,7 @@
 </div>
 
 <style type="text/css">
+
     div.vedurspa{
         width: 40%;
         padding-left: 45%;

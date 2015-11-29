@@ -13,11 +13,8 @@ public class AuroraController {
 
 
     @RequestMapping(value="/aurora")
-    public String aurora(Model model){
-        System.out.println("blabla");
-        String texti = "tralala";
+    public String aurora(){
 
-        model.addAttribute("texti", texti);
 
         return "Forecast/aurora";
     }

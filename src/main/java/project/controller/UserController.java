@@ -7,10 +7,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import project.persistence.entities.Attraction.AllReviews;
 import project.persistence.entities.User.CurrentUser;
 import project.persistence.entities.User.User;
 import project.persistence.entities.User.UserCreateForm;
 import project.persistence.entities.User.Validator.UserCreateFormValidator;
+import project.service.AllReviewsService;
 import project.service.UserService;
 import org.springframework.validation.Validator;
 
@@ -24,18 +26,19 @@ public class UserController {
 
     UserService userService;
     UserCreateFormValidator userCreateFormValidator;
+    AllReviewsService allReviewsService;
 
     @Autowired
-    public UserController(UserService userService, UserCreateFormValidator userCreateFormValidator) {
+    public UserController(UserService userService, UserCreateFormValidator userCreateFormValidator, AllReviewsService allReviewsService) {
         this.userService = userService;
         this.userCreateFormValidator = userCreateFormValidator;
+        this.allReviewsService = allReviewsService;
     }
 
 
     @InitBinder("form")
     public void initBinder(WebDataBinder binder) {
         binder.addValidators(userCreateFormValidator);
-        //binder.registerCustomEditor(String.class, "email", new UserEmailEditor());
     }
 
 
@@ -43,8 +46,6 @@ public class UserController {
     ///USER REGISTRATION
     @RequestMapping(value = "/public/create", method = RequestMethod.GET)
     public String getRegistrationView(CurrentUser currentUser, Model model){
-        String signup = "User registration form";
-        model.addAttribute("signupMsg", signup);
 
         model.addAttribute("form", new UserCreateForm());
 
@@ -77,8 +78,10 @@ public class UserController {
     public String getUserPage(@PathVariable("id") Long id, @ModelAttribute("currentUser") CurrentUser currentUser, Model model){
 
         String username = currentUser.getUsername();
-        String userPage = "welcome to user page, " + username;
+        String userPage = "Welcome to user page, " + username;
         model.addAttribute("userPage", userPage);
+
+        model.addAttribute("reviews", allReviewsService.findByUsername(currentUser.getUsername()));
 
 
         return "User/userPage";

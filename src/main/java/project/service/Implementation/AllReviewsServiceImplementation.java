@@ -3,9 +3,12 @@ package project.service.Implementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.persistence.entities.Attraction.AllReviews;
+import project.persistence.entities.User.CurrentUser;
+import project.persistence.entities.User.User;
 import project.persistence.repositories.AllReviewsRepository;
 import project.service.AllReviewsService;
 
+import javax.websocket.OnClose;
 import java.util.Collections;
 import java.util.List;
 
@@ -42,10 +45,30 @@ public class AllReviewsServiceImplementation implements AllReviewsService{
     }
 
     @Override
+    public List<AllReviews> findByRestaurant(String restaurant){
+        return repository.findByRestaurant(restaurant);
+    }
+
+    @Override
     public List<AllReviews> findAllReverseOrder(){
         List<AllReviews> allReviewses = repository.findAll();
         Collections.reverse(allReviewses);
 
         return allReviewses;
     }
+
+    @Override
+    public AllReviews create(AllReviews reviews, CurrentUser currentUser){
+        reviews.setUsername(currentUser.getUsername());
+
+        return save(reviews);
+
+    }
+
+    @Override
+    public  List<AllReviews> findByUsername(String username){
+        return repository.findByUsername(username);
+
+    }
+
 }

@@ -44,8 +44,6 @@ public class CurrencyConverterService {
 
 
         for(int i = 0; i < currencyConverters.size(); i++) {
-            //double foreignValue = currencyConverters.get(i).getIskValue()/currencyConverters.get(i).getValue();
-            //currencyConverter.setForeignValue(foreignValue);
             currencyConverter.setValue(currencyConverters.get(i).getValue());
             CurrencyConverter.Currency shortName =  currencyValues[i];
             currencyConverter.setCurrencyShortName(shortName);

@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import project.persistence.entities.Attraction.AllReviews;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by bjarkimar23 on 5.11.2015.
@@ -25,5 +26,9 @@ public interface AllReviewsRepository extends JpaRepository<AllReviews, Long>{
     List<AllReviews> findAll();
 
     AllReviews findOne(Long id);
+
+    List<AllReviews> findByRestaurant(String restaurant);
+
+    List<AllReviews> findByUsername(String username);
 
 }
