@@ -11,7 +11,6 @@
         <title>Happy Tourist Reykjavík</title>
     </head>
     <body>
-        <!-- <img src="JonG.jpg">  !-->
         <h1>Welcome to Happy tourist Reykjavík!</h1>
 
 
@@ -108,18 +107,6 @@
 
     </div>
 
-   <!-- <ul>
-        <li><a href="/postit">Click here for Persistence Layer Demo</a></li>
-    </ul>
-
-    <!--
-    <h2><a href="/public/create">Click here to sign up!</a></h2>
-    <h2><a href="/login">Login</a></h2>
-
-    <h2><a href="/currency">Currency converter</a></h2>
-    <h2><a href="/events">Check out the events schedule!</a></h2>
-    <h2><a href="/info">Useful Information</a> </h2>
-    <h2><a href="/streetmap">StreetMap</a></h2>  !-->
 
     </body>
 
@@ -153,7 +140,6 @@
             background: -webkit-linear-gradient(white, #778899 ); /* For Safari 5.1 to 6.0 */
             background: -moz-linear-gradient(white, #778899 ); /* For Firefox 3.6 to 15 */
             background: linear-gradient(white, #778899); /* Standard syntax (must be last) */
-            /*background-image: url(http://sadcars.com/skrar/image/blog_2013/Iceland%20driving%20winter%20Travel%20adventures.jpg); */
         }
 
         h1{

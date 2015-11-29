@@ -25,7 +25,6 @@ public class AllReviewsController {
     @RequestMapping(value = "/streetmap/restaurants", method = RequestMethod.GET)
     public  String allReviewsViewGet( Model model){
         model.addAttribute("allReviews", new AllReviews());
-        //model.addAttribute("allReview", allReviewsService.findAll());
 
         //return the view
         return "Map/restaurants";
@@ -37,7 +36,6 @@ public class AllReviewsController {
 
 
         model.addAttribute("allReviews", allReviewsService.create(allReviews, currentUser));
-
         model.addAttribute("allReview", allReviewsService.findByRestaurant(restaurant));
 
 

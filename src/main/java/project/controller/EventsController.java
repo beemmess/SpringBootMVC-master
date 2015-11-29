@@ -1,7 +1,6 @@
 package project.controller;
 
 import org.json.JSONException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,30 +10,18 @@ import project.persistence.entities.Events.Concerts;
 import project.persistence.entities.Events.Football;
 import project.persistence.entities.Events.Handball;
 import project.service.EventService;
-import project.service.EventsService;
-import project.service.Implementation.EventsServiceImplementation;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.time.LocalDate;
 import java.util.ArrayList;
-
-/**
- * Created by hlingunnlaugsdottir on 10/11/15.
- */
 
 
 @Controller
 public class EventsController {
 
-    // SERVICE HERNA
     EventService eventService;
-/*
-    @Autowired
-    public EventsController(EventsServiceImplementation eventsServiceImplementation) {
-        this.eventsServiceImplementation = eventsServiceImplementation;
-    }
-*/
+
+
     @RequestMapping(value="/events")
     public String events(Model model) {
 

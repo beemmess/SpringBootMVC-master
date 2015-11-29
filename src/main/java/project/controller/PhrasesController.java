@@ -47,18 +47,6 @@ public class PhrasesController {
         return "Info/phrases";
     }
 
-/* þurfum ekki post því við erum ekki að taka inn neinar upplýsingar frá notendum
-    @RequestMapping(value = "/phrases", method = RequestMethod.POST)
-    public String phrasesViewPost(@ModelAttribute("phrases") Phrases phrases, Model model) {
-        phrasesService.save(phrases);
-
-        model.addAttribute("phrase", phrasesService.findAllReverseOrder());
-
-        model.addAttribute("phrases", new Phrases());
-
-        return "Info/phrases";
-    }
-    */
 
     @RequestMapping(value = "/info/usefulphonenumbers", method = RequestMethod.GET)
     public String usefulPhoneNumbersViewGet(Model model) {
@@ -69,18 +57,5 @@ public class PhrasesController {
         //return the view
         return "Info/usefulPhoneNumbers";
     }
-
-/*  þurfum ekki post því við erum ekki að taka inn neinar upplýsingar frá notendum
-    @RequestMapping(value = "/usefulphonenumbers", method = RequestMethod.POST)
-    public String usefulPhoneNumbersViewPost(@ModelAttribute("usefulphonenumbers") UsefulPhoneNumbers usefulPhoneNumbers, Model model) {
-        usefulPhoneNumbersService.save(usefulPhoneNumbers);
-
-        model.addAttribute("usefulphonenumber", usefulPhoneNumbersService.findAllReverseOrder());
-
-        model.addAttribute("usefulphonenumbers", new UsefulPhoneNumbers());
-
-        return "Info/usefulPhoneNumbers";
-    }
-    */
 
 }

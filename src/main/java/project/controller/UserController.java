@@ -39,7 +39,6 @@ public class UserController {
     @InitBinder("form")
     public void initBinder(WebDataBinder binder) {
         binder.addValidators(userCreateFormValidator);
-        //binder.registerCustomEditor(String.class, "email", new UserEmailEditor());
     }
 
 
