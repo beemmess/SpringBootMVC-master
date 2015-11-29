@@ -3,24 +3,13 @@ package project.persistence.entities.Data;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONArray;
 import project.persistence.entities.Events.*;
-
 import java.io.*;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.sql.Time;
 
-/**
- * Created by audurgudjons on 28/10/15.
- */
+
 public class EventData {
     public String eventType;
 
@@ -62,13 +51,7 @@ public class EventData {
             int counter = footballEvent.getInt("counter");
 
             String date = footballEvent.getString("date");
-            //String dateStr = changeFromIslDate(dagur);
-            //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
-            //LocalDate date = LocalDate.parse(dateStr, formatter);
-
             String time = footballEvent.getString("time");
-            //SimpleDateFormat tm = new SimpleDateFormat("HH:mm");
-            //Date time = tm.parse(timeStr);
             String tournament = footballEvent.getString("tournament");
             String location = footballEvent.getString("location");
             String homeTeam = footballEvent.getString("homeTeam");
@@ -97,13 +80,7 @@ public class EventData {
             String tournament = handballEvent.getString("Tournament");
 
             String date = handballEvent.getString("Date");
-            //String dateStr = changeFromIslDate(dagur);
-            //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
-            //LocalDate date = LocalDate.parse(dateStr, formatter);
-
             String time = handballEvent.getString("Time");
-            //SimpleDateFormat tm = new SimpleDateFormat("HH.mm");
-            //Date time = tm.parse(timeStr);
 
             handbolti[i] = new Handball();
             handbolti[i].setTeams(teams);
@@ -132,12 +109,8 @@ public class EventData {
                 dateOfShow = dateTime[0];
                 timeOfShow = dateTime[1];
             }
-
-            //SimpleDateFormat dt = new SimpleDateFormat("yyyy-mm-dd");
-            //Date dateOfShow = dt.parse(dateStr);
             String userGroupName = concertsEvent.getString("userGroupName");
             String eventHallName = concertsEvent.getString("eventHallName");
-            //String imageSource = concerts.getString("imageSource");
 
             tonleikar[i] = new Concerts();
             tonleikar[i].setEventDateName(eventDateName);
@@ -146,7 +119,6 @@ public class EventData {
             tonleikar[i].setTimeOfShow(timeOfShow);
             tonleikar[i].setUserGroupName(userGroupName);
             tonleikar[i].setEventHallName(eventHallName);
-            //tonleikar[i].setImageSource(imageSource);
         }
         return tonleikar;
     }
@@ -177,58 +149,7 @@ public class EventData {
             bio[i].setTheater(theater);
             bio[i].setSchedule(schedule);
 
-            //JSONArray showTimes = cinemaEvent.getJSONArray("showtimes");
-            //JSONObject theaterObj = showTimes.getJSONObject(0);
-            //String theater = theaterObj.getString("theater");
-            //JSONObject scheduleObj = showTimes.getJSONObject(1);
-            //String schedule = scheduleObj.getString("schedule");
-            //String schedule = cinemaEvent.getString("schedule");
-            /*
-            "results":[{"title":"Solace","released":" (2015)","restricted":"16 ára","imdb":"6.5/10  1,867 atkv.","imdbLink":"http://www.imdb.com/title/tt1291570","image":"http://kvikmyndir.isnull","showtimes":[{"theater":"Borgarbíó","schedule":["17:40","17:40","17:40","20:00","20:00","20:00","20:00","22:20","22:20","22:20","22:30"]},{"theater":"Sambíóin Álfabakka","schedule":["17:40 (P)","17:40 (1)","20:00 (1)","20:00 (P)","22:20 (1)","22:20 (P)"]},{"theater":"Sambíóin Kringlunni","schedule":["20:00 (2)","22:30 (3)"]},{"theater":"Sambíóin Egilshöll","schedule":["17:40 (2)","20:00 (2)","22:20 (4)"]},{"theater":"Sambíóin Akureyri","schedule":["17:30 (A)","20:00 (A)","22:20 (A)"]},{"theater":"Sambíóin Keflavík","schedule":["22:00 (2)"]}]}
-             */
         }
         return bio;
-    }
-
-
-    public static String changeFromIslDate(String islDate) {
-        String dagur = islDate.substring(5,7);
-        String month = islDate.substring(islDate.length() - 3);
-        String manudur = "";
-        if(month.equals("jan")) {
-            manudur="01";
-        } else if(month.equals("feb")) {
-            manudur="02";
-        } else if(month.equals("mar")) {
-            manudur="03";
-        } else if(month.equals("apr")) {
-            manudur="04";
-        } else if(month.equals("maí")) {
-            manudur="05";
-        } else if(month.equals("jún")) {
-            manudur="06";
-        } else if(month.equals("júl")) {
-            manudur="07";
-        } else if(month.equals("ágú")) {
-            manudur="08";
-        } else if(month.equals("sep")) {
-            manudur="09";
-        } else if(month.equals("okt")) {
-            manudur="10";
-        } else if(month.equals("nóv")) {
-            manudur="11";
-        } else if(month.equals("des")) {
-            manudur="12";
-        } else {
-            return islDate;
-        }
-
-        String a = dagur + manudur + "2015";
-        return a;
-    }
-
-
-    public static void main(String args[]) throws ParseException {
-
     }
 }
